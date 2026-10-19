@@ -2,7 +2,8 @@
 """Verify the code-only public 2026-10-19 release, without private inputs.
 
 Default: manifest/hygiene checks, data-independent statistical regression tests,
-UI v1.1's rational reference suite, and the mechanism Fisher self-test. ``--integrity-only`` never
+UI v1.1's rational reference suites (first and second), public-checkout endpoint smoke
+tests, and the mechanism Fisher self-test. ``--integrity-only`` never
 reports a full validation PASS. Source hashes in the manifest are provenance
 metadata; only distributed bytes can be independently checked in a checkout.
 """
@@ -50,8 +51,10 @@ METHOD_TESTS = (
     "auditability_certificate_v1/tests/test_uniform_adjudication_exact.py",
     "auditability_certificate_v1/tests/test_protected_group_family_srac.py",
     "auditability_certificate_v1/tests/test_robust_interval_hull.py",
+    "auditability_certificate_v1/tests/test_public_endpoint_compat.py",
     "tests/test_code_only_release.py",
 )
+MIN_REGRESSIONS_PASSED = 43
 
 
 def digest(path: Path) -> str:
@@ -236,14 +239,14 @@ def run_step(root: Path, name: str, arguments: list[str], timeout: int) -> dict:
         parsed = None
     if name == "method_and_code_only_regressions":
         counts = re.findall(r"\b(\d+) passed\b", p.stdout.decode("utf-8",errors="replace"))
-        if p.returncode != 0 or not counts or int(counts[-1]) < 31:
+        if p.returncode != 0 or not counts or int(counts[-1]) < MIN_REGRESSIONS_PASSED:
             result.update(status="FAIL", reason="required statistical and code-only regression suite did not pass")
         else:
             result["tests_passed"] = int(counts[-1])
     else:
         if not isinstance(parsed, dict) or parsed.get("passed") is not True:
             result.update(status="FAIL", reason="self-test did not report passed=true")
-        for key in ("T1_comparisons", "T3_intervals", "T4_census_populations", "n_failures", "truth_points", "max_error_over_alpha", "T2_max_error_over_alpha"):
+        for key in ("T1_comparisons", "T1_zero_observation_outcomes", "T6_mutant_failures_detected", "T3_intervals", "T4_census_populations", "n_failures", "truth_points", "max_error_over_alpha", "T2_max_error_over_alpha"):
             if isinstance(parsed, dict) and isinstance(parsed.get(key), (int, float)):
                 result[key] = parsed[key]
     return result
@@ -266,7 +269,7 @@ def main() -> int:
             return emit(report, 1)
         if args.integrity_only:
             report["status"] = "PASS_INTEGRITY_ONLY"
-            report["not_verified"] = ["method and code-only regression suite", "UI v1.1 rational-reference suite", "mechanism Fisher self-test"]
+            report["not_verified"] = ["method, endpoint-smoke and code-only regression suite", "UI v1.1 rational-reference suites", "mechanism Fisher self-test"]
             return emit(report, 0)
         missing_tests = [name for name in METHOD_TESTS if not (root/name).is_file()]
         if missing_tests:
@@ -274,6 +277,7 @@ def main() -> int:
         steps = [
             ("method_and_code_only_regressions", ["-m", "pytest", *METHOD_TESTS, "-q", "-p", "no:cacheprovider"], args.regression_timeout),
             ("ui_v1_1", ["auditability_certificate_v1/analysis/test_srac_ui_engine_v1_1.py"], args.test_timeout),
+            ("ui_v1_1_suite2", ["auditability_certificate_v1/analysis/test_srac_ui_engine_v1_1_suite2.py"], args.test_timeout),
             ("mechanism_fisher", ["auditability_certificate_v1/analysis/run_ui_mechanism_ablation_v1.py", "selftest"], args.test_timeout),
         ]
         for name, arguments, timeout in steps:

@@ -8,8 +8,9 @@ python -B src/verify_srac_release_20261019.py --root .
 ```
 
 A complete PASS requires manifest integrity, no manuscript/PDF/private payload,
-the required statistical regression tests, corrected UI reference tests, Fisher
-self-tests, and unchanged integrity after testing. This does not validate omitted
+the required statistical regression tests, both corrected UI reference suites, the
+public-checkout endpoint smoke tests, Fisher self-tests, and unchanged integrity after
+testing. This does not validate omitted
 experimental result tables, real adjudication channels, or model training.
 
 An integrity-only check is explicitly partial:
@@ -23,6 +24,7 @@ Individual data-independent checks:
 ```bash
 PYTHONDONTWRITEBYTECODE=1 python -B -m pytest -q -p no:cacheprovider
 PYTHONDONTWRITEBYTECODE=1 python -B auditability_certificate_v1/analysis/test_srac_ui_engine_v1_1.py
+PYTHONDONTWRITEBYTECODE=1 python -B auditability_certificate_v1/analysis/test_srac_ui_engine_v1_1_suite2.py
 PYTHONDONTWRITEBYTECODE=1 python -B auditability_certificate_v1/analysis/run_ui_mechanism_ablation_v1.py selftest
 ```
 
@@ -53,9 +55,27 @@ the corrected UI engine (frozen SHA-256
 interval dependency is distributed byte-identical (SHA-256
 `9171814bd8be311461cb6c3a493be1b8faba58c06dbd76f497d51c47bd9d5422`) at
 `auditability_certificate_v1/analysis/frozen/cifar10_semantic_overlap_v1/`.
-Endpoint runners that re-check the frozen hash of a normalized file expect the frozen
-bytes; they also need controlled inputs that are not public. Historical source hashes
-are provenance, not proof that omitted data were replayed here.
+Some endpoint runners re-check the frozen hash of a normalized file
+(`run_posthoc_power_study_v1.py`): the block-16 endpoint and the secondary escalation
+analyses of blocks 12 and 13. Run them through the compatibility wrapper, which leaves
+every frozen file, protocol, and receipt unchanged and accepts a normalized file only if
+its bytes match the public hash declared in `PATH_NORMALIZATION.json`:
+
+```bash
+python -B auditability_certificate_v1/analysis/public_compat_runner.py \
+    auditability_certificate_v1/analysis/run_gtsrb_srac_ui_confirmation.py
+```
+
+Every substitution is reported on stderr. The frozen bytes themselves can only be
+checked against the controlled archive. The runners still need controlled inputs that
+are not public; `auditability_certificate_v1/tests/test_public_endpoint_compat.py`
+runs the block-16 and block-12 endpoints end to end on synthetic flags instead.
+Historical source hashes are provenance, not proof that omitted data were replayed here.
+
+The first UI reference suite (`test_srac_ui_engine_v1_1.py`) is kept unchanged as the
+record bound before the v1.1 recomputation. The second suite also decides the
+zero-observation outcome with the engine, adds small risk budgets, an independent
+Berger--Boos check, exact expected regression decisions, and a mutation check.
 
 Manuscripts, TeX/PDF files, experimental results, and the earlier repository's
 Git history are intentionally excluded.

@@ -27,8 +27,9 @@ python -B src/verify_srac_release_20261019.py --root .
 ```
 
 The verifier checks the code-only manifest and exclusions, runs the data-independent
-method and release-policy regression tests, and exercises the corrected SRAC-UI
-and SUITE-style Fisher self-tests.
+method and release-policy regression tests, smoke-tests the frozen endpoint runners
+on synthetic flags, and exercises the corrected SRAC-UI reference suites and the
+SUITE-style Fisher self-test.
 
 [Verification instructions](HOWTO_VERIFY.md) · [Artifact scope](ARTIFACT_SCOPE.md)
 
@@ -49,6 +50,9 @@ bytes only in a path string (a dependency path or an absolute workstation path);
 [PATH_NORMALIZATION.json](PATH_NORMALIZATION.json) lists their frozen and public
 hashes. The frozen interval dependency is distributed byte-identical at
 `auditability_certificate_v1/analysis/frozen/cifar10_semantic_overlap_v1/`.
+Endpoint runners that re-check such a frozen hash are run through
+`auditability_certificate_v1/analysis/public_compat_runner.py`
+(see [HOWTO_VERIFY.md](HOWTO_VERIFY.md)).
 
 ## Training and data-dependent analyses
 

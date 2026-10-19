@@ -2,8 +2,8 @@
   "schema": "target-unknown-auditing-code-20261019",
   "repository": "https://github.com/xiefeng102x-cpu/target-unknown-auditing",
   "profile": "code-tests-configurations-protocols-only",
-  "created_utc": "2026-10-19T02:27:07Z",
-  "file_count": 215,
+  "created_utc": "2026-10-19T10:20:56Z",
+  "file_count": 218,
   "files": [
     {
       "path": ".gitignore",
@@ -22,8 +22,8 @@
     },
     {
       "path": "HOWTO_VERIFY.md",
-      "size": 2687,
-      "sha256": "790c484722707879f756d19185eaa04dd27cd7f38adcc37cfae18d9c9d081be9"
+      "size": 3916,
+      "sha256": "0ecfe8a46a5c0ac6822c483f1ff800846f90b9521e776ab247c40fda448d170d"
     },
     {
       "path": "LICENSE",
@@ -42,8 +42,8 @@
     },
     {
       "path": "README.md",
-      "size": 3187,
-      "sha256": "21323cf0c9812318a1831997523430ed7d614397fa6d146253d9eac6b9f5586f"
+      "size": 3438,
+      "sha256": "2691435c3d277e7746e1cd88a869fb6555a219daf65ba7fc9f66a9af28dbcadb"
     },
     {
       "path": "SRAC_CIFAR10_VGG16_BLENDED_CONFIRMATION_FREEZE_V1.json",
@@ -421,6 +421,11 @@
       "sha256": "f4afd349117f02f51d951c64ecc2fa53b6a1d12a900c52b6183d38b6ed52afa9"
     },
     {
+      "path": "auditability_certificate_v1/analysis/public_compat_runner.py",
+      "size": 4455,
+      "sha256": "742bdd184ad65b2430d34e50e7e24e6056445bec4953e2a71d1687a29809cab2"
+    },
+    {
       "path": "auditability_certificate_v1/analysis/recompute_mechanism_cluster_ci_v1.py",
       "size": 3248,
       "sha256": "1e09b3becfbf90c26d11be6380dba885c67f4a689b00c79de8661f19d4676f00"
@@ -651,6 +656,11 @@
       "sha256": "34bfef20ed5f96e1bb3b4f530ce5dff1833a90e9e1f0f73857c99d5389fe61f3"
     },
     {
+      "path": "auditability_certificate_v1/analysis/test_srac_ui_engine_v1_1_suite2.py",
+      "size": 9952,
+      "sha256": "1eb29eb5dd4c481c8fb5e4121a3133a6e04a7d4e1f338ed7d8a740cb409e540c"
+    },
+    {
       "path": "auditability_certificate_v1/analysis/verify_cifar10_semantic_overlap_artifacts.py",
       "size": 14053,
       "sha256": "de336ce749adefc4baf10d220f6eac53ffab798ada55d9b7ce45be1fa6b72dd5"
@@ -689,6 +699,11 @@
       "path": "auditability_certificate_v1/tests/test_protected_group_family_srac.py",
       "size": 5011,
       "sha256": "d870f0381507039a63c485a69aa6d84ef49728c6942e814c703c4ce65b5ad43f"
+    },
+    {
+      "path": "auditability_certificate_v1/tests/test_public_endpoint_compat.py",
+      "size": 6979,
+      "sha256": "6fb2453b4503977091da5a0477630ff30bf4d0e0a08c8b5629b7a9dafd451a2a"
     },
     {
       "path": "auditability_certificate_v1/tests/test_robust_interval_hull.py",
@@ -857,8 +872,8 @@
     },
     {
       "path": "pytest.ini",
-      "size": 380,
-      "sha256": "b26c757115665061e452caaaea93de03a53d3ac948811d099799143b2ae6794e"
+      "size": 449,
+      "sha256": "06b64d394bd189b21dd444ca0b49e42f9bc33621408239ac5f55d6698010d66f"
     },
     {
       "path": "requirements-audit.txt",
@@ -1057,8 +1072,8 @@
     },
     {
       "path": "src/verify_srac_release_20261019.py",
-      "size": 14313,
-      "sha256": "d4337af9aeb5e781cfcdbba133c5502188f63b8c812d1542a63d2491322ed819"
+      "size": 14699,
+      "sha256": "edba44bcfe582a8de6cb1cfad0924926917cef95760fcffdafda3981635d38ad"
     },
     {
       "path": "tests/test_cifar10_vgg16_blended_confirmation_adapter.py",
@@ -1092,5 +1107,5 @@
     "private candidate labels and sampling keys",
     "credentials, caches and old Git history"
   ],
-  "verification_scope": "Data-independent statistical and code-only regression tests, corrected UI rational-reference checks, Fisher self-tests; no training or real-data replay."
+  "verification_scope": "Data-independent statistical and code-only regression tests, both corrected UI rational-reference suites, endpoint smoke tests on synthetic flags, Fisher self-tests; no training or real-data replay."
 }
