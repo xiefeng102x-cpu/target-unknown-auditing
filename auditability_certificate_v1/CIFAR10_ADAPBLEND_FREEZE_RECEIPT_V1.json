@@ -1,0 +1,22 @@
+{
+ "block": 13,
+ "status": "FROZEN_BEFORE_ANY_VICTIM_TRAINING",
+ "written_utc": "2026-10-17T11:38:36.991661+00:00",
+ "external_timestamp": false,
+ "outcomes_observed": "none: no victim trained, no detector score or certificate decision computed",
+ "selftest": "victim runner selftest and two-batch CPU smoke training passed on real CIFAR-10 labels in a Linux VM (torch 2.7.1+cpu); formal run requires MPS on the author's Mac",
+ "sha256": {
+  "auditability_certificate_v1/PROTOCOL_CIFAR10_ADAPBLEND_SCAN_LDA_CONFIRMATION_V1.json": "ce2a105c5c3d82eebc6ad53e48090ab86f0dbd28b236b4ac315a110d43f28a61",
+  "configs/cifar10_vgg16_bn_adapblend_scan_lda_confirmation_v1.json": "49440b1d20ef87aadacdf1f5ed46aeb5ea3d9f5e2c53b1248130d72e4fb81b54",
+  "src/run_cifar10_vgg16_bn_adapblend_scan_lda_confirmation.py": "cb202033b74001e7b54dfda387a075d3f822db277f436462e32cb34aef94916e",
+  "src/run_cifar10_adapblend_scan_lda_scores.py": "4f98d38e6ac70f0c326b2055e6f0908f53ecf864f638b22b5e3b208dcd42e490",
+  "auditability_certificate_v1/analysis/run_cifar10_adapblend_scan_lda_confirmation.py": "4de4d3e4485cf569960cbaf355ff4fee4cac4e3a124be3adcc189fac6adea3fa",
+  "auditability_certificate_v1/analysis/finalize_cifar10_adapblend_scan_lda_confirmation.py": "8663e209f68adf1cd991f884ca4297701d421cfc7bc808e1e7a1fd2559c33c06",
+  "auditability_certificate_v1/analysis/run_cifar10_adapblend_scan_lda_posttraining_pipeline.py": "6d68fd79cb0b5dc3e5bbc434e3f82d091e5c530e36dce76f3f94f45a472706ee",
+  "auditability_certificate_v1/analysis/run_cifar10_adapblend_secondary.py": "faa68496f02979f6f166c0f197ed6bef13812342372f1b7e5df7eabf5ebe429d",
+  "auditability_certificate_v1/analysis/srac_family_core_scan_lda_v1.py": "c74f3a2027049ad5f710dcb91850ba7c75ac7199f420a4d0efef2f62f611a998",
+  "src/scan_lda_expansion.py": "dce71b72fdfafdf1b4e5c2433f8fc9c07f126ed391762223bc0815692ee14302",
+  "src/backdoorbench_feature_adapter.py": "45852a5df504b73d231330fe658ff8d34b57729ed21d97d00d0419514c065eef",
+  "RUN_CIFAR10_ADAPBLEND_BLOCK.command": "eae20a2f1207c9cd85bd2df74f20e2ec4c2bcf10be0a1cfeb6ef770f239c5177"
+ }
+}

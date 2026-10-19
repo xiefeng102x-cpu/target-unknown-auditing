@@ -1,0 +1,35 @@
+{
+  "purpose": "Public files whose bytes differ from the frozen bytes recorded in receipts and protocols. Each differs only in a path string; code logic and parameters are unchanged.",
+  "files": [
+    {
+      "path": "auditability_certificate_v1/analysis/srac_ui_engine_v1_1.py",
+      "frozen_sha256": "ce1275d07607668c2f8243ef8dde6c8f163a7f6a226bdaefe5ac718752a0003f",
+      "public_sha256": "58724a60da3f0f34071a446be9ac6081d59dc509537733a6a220b79155e23dc9",
+      "change": "the relative path of the frozen interval dependency now points to its byte-identical copy at auditability_certificate_v1/analysis/frozen/cifar10_semantic_overlap_v1/run_protected_group_family_srac.py; no other byte differs"
+    },
+    {
+      "path": "auditability_certificate_v1/analysis/run_posthoc_power_study_v1.py",
+      "frozen_sha256": "71eb676df806de0172dd99ba2e7413c100851a9d290e252669dcc8f7f36a1096",
+      "public_sha256": "418f75f6c8a65f1f84b4a2fe5a11a47b7f5917618f823e2b09a5fdaa57f5ed6d",
+      "change": "the relative path of the frozen interval dependency now points to its byte-identical copy at auditability_certificate_v1/analysis/frozen/cifar10_semantic_overlap_v1/run_protected_group_family_srac.py; no other byte differs"
+    },
+    {
+      "path": "configs/tifs_native_gtsrb_confirmation_v1.json",
+      "frozen_sha256": "80d727c5311574e83c32eacc141387b28fe1642e9e35fe0a223b2adcbb488513",
+      "public_sha256": "b1cf86ec028a271a301c6295cf274c800eb847da6009d7f1da1a54dfe578aeaf",
+      "change": "absolute workstation paths were replaced by repository-relative paths and the interpreter path by its name; no other byte differs"
+    },
+    {
+      "path": "configs/tifs_native_gtsrb_confirmation_v1_1.json",
+      "frozen_sha256": "33acacffd5fe078b8e76bfba3f1e16ccb0f63177d768375629e3456c4eee19f1",
+      "public_sha256": "eced81b4c0f5904edecfc826f003864a889e7268e26f12c7abde6a47238cd305",
+      "change": "absolute workstation paths were replaced by repository-relative paths and the interpreter path by its name; no other byte differs"
+    },
+    {
+      "path": "SRAC_CIFAR10_VGG16_CONFIRMATION_FREEZE_V1.json",
+      "frozen_sha256": "3dd153a803d3571bb78eac94909bb4c5d772efcce97ab998b7bd97609b4057ce",
+      "public_sha256": "905ee28efd785308d1512e5f543e8d363f615f95ed82c022ec9548c7eee10ed0",
+      "change": "absolute workstation paths were replaced by repository-relative paths and the interpreter path by its name; no other byte differs"
+    }
+  ]
+}

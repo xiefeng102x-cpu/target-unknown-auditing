@@ -1,0 +1,47 @@
+{
+  "protocol_id": "srac_adjudication_redteam_v1",
+  "frozen_at": "2026-10-13T12:46:00+08:00",
+  "purpose": "Test a certificate-aware attacker that corrupts sampled poison identities after the protected draw, and compare an uncorrected certificate with the declared-B robust certificate.",
+  "inputs": {
+    "main_replay": {
+      "path": "results_uniform_adjudication_v1/uniform_adjudication_decisions.csv",
+      "sha256": "ffcf79f61b97ff05b62a6d0c5e845a4c2e1581a29388de0dfe1c495c87061e84"
+    },
+    "prefrozen_global_blend": {
+      "path": "results_gtsrb_global_blend_srac_v1/decisions.csv",
+      "sha256": "29d68cbffb528a7c9900790eb01ae97bf7ab3d47066c70c187f887cbf1eee018"
+    },
+    "certificate_core": {
+      "path": "analysis/run_uniform_adjudication_certificate.py",
+      "sha256": "302c1cc2b90b25e3c75728c1ef0c2eae5db4bcc7963738f607d3601bd9539e11"
+    }
+  },
+  "attack_knowledge": [
+    "the sampled records' true adjudicated identities",
+    "the sampled records' frozen detector flags",
+    "the certificate formula, tau, alpha cap, and delta"
+  ],
+  "attack_timing": "after the secret draw and before aggregate adjudication counts are released",
+  "corruption_rates": [0.001, 0.005, 0.01, 0.02],
+  "budget_rule": "B = ceil(corruption_rate * k)",
+  "allowed_helpful_flips": [
+    "uncaught poison to unflagged clean",
+    "flagged clean to caught poison"
+  ],
+  "optimizer": "enumerate all feasible allocations of at most B helpful flips and select GO first, then the largest recall lower margin, then the largest clean-rate margin, then the fewest flips",
+  "comparators": [
+    "naive certificate that assumes B=0 on corrupted counts",
+    "robust certificate evaluated with the true declared corruption bound B"
+  ],
+  "primary_endpoint": "false-GO rate among detector decisions whose true recall is below tau or whose true clean flag rate exceeds alpha cap",
+  "secondary_endpoints": [
+    "fraction of previously non-GO decisions converted to GO",
+    "robust-certificate GO, NO-GO, and ABSTAIN rates",
+    "minimum corruption rate producing a false GO in each block and detector"
+  ],
+  "claim_rule": {
+    "expected": "The naive B=0 certificate may fail under label corruption. The robust certificate must produce zero false GO whenever the declared B covers the attack.",
+    "failure": "Any robust false GO is a load-bearing implementation or theorem discrepancy and blocks the claim."
+  },
+  "scope": "This red team violates perfect adjudication but does not reveal or influence the protected sample before the draw. It does not test key compromise, population replacement, or an underestimated B."
+}

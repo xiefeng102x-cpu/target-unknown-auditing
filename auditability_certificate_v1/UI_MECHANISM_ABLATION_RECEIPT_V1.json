@@ -1,0 +1,12 @@
+{
+  "status": "FROZEN_BEFORE_RUN",
+  "created_utc": "2026-10-18T21:46:55.236516+00:00",
+  "selftest": "suite exact size on 7,576 small-population truth points: max error/alpha = 0.25, no failure; restricted search agrees with full branch and bound on 800 random tests",
+  "sha256": {
+    "UI_MECHANISM_ABLATION_PLAN_V1.md": "044df728fcfbc7f07dae7c2b2fddb634a61780c6844e6d89e60f8f73b1cf02e3",
+    "analysis/run_ui_mechanism_ablation_v1.py": "f9291ceb5a18f0b74a0d8b7bc7d1aff6a438fab5edfe1a73040e0d921ec79c17",
+    "analysis/srac_ui_engine_v1_1.py": "ce1275d07607668c2f8243ef8dde6c8f163a7f6a226bdaefe5ac718752a0003f",
+    "results_stratified_ui_audit_v1_1/decisions.csv": "cdc01cb360f3a359ff21a31eafe6b94f67c20c4b9310eb2df90ded1d8480bd33",
+    "results_gtsrb_srac_ui_confirmation_v1_1_erratum/decisions.csv": "d1b8db49aa9bad63b105d8d517fcf319bce7177a9b760eca463cc22fedc5bd50"
+  }
+}

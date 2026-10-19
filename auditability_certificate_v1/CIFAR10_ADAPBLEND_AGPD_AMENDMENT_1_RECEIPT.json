@@ -1,0 +1,17 @@
+{
+  "written_utc": "2026-10-18T03:23:46.671569+00:00",
+  "status": "amendment before any detector output",
+  "amendment": {
+    "id": 1,
+    "recorded_utc": "2026-10-18T03:23:46.671569+00:00",
+    "trigger": "the first MPS scoring run (2026-10-18T03:21:54Z) stopped inside the first victim's candidate activation-gradient pass with a PyTorch MPS autograd error ('view size is not compatible with input tensor's size and stride') raised by torch.autograd.grad in src/agpd_feature_adapter.py; the same code path passes on CPU",
+    "change": "execution.device mps -> cpu (deterministic CPU execution of the unchanged adapter and scoring script)",
+    "scientific_fields_changed": [],
+    "code_changed": [],
+    "detector_outputs_before_amendment": "none: no flags, scores, or manifest were written; the run failed before the first victim's AGPD result existed",
+    "original_frozen_protocol": "PROTOCOL_CIFAR10_ADAPBLEND_AGPD_V1.frozen_20261017T2349Z.json",
+    "original_frozen_protocol_sha256": "431bb92963a14a4832314397307217e42cd462e078886dc51bafe640432a9260"
+  },
+  "protocol_sha256_before": "431bb92963a14a4832314397307217e42cd462e078886dc51bafe640432a9260",
+  "protocol_sha256_after": "e1e05812c090bd5716dae2e960f8f0bcf9f2acefc394945449733a07711d4c8d"
+}

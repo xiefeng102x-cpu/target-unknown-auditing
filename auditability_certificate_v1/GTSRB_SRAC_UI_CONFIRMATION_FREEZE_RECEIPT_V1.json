@@ -1,0 +1,17 @@
+{
+  "written_utc": "2026-10-18T11:58:23.105586+00:00",
+  "protocol_sha256": "868e9a49c8d5a2bbbd8508d4d580b2a72f855d1e27cf51a377feeb8e0dbf6ff8",
+  "config_sha256": "6f0a41b1a1e204ee2f9de1bf6325e51cef48d40de0da860bed464e66b0e8b5aa",
+  "bindings": {
+    "victim_runner_sha256": "06381624dd4e8b30e2cd799cca693b983714821f1fc652b4237b9e61e154037b",
+    "adapter_sha256": "45852a5df504b73d231330fe658ff8d34b57729ed21d97d00d0419514c065eef",
+    "runner_sha256": "5fd3144674df5ed47ec65d28e64f85c73837da0292db13b966744428dfa28e53",
+    "runner_launcher_sha256": "5d22187f425162b4118ea543b433cfaf957ba7ed5388d8ed7cf24ef57b73cde6"
+  },
+  "endpoint_stage": {
+    "auditability_certificate_v1/analysis/run_gtsrb_srac_ui_confirmation.py": "48d5bc8a7fe32f712db7d8ddb645b1cdcaf6eea9442cb90ee3736537d2676b5e",
+    "auditability_certificate_v1/analysis/run_stratified_ui_audit_v1.py": "9dcff664f91fd634474006b80aaa146817cff9d07684a3cad36d3b67a24f9766",
+    "auditability_certificate_v1/analysis/run_audit_baselines_v1.py": "28786eb68600fbb4f9eed83d6e835f1647a48b763c343229c5be8588eee93342",
+    "auditability_certificate_v1/analysis/run_posthoc_power_study_v1.py": "71eb676df806de0172dd99ba2e7413c100851a9d290e252669dcc8f7f36a1096"
+  }
+}

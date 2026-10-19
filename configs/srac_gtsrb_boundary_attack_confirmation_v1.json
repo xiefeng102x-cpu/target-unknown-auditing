@@ -1,0 +1,200 @@
+{
+  "protocol_id": "tifs_native_gtsrb_confirmation_v1",
+  "study_id": "srac_gtsrb_boundary_attack_confirmation_v1",
+  "stage": "confirmation",
+  "frozen_at": "2026-10-13T16:08:00+08:00",
+  "freeze_method": "written after the documented seed-212 development search and before training any confirmation victim or drawing any SRAC audit sample",
+  "seeds": [213, 214, 215, 216, 217, 218, 219, 220, 221, 222],
+  "minimum_eligible_victims": 8,
+  "no_seed_replacement": true,
+  "dataset": {
+    "name": "GTSRB",
+    "root_relative_to_paper14": "data/gtsrb_official",
+    "train_rows": 26640,
+    "test_rows": 12630,
+    "class_count": 43,
+    "resize": [32, 32],
+    "archives": [
+      {
+        "file": "gtsrb/GTSRB-Training_fixed.zip",
+        "md5": "513f3c79a4c5141765e10e952eaa2478",
+        "sha256": "df4144942083645bd60b594de348aa6930126c3e0e5de09e39611630abf8455a"
+      },
+      {
+        "file": "gtsrb/GTSRB_Final_Test_Images.zip",
+        "md5": "c7e4e6327067d32654124b0fe9e82185",
+        "sha256": "48ba6fab7e877eb64eaf8de99035b0aaecfbc279bee23e35deca4ac1d0a837fa"
+      },
+      {
+        "file": "gtsrb/GTSRB_Final_Test_GT.zip",
+        "md5": "fe31e9c9270bbcd7b84b7f21a9d9d9e5",
+        "sha256": "f94e5a7614d75845c74c04ddb26b8796b9e483f43541dd95dd5b726504e16d6d"
+      }
+    ]
+  },
+  "split": {
+    "train_fraction_per_class": 0.9,
+    "split_rng": "numpy.default_rng(2026100600 + seed + class_id * 1009)",
+    "validation_used_for": "best-epoch selection by balanced clean accuracy only"
+  },
+  "attack": {
+    "name": "srac_aware_moderate_train_strong_test_global_blend_all_to_one",
+    "target_class": 2,
+    "patch_size": 32,
+    "patch_alpha": 0.2,
+    "weak_alpha": 0.1,
+    "strong_fraction": 0.0,
+    "patch_rgb_uint8": [255, 217, 13],
+    "poison_fraction_per_non_target_training_class": 0.05,
+    "poison_selection_rng": "numpy.default_rng(2026101600 + seed + source_class * 131)",
+    "strength_assignment_rng_base": 2026111300,
+    "decision_unit": "unique clean training record plus one added poison copy per selected source",
+    "trigger_scope": "full 32x32 frame",
+    "attacker_knowledge": "victim architecture, target-centroid detector, and SRAC thresholds; not confirmation seeds at development time and not the protected audit draw",
+    "test_trigger": "strong alpha=0.2 trigger",
+    "expected_counts_per_seed": {
+      "clean": 23976,
+      "poison": 1132,
+      "total": 25108,
+      "poison_prevalence": 0.045085231798629916,
+      "strong_poison": 0,
+      "weak_poison": 1132
+    }
+  },
+  "victim": {
+    "architecture": "GTSRBTinyCNN-43",
+    "epochs": 12,
+    "batch_size": 512,
+    "learning_rate": 0.002,
+    "weight_decay": 0.0001,
+    "optimizer": "AdamW",
+    "loss": "cross entropy with inverse-square-root clean-class-frequency weights",
+    "representation": "64-D tanh penultimate feature",
+    "checkpoint_selection": "highest validation balanced accuracy; earliest epoch breaks ties"
+  },
+  "victim_eligibility": {
+    "test_balanced_clean_accuracy_min": 0.65,
+    "attack_success_rate_min": 0.8
+  },
+  "trusted_split": {
+    "source": "official GTSRB test split, target class only",
+    "target_class_rows": 750,
+    "reference_rows": 250,
+    "calibration_rows": 250,
+    "reserved_rows": 250,
+    "rng": "numpy.default_rng(2026102600 + seed)"
+  },
+  "detectors": {
+    "primary": {
+      "name": "target_centroid_distance",
+      "alpha": 0.05,
+      "crossfit_rng": "numpy.default_rng(20271001 + seed)"
+    },
+    "matched_baselines": ["cf_cmd_u", "crossfit_spectral"]
+  },
+  "adaptive_attack_endpoint": {
+    "target_detector": "target_centroid_distance",
+    "attack_success_definition": "eligible victim and target-detector recall below 0.8 under the frozen full-population flags",
+    "certificate_success_definition": "no false GO under the frozen SRAC endpoint; NO-GO or ABSTAIN is correct when target-detector recall is below 0.8",
+    "cross_detector_claim": false,
+    "report_every_detector": true
+  },
+  "srac_evaluation": {
+    "audit_universe": "all 23,976 clean training members plus all 1,132 added poison records",
+    "detectors": ["cf_cmd_u", "crossfit_spectral", "target_centroid_distance"],
+    "recall_target": 0.8,
+    "clean_flag_rate_cap": 0.1,
+    "delta_per_decision": 0.005,
+    "family_error_upper_bound": 0.015,
+    "audit_budgets": [2000, 8000, 16000],
+    "protected_draws_per_seed_budget": 200,
+    "same_draw_reused_across_detectors": true,
+    "decision_outputs": ["GO", "NO_GO", "ABSTAIN"],
+    "primary_security_error": "false GO",
+    "secondary_diagnostic_error": "false NO-GO",
+    "adjudication_error_budget_B": 0,
+    "protected_draw_unknown_to_attacker": true,
+    "sparse_rate_evidence_restricted_to": "k/N <= 0.10; only k=2000 qualifies",
+    "no_threshold_or_policy_retuning_after_freeze": true
+  },
+  "execution": {
+    "formal_device": "mps",
+    "cli_requirement": "--device mps",
+    "fallback": "fail",
+    "checkpoint_state_storage": "cpu",
+    "actual_device_must_be_recorded_per_seed": true
+  },
+  "runner": {
+    "path": "src/run_gtsrb_srac_boundary_attack.py",
+    "sha256": "9f625642d949f8e73f1f9c12939211c55d5553c292c52a29199bb6764142df64"
+  },
+  "execution_amendment_before_training": {
+    "recorded_at": "2026-10-13T16:12:00+08:00",
+    "reason": "the first invocation stopped during protocol parsing because the wrapper accepted the development endpoint key but not the confirmation endpoint key",
+    "repair": "accept srac_evaluation as an alias for the already frozen srac_attack_target threshold object",
+    "scientific_fields_changed": [],
+    "confirmation_models_started_before_repair": 0,
+    "protected_draws_made_before_repair": 0
+  },
+  "frozen_implementation": {
+    "verifier": {
+      "path": "src/verify_gtsrb_srac_boundary_attack.py",
+      "sha256": "040ffd5e47823d3d358c994814ea4d6d9e1e9ccd59abba1d532d9b9340997295"
+    },
+    "full_population_adapter": {
+      "path": "auditability_certificate_v1/analysis/prepare_gtsrb_uniform_adjudication.py",
+      "sha256": "f4afd349117f02f51d951c64ecc2fa53b6a1d12a900c52b6183d38b6ed52afa9"
+    },
+    "srac_core": {
+      "path": "auditability_certificate_v1/analysis/run_uniform_adjudication_certificate.py",
+      "sha256": "302c1cc2b90b25e3c75728c1ef0c2eae5db4bcc7963738f607d3601bd9539e11"
+    },
+    "endpoint_runner": {
+      "path": "auditability_certificate_v1/analysis/run_gtsrb_boundary_attack_srac.py",
+      "sha256": "5877c7f55973f68c5d62564d4cd57359631b30d96982bd8b660672b7d19577dc"
+    }
+  },
+  "development_provenance": {
+    "seed": 212,
+    "search_disclosure": "three development cells were inspected before selecting the detector-specific confirmation branch",
+    "cells": [
+      {
+        "result": "results/srac_gtsrb_boundary_attack_dev_f068_v1",
+        "protocol_sha256": "526bf8137db31af90ae59082aa6ab5561918d84be3356a4c3a305b69d54a054f",
+        "manifest_sha256": "bc274b8f35a3ee46a89b2b04a82faf6f382e540c4d9322282590baf512317263",
+        "strong_fraction": 0.68,
+        "weak_alpha": 0.0,
+        "cf_cmd_u_recall": 0.8789752650176679,
+        "selected": false
+      },
+      {
+        "result": "results/srac_gtsrb_boundary_attack_dev_f046_v1",
+        "protocol_sha256": "6284a5633027195de5663a22eff4c9d0831dd7f9e9280d74cd66378db11c3748",
+        "manifest_sha256": "855663394c72868a84509b45883a03b59162c13a13977b32955fca4f020c8850",
+        "strong_fraction": 0.46,
+        "weak_alpha": 0.0,
+        "cf_cmd_u_recall": 0.8736749116607774,
+        "selected": false
+      },
+      {
+        "result": "results/srac_gtsrb_boundary_attack_dev_all_a010_v1",
+        "protocol_sha256": "7c9bdcf31b34c17dfe474ab507c86e858f2e6ae88ae2ed9663e901b65b0cfb22",
+        "manifest_sha256": "63855c428b89cfc834d57fafbca19bbd4e49dc8e94fa33d51d2a0e050414ac2f",
+        "strong_fraction": 0.0,
+        "weak_alpha": 0.1,
+        "balanced_clean_accuracy": 0.7808738615367697,
+        "strong_trigger_attack_success_rate": 0.9648989898989899,
+        "target_centroid_recall": 0.7393992932862191,
+        "selected": true
+      }
+    ],
+    "selection_statement": "the original CF-CMD-U boundary attempt did not evade that detector; development identified a detector-specific target-centroid evasion, which is the only adaptive claim tested in confirmation"
+  },
+  "stopping_rule": {
+    "attempt_all_frozen_seeds": true,
+    "no_seed_replacement": true,
+    "resume_only_at_completed_seed_boundaries": true,
+    "no_attack_detector_or_certificate_retuning_after_any_confirmation_outcome": true,
+    "aggregate_over_eligible_victims_only_and_report_every_ineligible_seed": true
+  }
+}

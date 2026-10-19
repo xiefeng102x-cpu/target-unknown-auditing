@@ -1,0 +1,19 @@
+{
+  "written_utc": "2026-10-17T23:20:39.791897+00:00",
+  "status": "frozen before execution",
+  "plan": "GROUPSAFE_REDTEAM_PLAN_V1.md",
+  "plan_sha256": "4685d0f527e7016b5ae0957dcbc69ce14456bc8a02017332c57ac2a626c75295",
+  "script": "analysis/run_groupsafe_redteam_v1.py",
+  "script_sha256": "cc6e9f923e34f266c0de3a09d0220399979fc84fe9984e0212f8322d2e6a7929",
+  "dependencies": {
+    "analysis/run_adjudication_sensitivity_v1.py": "3a2c29f8fa9737423222a1d3bbe06075794034f7e11ce960ff15bb46a61adc0b",
+    "analysis/run_posthoc_power_study_v1.py": "71eb676df806de0172dd99ba2e7413c100851a9d290e252669dcc8f7f36a1096"
+  },
+  "inputs": {
+    "results/gtsrb_semantic_overlap_scan_scores_confirmation_v2/flags.csv": "c37390f8e3252aebc67d97e49f9cc2ab7f237c6356ca3a0ae555d4d3511074e8",
+    "results/cifar10_semantic_overlap_scan_scores_confirmation_v1/flags.csv": "565bffbe950e093f08ccf3f1759bed0c58552d0c27757bf3535a66c9d2122364",
+    "results/cifar10_scan_lda_scores_confirmation_v1/flags.csv": "aeb20b6e5dc9d314ef94769fdad278bd2f95dfd44af50b29571feeb908fa4eaf",
+    "results/cifar10_adapblend_scan_lda_scores_confirmation_v1/flags.csv": "66310ba6ec05cb14a804d74dc724557df57835a400bb355ec5edb019b8b8eafd"
+  },
+  "output": "results_groupsafe_redteam_v1/"
+}

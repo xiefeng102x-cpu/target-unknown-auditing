@@ -1,0 +1,91 @@
+{
+  "protocol_id": "tifs_native_gtsrb_confirmation_v1_1",
+  "study_id": "srac_gtsrb_semantic_overlap_confirmation_v2",
+  "stage": "confirmation",
+  "frozen_at": null,
+  "freeze_clock_note": "authoritative local ordering is recorded from protocol/sidecar filesystem times and the first run-log event; no manually entered timestamp is used",
+  "supersedes": "srac_gtsrb_semantic_overlap_confirmation_v1, which failed before opening any seed because of a one-character MD5 transcription error",
+  "seeds": [245, 246, 247, 248, 249, 250, 251, 252, 253, 254],
+  "minimum_eligible_victims": 8,
+  "no_seed_replacement": true,
+  "dataset": {
+    "name": "GTSRB",
+    "root_relative_to_paper14": "data/gtsrb_official",
+    "train_rows": 26640,
+    "test_rows": 12630,
+    "class_count": 43,
+    "resize": [32, 32],
+    "archives": [
+      {
+        "file": "gtsrb/GTSRB-Training_fixed.zip",
+        "md5": "513f3c79a4c5141765e10e952eaa2478",
+        "sha256": "df4144942083645bd60b594de348aa6930126c3e0e5de09e39611630abf8455a"
+      },
+      {
+        "file": "gtsrb/GTSRB_Final_Test_Images.zip",
+        "md5": "c7e4e6327067d32654124b0fe9e82185",
+        "sha256": "48ba6fab7e877eb64eaf8de99035b0aaecfbc279bee23e35deca4ac1d0a837fa"
+      },
+      {
+        "file": "gtsrb/GTSRB_Final_Test_GT.zip",
+        "md5": "fe31e9c9270bbcd7b84b7f21a9d9d9e5",
+        "sha256": "f94e5a7614d75845c74c04ddb26b8796b9e483f43541dd95dd5b726504e16d6d"
+      }
+    ]
+  },
+  "split": {
+    "train_fraction_per_class": 0.9,
+    "split_rng": "numpy.default_rng(2026100600 + seed + class_id * 1009)",
+    "validation_used_for": "best-epoch selection by balanced clean accuracy only"
+  },
+  "attack": {
+    "name": "global_color_blend_all_to_one",
+    "target_class": 2,
+    "patch_size": 32,
+    "patch_alpha": 0.2,
+    "patch_rgb_uint8": [255, 217, 13],
+    "poison_fraction_per_non_target_training_class": 0.05,
+    "poison_selection_rng": "numpy.default_rng(2026101600 + seed + source_class * 131)",
+    "decision_unit": "unique clean training record plus one added poison copy per selected source",
+    "trigger_scope": "full 32x32 frame; global blend rather than a localized patch",
+    "expected_counts_per_seed": {
+      "clean": 23976,
+      "poison": 1132,
+      "total": 25108,
+      "poison_prevalence": 0.045085231798629916
+    }
+  },
+  "victim": {
+    "architecture": "GTSRBTinyCNN-43",
+    "epochs": 12,
+    "batch_size": 512,
+    "learning_rate": 0.002,
+    "weight_decay": 0.0001,
+    "optimizer": "AdamW",
+    "loss": "cross entropy with inverse-square-root clean-class-frequency weights",
+    "representation": "64-D tanh penultimate feature",
+    "checkpoint_selection": "highest validation balanced accuracy; earliest epoch breaks ties"
+  },
+  "victim_eligibility": {
+    "test_balanced_clean_accuracy_min": 0.65,
+    "attack_success_rate_min": 0.8
+  },
+  "execution": {
+    "formal_device": "mps",
+    "cli_requirement": "--device mps",
+    "fallback": "fail",
+    "checkpoint_state_storage": "cpu",
+    "actual_device_must_be_recorded_per_seed": true
+  },
+  "stopping_rule": {
+    "attempt_all_frozen_seeds": true,
+    "no_seed_replacement": true,
+    "resume_only_at_completed_seed_boundaries": true,
+    "no_detector_or_certificate_retuning_after_any_confirmation_outcome": true
+  },
+  "limitations": [
+    "The freeze is internally hash-bound without a third-party timestamp.",
+    "This is a second prospective GTSRB/TinyCNN/global-blend block, not a second-dataset confirmation.",
+    "Protected groups are fixed from public GTSRB class semantics before victim training."
+  ]
+}

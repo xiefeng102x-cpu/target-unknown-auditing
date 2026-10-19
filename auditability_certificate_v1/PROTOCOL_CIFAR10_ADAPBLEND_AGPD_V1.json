@@ -1,0 +1,208 @@
+{
+  "schema": "cifar10-adapblend-agpd-v1",
+  "study_id": "cifar10_vgg16_bn_adapblend_agpd_v1",
+  "block": 14,
+  "status": "FROZEN_BEFORE_DETECTOR_OUTPUTS",
+  "frozen_at": "2026-10-17T23:49:32.707862+00:00",
+  "freeze_note": "status, hashes, inputs, and frozen_at are written by auditability_certificate_v1/analysis/freeze_cifar10_adapblend_agpd.py before any detector output exists; the sidecar .sha256 binds the frozen file",
+  "external_timestamp": false,
+  "purpose": "add a modern target-unknown screen (AGPD, ICLR 2025) to the adaptive-attack evaluation: does a 2025 detector meet the group-safe policy on the Adap-Blend victims on which SCAn+LDA fails, and does the frozen certificate report its status without false declarations (internal review ARS 2026-10-17; user request 2026-10-17)",
+  "development_disclosure": "The block-13 victims, their SCAn and SCAn+LDA flags, and all block-13 certificate outcomes are known. No AGPD output on any CIFAR-10 victim has been computed. The AGPD parameters are those frozen earlier for BloodMNIST (multiclass_agpd_adapter_protocol_v1: tau 0.5, anomaly threshold e^2, fallback rho 0.3, window 10, 12 correctly classified reference images per class) and were not tuned on CIFAR-10. The layer set is fixed here to the last three convolutional layers of VGG-16-BN without inspecting any output.",
+  "formal_seeds": [
+    4426,
+    4427,
+    4428,
+    4429,
+    4430,
+    4431,
+    4432,
+    4433,
+    4434,
+    4435
+  ],
+  "victims": "the ten frozen block-13 checkpoints (results/cifar10_vgg16_bn_adapblend_scan_lda_confirmation_v1/models/seed_<seed>_suspect.pt), verified against seed_receipts.json; no retraining",
+  "population": "all 45000 victim-training members; payload rows receive target label 8 and a partial trigger; cover rows keep their label and receive a partial trigger",
+  "poison_definition": "payload rows only; cover rows are correctly labelled and count as clean records of their class in every clean-rate computation",
+  "group_variable": "assigned CIFAR-10 training label after poisoning",
+  "detector": "repository AGPD adapter src/agpd_feature_adapter.py (activation-gradient poisoned-sample detection, Yuan et al., ICLR 2025; BackdoorBench upstream f02e3534): activation gradients of the assigned-class logit at each declared layer, spatially averaged; class anomaly by one-sided MAD with threshold e^2 and fallback rho 0.3; progressive filtering inside the target classes with tau 0.5 and window 10; the adapter selects the layer",
+  "detector_target_information": "none; target classes are those the class-anomaly step identifies",
+  "detector_parameters": {
+    "layer_names": [
+      "features.34",
+      "features.37",
+      "features.40"
+    ],
+    "tau": 0.5,
+    "anomaly_threshold": 7.38905609893065,
+    "fallback_rho_threshold": 0.3,
+    "window_size": 10,
+    "reference_rows_per_class": 12,
+    "reference_definition": "the first 12 held-out validation images of each class, in numpy default_rng(reference_seed_base + victim_seed + 1009*class).permutation order, that the victim classifies correctly; clean, never trained on",
+    "reference_seed_base": 2029111600,
+    "torch_seed_base": 2029111700
+  },
+  "execution": {
+    "device": "cpu",
+    "batch_size": 128,
+    "selftest": "synthetic CPU API check (untrained network, random images) before the freeze; reveals no study outcome"
+  },
+  "protected_groups": [
+    {
+      "name": "animals",
+      "class_ids": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "meaning": "all six CIFAR-10 animal classes"
+    },
+    {
+      "name": "vehicles",
+      "class_ids": [
+        0,
+        1,
+        8,
+        9
+      ],
+      "meaning": "all four CIFAR-10 vehicle classes"
+    },
+    {
+      "name": "mammals",
+      "class_ids": [
+        3,
+        4,
+        5,
+        7
+      ],
+      "meaning": "cat, deer, dog, and horse"
+    },
+    {
+      "name": "domestic_or_working_animals",
+      "class_ids": [
+        3,
+        5,
+        7
+      ],
+      "meaning": "cat, dog, and horse"
+    },
+    {
+      "name": "wild_animals",
+      "class_ids": [
+        2,
+        4,
+        6
+      ],
+      "meaning": "bird, deer, and frog"
+    },
+    {
+      "name": "ground_or_road_entities",
+      "class_ids": [
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9
+      ],
+      "meaning": "land animals together with road vehicles; crosses the animal/vehicle partition"
+    },
+    {
+      "name": "road_vehicles",
+      "class_ids": [
+        1,
+        9
+      ],
+      "meaning": "automobile and truck"
+    },
+    {
+      "name": "air_or_water_transport",
+      "class_ids": [
+        0,
+        8
+      ],
+      "meaning": "airplane and ship"
+    }
+  ],
+  "certificate": {
+    "security_object": "global poison recall at least 0.8 and clean flag rate at most 0.1 in every predeclared semantic protected set",
+    "recall_target": 0.8,
+    "max_group_clean_flag_rate_cap": 0.1,
+    "delta_per_decision": 0.005,
+    "budgets": [
+      2000,
+      8000,
+      16000
+    ],
+    "protected_draws_per_seed_budget": 200,
+    "active_stratum_budget_share": 0.5,
+    "count_interval": "exact two-sided hypergeometric inversion",
+    "tail_allocation": "delta/(2 times number_of_count_intervals)",
+    "decision_outputs": [
+      "GO",
+      "NO_GO",
+      "ABSTAIN"
+    ]
+  },
+  "draw_namespace": "cifar10-adapblend-agpd-v1|<victim_id>",
+  "endpoint": "descriptive: per-victim recall, cover flag rate, worst-group clean flag rate, policy truth; GO/NO-GO/ABSTAIN rates by budget and by policy truth; false GO and false NO-GO counts. Validity check: zero false GO and zero false NO-GO.",
+  "outcome_interpretation": {
+    "AGPD meets the policy on a victim": "positive evidence for that screen on that victim; the certificate's GO rate measures attainable coverage",
+    "AGPD fails the policy": "the certificate's NO-GO/ABSTAIN rate measures how reliably the failure is reported",
+    "any false GO": "a validity failure of the certificate, reported as such"
+  },
+  "stopping_rule": "score all ten victims once; no layer, parameter, reference, family, budget, or endpoint change after any AGPD output",
+  "score_output_directory": "results/cifar10_adapblend_agpd_scores_v1",
+  "endpoint_output_directory": "auditability_certificate_v1/results_cifar10_adapblend_agpd_v1",
+  "hashes": {
+    "score_stage": {
+      "src/run_cifar10_adapblend_agpd_scores.py": "dbf3d9f0d947d2b8cc08e3588b9181853eddaa7c6ad2feb699949c06f4eef720",
+      "src/agpd_feature_adapter.py": "28b01f176177c7ff3e301cf52127f91a1df223d223fa050aa96c4c022d69b2e8",
+      "src/run_cifar10_vgg16_bn_adapblend_scan_lda_confirmation.py": "cb202033b74001e7b54dfda387a075d3f822db277f436462e32cb34aef94916e",
+      "src/cifar10_vgg16_bn.py": "0c87db1eb5b622b1ca1ca85142c6c65a985857753342502b97baeadaafb101a8",
+      "src/run_cifar10_vgg16_bn_development.py": "ff2c8e8988017b9a53c15728dd573f12c7bfb7ec5cae5136b4aa872b16118f9e",
+      "configs/cifar10_vgg16_bn_adapblend_scan_lda_confirmation_v1.json": "49440b1d20ef87aadacdf1f5ed46aeb5ea3d9f5e2c53b1248130d72e4fb81b54"
+    },
+    "endpoint_stage": {
+      "auditability_certificate_v1/analysis/run_cifar10_adapblend_agpd_endpoint.py": "99a7c813f02b3b4f08efdfa0599302e09191acc0bdaa891a3f3dfd025ed5705d",
+      "auditability_certificate_v1/analysis/srac_family_core_scan_lda_v1.py": "c74f3a2027049ad5f710dcb91850ba7c75ac7199f420a4d0efef2f62f611a998"
+    }
+  },
+  "inputs": {
+    "victim_manifest_sha256": "21f02ab83e13b570b546f1ff52948cf3d93efe2ef83669f9e0271a2a99cc07ed",
+    "seed_receipts_sha256": "0b30639018cbe3664d5d3ec0a3329bc49b5c06a6b437d225df118df72740e06d",
+    "checkpoint_sha256": {
+      "4426": "b40276c8ee64c5de6230ab8464b5bb6479a15beeced5c0c7c28a2f9e305a7690",
+      "4427": "56d708bb383ee84812895bf601bda90afd07dce5b439ddf3d8c957d5e9e2b2d9",
+      "4428": "828bdb097d07b848165b0980e3e020a4c866674816c5d8ec5d3047b848908043",
+      "4429": "2b2185e64a8585ff1f651650d14ed938d590e79a009ca3a82e509e29d2d25996",
+      "4430": "425307e505602a7b3683ba9de55735563ecc430e9b46d190ce8b7d09cf0529ea",
+      "4431": "cdc55938b71c3ba128754776dbdebbc7c08431603a644903b5e9315dcdb5d695",
+      "4432": "baacaddbfd72d820b3c378348ae114d579f0def8e162ec3c478265d0ad49b4d8",
+      "4433": "df4511ed5cc25e5cf828dd0565accfb8114ca5fd554119f9aae8b47615000403",
+      "4434": "22c512579c4c27cb918aa7506db7ef7acfe77ed08cc5003410e57603371ab6b7",
+      "4435": "b2107f8aef30f8cec0f6386749e3b879bf0970521f70dbdb7f7fa843f8ef3267"
+    }
+  },
+  "limitations": [
+    "The freeze is hash-bound locally without a third-party timestamp.",
+    "The victims were trained before this protocol and their SCAn+LDA outcomes are known; the protocol is prospective only with respect to AGPD outputs.",
+    "One adaptive attack, one dataset, one architecture; AGPD parameters transferred from BloodMNIST without CIFAR-10 tuning."
+  ],
+  "amendments": [
+    {
+      "id": 1,
+      "recorded_utc": "2026-10-18T03:23:46.671569+00:00",
+      "trigger": "the first MPS scoring run (2026-10-18T03:21:54Z) stopped inside the first victim's candidate activation-gradient pass with a PyTorch MPS autograd error ('view size is not compatible with input tensor's size and stride') raised by torch.autograd.grad in src/agpd_feature_adapter.py; the same code path passes on CPU",
+      "change": "execution.device mps -> cpu (deterministic CPU execution of the unchanged adapter and scoring script)",
+      "scientific_fields_changed": [],
+      "code_changed": [],
+      "detector_outputs_before_amendment": "none: no flags, scores, or manifest were written; the run failed before the first victim's AGPD result existed",
+      "original_frozen_protocol": "PROTOCOL_CIFAR10_ADAPBLEND_AGPD_V1.frozen_20261017T2349Z.json",
+      "original_frozen_protocol_sha256": "431bb92963a14a4832314397307217e42cd462e078886dc51bafe640432a9260"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "protocol_id": "srac_gtsrb_global_blend_candidate_random_confirmation_v1",
+  "stage": "confirmation",
+  "frozen_at": "2026-10-13T15:34:00+08:00",
+  "freeze_scope": "candidate-pool size-matched random-removal masks, from-scratch retraining, and BCA/ASR endpoints; source victims, detector scores, and detector-guided post-filter outcomes already exist",
+  "seeds": [202, 203, 204, 205, 206, 207, 208, 209, 210, 211],
+  "no_seed_replacement": true,
+  "source_result_relative_to_paper14": "results/srac_gtsrb_global_blend_confirmation_v1",
+  "source_manifest_sha256": "8d368180758f6395c17b72842b178a8c2523c59194fe6668a20c98242e5d973e",
+  "victim_protocol_relative_to_paper14": "configs/srac_gtsrb_global_blend_confirmation_v1.json",
+  "victim_protocol_sha256": "4c2425cc967730c4dfbda2b7c5ac6802e4dbe6679ba844ff65cb076c8219fde5",
+  "runner_relative_to_paper14": "src/run_gtsrb_global_blend_candidate_random.py",
+  "runner_sha256": "3b482f738dda7ac3e94e8e85a21c1246d3a37c6a71c5cc03fc044e82d9c3083e",
+  "verifier_relative_to_paper14": "src/verify_gtsrb_global_blend_candidate_random.py",
+  "verifier_sha256": "c96527035851b90c54ac3cb32424e4c248af53e72d1310aa16b6b9c2f32ebf35",
+  "development_evidence": {
+    "protocol_sha256": "a315ee4152ac6a32655d536972f0b6791a2d12471aa114c02ef7c813451cea0a",
+    "manifest_sha256": "8190324f08ec88baad1e103c8a66e88330a0455266e51348876f84843f30df50",
+    "verification_receipt_sha256": "72e08860e468170bb7abd0860cc498e4f7fa35d40aba666e93ab366e062430f4",
+    "seed": 201,
+    "used_only_for_code_validation": true
+  },
+  "fixed_detector_postfilter_comparator": {
+    "protocol_sha256": "17207ccb5d85f176a812c3b7f67bb43399d52c9d97906ab9fce09da1f37e2749",
+    "manifest_sha256": "6cd05a6413894d24ee705d11cdb1903fc18fdd395be89be66829a65ee4e396f5",
+    "verification_receipt_sha256": "f777cce2c09e0d0760d1ca4cca1c6466bdb2274210a826da88c23c61095a364f",
+    "chronology": "known before this addendum was frozen"
+  },
+  "detectors": ["cf_cmd_u", "crossfit_spectral"],
+  "conditions": [
+    "candidate_random_matched_cf_cmd_u",
+    "candidate_random_matched_crossfit_spectral"
+  ],
+  "candidate_random_removal": {
+    "population": "the frozen detector-eligible target-class candidate positions, including every poison record",
+    "size": "exactly the number removed by the corresponding detector",
+    "rng": "numpy.default_rng(202610130500 + seed * 103 + method_index * 1013)"
+  },
+  "retraining": {
+    "architecture_optimizer_epochs_batch_size_and_validation_selection": "identical to the source victim protocol",
+    "initialization_seed": "same victim seed as the detector-guided post-filter condition",
+    "model_selection": "clean validation balanced accuracy only",
+    "attempt_all_conditions_for_all_seeds": true,
+    "save_every_completed_condition": true
+  },
+  "analysis": {
+    "primary_contrast": "paired detector-guided minus candidate-pool size-matched-random attack success rate",
+    "utility_contrast": "paired detector-guided minus candidate-pool size-matched-random balanced clean accuracy",
+    "support_rule_per_detector": "the 95% bootstrap upper bound for paired ASR difference is below zero and mean paired BCA difference is at least -0.05",
+    "bootstrap": {"unit": "victim seed", "draws": 10000, "seed": 2026101307, "interval": "percentile 95%"},
+    "report_both_detectors_without_post_confirmation_selection": true
+  },
+  "interpretation": {
+    "role": "stronger fairness control for the detector-eligible candidate universe",
+    "not_fully_prospective": "detector-guided outcomes were known before this addendum freeze",
+    "go_is_not_model_safety": true,
+    "postfilter_endpoints_are_separate_from_srac_validity": true
+  },
+  "execution": {"formal_device": "mps", "fallback": "fail"}
+}

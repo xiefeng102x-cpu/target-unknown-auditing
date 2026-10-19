@@ -1,0 +1,79 @@
+{
+ "schema": "cifar10-vgg16-adapblend-scan-lda-config-v1",
+ "protocol_id": "cifar10_vgg16_bn_adapblend_scan_lda_confirmation_v1",
+ "status": "FROZEN_BEFORE_FORMAL_SEED_EXECUTION",
+ "formal_seeds": [
+  4426,
+  4427,
+  4428,
+  4429,
+  4430,
+  4431,
+  4432,
+  4433,
+  4434,
+  4435
+ ],
+ "formal_ack": "OPEN_CIFAR10_VGG16_ADAPBLEND_SCAN_LDA_SEEDS_4426_4435",
+ "dataset": {
+  "name": "CIFAR-10",
+  "root_relative_to_paper14": "../paper5/paper_v6/paper5_code_audited_complete_20260716/paper5/datasets/cifar10",
+  "archive": "cifar-10-python.tar.gz",
+  "archive_md5": "c58f30108f718f92721af3b95e74349a",
+  "archive_sha256": "6d958be074577803d12ecdefd02955f39262c83c16fe9348329d7fe0b5c001ce",
+  "validation_rows_per_class": 500,
+  "validation_split_seed": 42420000,
+  "training_rows": 45000,
+  "validation_rows": 5000,
+  "test_rows": 10000
+ },
+ "victim": {
+  "architecture": "CIFAR-native VGG16-BN",
+  "feature": "512-D global-average-pooled penultimate activation",
+  "parameter_count": 14724042,
+  "training_epochs": 15,
+  "schedule_horizon_epochs": 25,
+  "batch_size": 256,
+  "optimizer": "AdamW",
+  "learning_rate": 0.001,
+  "weight_decay": 0.0005,
+  "schedule": "cosine_to_zero_with_25_epoch_horizon_stopped_at_epoch_15",
+  "augmentation": "reflect-pad-4 per-image random crop plus random horizontal flip",
+  "device": "mps"
+ },
+ "attack": {
+  "family": "Adaptive-Blend (Adap-Blend) all-to-one",
+  "reference": "Qi et al., Revisiting the assumption of latent separability for backdoor defenses, ICLR 2023",
+  "fidelity_boundary": "trigger split into 16 equal 8x8 pieces of the frozen Hello-Kitty asset, half of the pieces active per training row, train alpha 0.15, full trigger at test alpha 0.2, conservatism (cover) rows that carry the partial trigger but keep their true label; payload and cover counts are set to the block-12 poison budget instead of the original low rates",
+  "target_class": 8,
+  "target_name": "ship",
+  "payload_count": 2250,
+  "payload_selection": "development.poison_plan: non-target rows of the fixed 45000-row split, seed 4242100 + victim_seed",
+  "cover_count": 2250,
+  "cover_selection": "non-target, non-payload rows, numpy default_rng(4243100 + victim_seed).choice without replacement",
+  "trigger_asset_relative_to_paper14": "external/BackdoorBench/utils/defense_utils/dbd/data/trigger/hello_kitty.png",
+  "trigger_asset_sha256": "e313fb548a8b873d999d50426ebe2752f5512cb9318def33077158589c3b344d",
+  "resize": "torchvision Resize((32,32)) with bilinear interpolation and antialiasing",
+  "pieces": 16,
+  "piece_grid": [
+   4,
+   4
+  ],
+  "active_pieces_per_training_row": 8,
+  "piece_mask_seed_formula": "numpy default_rng(4244100 + 1009 * victim_seed + sample_id).choice(16, 8, replace=False)",
+  "train_alpha": 0.15,
+  "test_alpha": 0.2,
+  "transform": "x + alpha * m * (trigger - x), clipped to [0,1], applied after training augmentation; m is the per-row piece mask in training and all ones at test",
+  "payload_assigned_label": 8,
+  "cover_assigned_label": "true label",
+  "poison_definition_for_the_policy": "payload rows only (attacker-relabelled rows); cover rows are correctly labelled and count as clean records of their class"
+ },
+ "eligibility": {
+  "balanced_accuracy_min": 0.75,
+  "attack_success_rate_min": 0.6,
+  "no_seed_replacement": true
+ },
+ "victim_output": "results/cifar10_vgg16_bn_adapblend_scan_lda_confirmation_v1",
+ "score_output": "results/cifar10_adapblend_scan_lda_scores_confirmation_v1",
+ "endpoint_output": "auditability_certificate_v1/results_cifar10_adapblend_scan_lda_confirmation_v1"
+}

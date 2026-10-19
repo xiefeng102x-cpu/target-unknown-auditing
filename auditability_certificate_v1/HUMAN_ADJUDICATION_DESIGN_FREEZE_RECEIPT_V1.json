@@ -1,0 +1,13 @@
+{
+  "written_utc": "2026-10-17T11:39:39.537580+00:00",
+  "status": "frozen before execution",
+  "plan": "HUMAN_ADJUDICATION_DESIGN_PLAN_V1.md",
+  "plan_sha256": "013c518bb3bbad724c487897658448a7e16d5d3efbf80328f01bd2145e047d06",
+  "script": "analysis/run_human_adjudication_design_v1.py",
+  "script_sha256": "dcffd83d2c838603960ca6b70bcbad1d7599a8b6f11c8bb02af13eb93dbe2f41",
+  "dependencies": {
+    "analysis/run_adjudication_sensitivity_v1.py": "3a2c29f8fa9737423222a1d3bbe06075794034f7e11ce960ff15bb46a61adc0b",
+    "analysis/run_posthoc_power_study_v1.py": "71eb676df806de0172dd99ba2e7413c100851a9d290e252669dcc8f7f36a1096"
+  },
+  "output": "results_human_adjudication_design_v1/"
+}

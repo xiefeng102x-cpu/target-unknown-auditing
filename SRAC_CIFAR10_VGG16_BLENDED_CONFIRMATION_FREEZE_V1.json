@@ -1,0 +1,75 @@
+{
+  "protocol_id": "cifar10_vgg16_bn_blended_srac_confirmation_v1",
+  "status": "FROZEN_BEFORE_FORMAL_SEED_EXECUTION_AND_PROTECTED_DRAWS",
+  "frozen_at": "2026-10-14T03:50:31+08:00",
+  "formal_seeds": [4401, 4402, 4403, 4404, 4405],
+  "formal_ack": "OPEN_CIFAR10_VGG16_BLENDED_SRAC_SEEDS_4401_4405",
+  "development_gate": {
+    "seed": 4400,
+    "information_boundary": "victim BCA and ASR only; no detector or SRAC outcomes",
+    "selection_rule": "earliest prelisted epoch in [15,20,25] with BCA>=0.75 and ASR>=0.90",
+    "selected_epoch": 15,
+    "selected_epoch_balanced_accuracy": 0.8703000000000001,
+    "selected_epoch_attack_success_rate": 0.9927777777777778,
+    "formal_seeds_disjoint": true
+  },
+  "attack_boundary": {
+    "name": "BackdoorBench-parameterized Blended variant",
+    "not_claimed": "byte-for-byte execution of every upstream BackdoorBench default",
+    "blend_strength": 0.2,
+    "target_class": 8,
+    "poison_rate_of_training_rows": 0.05
+  },
+  "locked_endpoint": {
+    "audit_universe": "complete assigned-target-label cross-fit stratum",
+    "recall_target": 0.8,
+    "clean_flag_rate_cap": 0.1,
+    "delta_per_decision": 0.005,
+    "audit_budgets": [120, 500, 2000],
+    "draws_per_seed_fold_budget": 200,
+    "detectors": [
+      "cf_cmd_u",
+      "target_centroid",
+      "crossfit_spectral",
+      "activation_clustering",
+      "que_score"
+    ]
+  },
+  "prospective_replay": {
+    "contract_version": "prospective-semantic-replay-v1",
+    "exact": "row keys, truth, categorical fields, detector flags, and endpoint decisions",
+    "score_absolute_tolerance": 1e-10,
+    "score_relative_tolerance": 0.0,
+    "raw_sha256_retained": true
+  },
+  "environment": {
+    "python": "python3",
+    "numpy": "1.26.4",
+    "torch": "2.7.1",
+    "scikit_learn": "1.6.1",
+    "scipy": "1.11.4",
+    "formal_device": "mps",
+    "omp_num_threads": 1,
+    "veclib_maximum_threads": 1
+  },
+  "hashes": {
+    "adapter_sha256": "c13e7ab0c45ba4922471b740c855097e2bc62598cc0886bafaf0dc41d3587bb5",
+    "architecture_sha256": "0c87db1eb5b622b1ca1ca85142c6c65a985857753342502b97baeadaafb101a8",
+    "base_confirmation_engine_sha256": "11eb56037b384e843cdca22397eba0d83fefc1c0d24f4e464ef0cd5a3e7dc085",
+    "blended_wrapper_sha256": "a3102e5bb47eb7156f3a7d8b6796346720841c96422b2415986dfb2dc111ab88",
+    "config_sha256": "a3297683a932cab78058dcd7b44c2146da5e6423ac2c542a3e79a3944953cd03",
+    "development_engine_sha256": "ff2c8e8988017b9a53c15728dd573f12c7bfb7ec5cae5136b4aa872b16118f9e",
+    "development_freeze_sha256": "96d953d1a04e806bedc2439f0853170789f998a41b946d0db98a534de502d69e",
+    "development_report_sha256": "fea64d3c5b2e6b840eb132478f0de800cd2a613b13edb78a66685038a3e67298",
+    "endpoint_runner_sha256": "472cde8e0d39b6a979bc6a6229c8285114cffede41eeb7164b25d49f873189cb",
+    "handoff_verifier_sha256": "50520ab9fd198e15182b7b4ce516e4080c5bff9a8259b67ca79548cc5cfd53c2",
+    "implementation_audit_sha256": "2e6fd02b9040df92274b2d6070f7ebf6a10e912a70d1a361ecd9add095ccb820",
+    "score_families_sha256": "099d97cde476c04bdb9cb53549ef6733d7402a9b35e07b23cbe011c70a0d581d",
+    "selected_development_checkpoint_sha256": "a60ecedb835bdb74df5420e4089c84d22a8052389f12c289cc62ef91514cb9cb",
+    "semantic_replay_contract_sha256": "d5d02fe9bdb27d7e62c0a689e669c73d603217ed34741d7ff1f0657b62c272a0",
+    "semantic_replay_verifier_sha256": "431cc3899afe5dc38edd702bbd96d22e81fb0464e830cff6297c780b4befed20",
+    "srac_core_sha256": "302c1cc2b90b25e3c75728c1ef0c2eae5db4bcc7963738f607d3601bd9539e11"
+  },
+  "chronology_limitation": "local hash freeze without external timestamp or independent custodian",
+  "stopping_rule": "attempt every frozen seed without replacement; resume only from exact saved epoch states; do not retune attack, detector, replay tolerance, or SRAC endpoint after any confirmation outcome"
+}

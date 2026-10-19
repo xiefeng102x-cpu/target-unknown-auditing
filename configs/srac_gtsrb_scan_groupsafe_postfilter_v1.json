@@ -1,0 +1,64 @@
+{
+  "protocol_id": "srac_gtsrb_scan_groupsafe_postfilter_v1",
+  "block": 15,
+  "status": "FROZEN_BEFORE_RETRAINING",
+  "frozen_at": "2026-10-18T05:02:35.730713+00:00",
+  "purpose": "close the deployment loop for a screen the group-safe certificate actually certifies: remove the frozen SCAn flags of the block-6 victims (all ten meet the all-class policy and receive GO), retrain from scratch, and compare attack success with size-matched random removal (internal review 2026-10-18, item 6)",
+  "development_disclosure": "The block-6 victims, SCAn flags, and certificate decisions are known. No block-6 victim has been retrained after any removal. The design copies the frozen block-P post-filter protocol (seeds 202-211) and adds a size-matched random removal restricted to the SCAn-flagged classes as the primary control.",
+  "seeds": [
+    235,
+    236,
+    237,
+    238,
+    239,
+    240,
+    241,
+    242,
+    243,
+    244
+  ],
+  "victim_protocol": "configs/srac_gtsrb_allclass_scan_confirmation_v1.json",
+  "source_victims": "results/srac_gtsrb_allclass_scan_confirmation_v1",
+  "source_flags": "results/gtsrb_allclass_scan_scores_confirmation_v1/flags.csv",
+  "source_decisions": "auditability_certificate_v1/results_gtsrb_scan_group_safe_confirmation_v1/decisions.csv",
+  "conditions": [
+    "original_poisoned",
+    "detector_scan",
+    "random_matched_global",
+    "random_matched_flagged",
+    "oracle_all_poison"
+  ],
+  "random_removal_rng_base": 2026101800,
+  "retraining": "architecture, optimizer, epochs, batch size, loss, and validation-BCA checkpoint selection identical to the block-6 victim protocol; initialization seed = victim seed in every condition",
+  "analysis": {
+    "primary_contrast": "paired detector_scan minus random_matched_flagged attack success rate",
+    "secondary_contrast": "paired detector_scan minus random_matched_global",
+    "utility": "paired BCA differences",
+    "support_rule": "95% percentile bootstrap upper bound of the paired ASR difference below zero and mean paired BCA difference at least -0.05",
+    "bootstrap_seed": 2026101801,
+    "bootstrap_draws": 10000,
+    "report_every_condition_and_seed": true,
+    "oracle_role": "clean-training reference"
+  },
+  "interpretation": {
+    "go_is_not_model_safety": true,
+    "postfilter_endpoint_is_separate_from_srac_validity": true
+  },
+  "execution": {
+    "formal_device": "mps",
+    "fallback": "fail"
+  },
+  "hashes": {
+    "src/run_gtsrb_scan_groupsafe_postfilter.py": "f51f403edd4494f25f686eb27c4ed7b63f139e20b85bee65420a72fe3f1aadad",
+    "src/run_tifs_native_gtsrb.py": "06381624dd4e8b30e2cd799cca693b983714821f1fc652b4237b9e61e154037b",
+    "src/run_tifs_native_cifar10.py": "71c4068232d004f28d3c1699d2f06b445ef6b76ee7304d6e069034ad070b1964",
+    "configs/srac_gtsrb_allclass_scan_confirmation_v1.json": "78a9851f1ecaf9af1eec049f23d9deac98c7daa57eebe87c5430818ee2520449",
+    "results/gtsrb_allclass_scan_scores_confirmation_v1/flags.csv": "4434d36abd349e61f04a1f24423976eaeb95d056a2fafd9ee4ea70ecd57ad809",
+    "auditability_certificate_v1/results_gtsrb_scan_group_safe_confirmation_v1/decisions.csv": "1824054e075e33da64aa8c8c44689474d46ac27697fd0a3c951655a2fc45295b",
+    "results/srac_gtsrb_allclass_scan_confirmation_v1/victim_metrics.csv": "ee17a5c135b749b7159ccc1a857a0a2befcfdde4c4686c2483723d8a8d32a51b"
+  },
+  "limitations": [
+    "Hash-bound locally without a third-party timestamp.",
+    "One dataset, architecture, and attack (GTSRB global blend); the certificate and the retraining endpoint are separate claims."
+  ]
+}

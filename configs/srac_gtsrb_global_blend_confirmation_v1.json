@@ -1,0 +1,138 @@
+{
+  "protocol_id": "tifs_native_gtsrb_confirmation_v1_1",
+  "study_id": "srac_gtsrb_global_blend_confirmation_v1",
+  "stage": "confirmation",
+  "frozen_at": "2026-10-13T12:20:35+08:00",
+  "freeze_method": "written once after one qualified development seed and before any confirmation training; refuse parameter or seed replacement",
+  "seeds": [202, 203, 204, 205, 206, 207, 208, 209, 210, 211],
+  "minimum_eligible_victims": 8,
+  "no_seed_replacement": true,
+  "dataset": {
+    "name": "GTSRB",
+    "root_relative_to_paper14": "data/gtsrb_official",
+    "train_rows": 26640,
+    "test_rows": 12630,
+    "class_count": 43,
+    "resize": [32, 32],
+    "archives": [
+      {
+        "file": "gtsrb/GTSRB-Training_fixed.zip",
+        "md5": "513f3c79a4c5141765e10e952eaa2478",
+        "sha256": "df4144942083645bd60b594de348aa6930126c3e0e5de09e39611630abf8455a"
+      },
+      {
+        "file": "gtsrb/GTSRB_Final_Test_Images.zip",
+        "md5": "c7e4e6327067d32654124b0fe9e82185",
+        "sha256": "48ba6fab7e877eb64eaf8de99035b0aaecfbc279bee23e35deca4ac1d0a837fa"
+      },
+      {
+        "file": "gtsrb/GTSRB_Final_Test_GT.zip",
+        "md5": "fe31e9c9270bbcd7b84b7f21a9d9d9e5",
+        "sha256": "f94e5a7614d75845c74c04ddb26b8796b9e483f43541dd95dd5b726504e16d6d"
+      }
+    ]
+  },
+  "split": {
+    "train_fraction_per_class": 0.9,
+    "split_rng": "numpy.default_rng(2026100600 + seed + class_id * 1009)",
+    "validation_used_for": "best-epoch selection by balanced clean accuracy only"
+  },
+  "attack": {
+    "name": "global_color_blend_all_to_one",
+    "target_class": 2,
+    "patch_size": 32,
+    "patch_alpha": 0.2,
+    "patch_rgb_uint8": [255, 217, 13],
+    "poison_fraction_per_non_target_training_class": 0.05,
+    "poison_selection_rng": "numpy.default_rng(2026101600 + seed + source_class * 131)",
+    "decision_unit": "unique clean training record plus one added poison copy per selected source",
+    "trigger_scope": "full 32x32 frame; global blend rather than a localized patch",
+    "expected_counts_per_seed": {
+      "clean": 23976,
+      "poison": 1132,
+      "total": 25108,
+      "poison_prevalence": 0.045085231798629916
+    }
+  },
+  "victim": {
+    "architecture": "GTSRBTinyCNN-43",
+    "epochs": 12,
+    "batch_size": 512,
+    "learning_rate": 0.002,
+    "weight_decay": 0.0001,
+    "optimizer": "AdamW",
+    "loss": "cross entropy with inverse-square-root clean-class-frequency weights",
+    "representation": "64-D tanh penultimate feature",
+    "checkpoint_selection": "highest validation balanced accuracy; earliest epoch breaks ties"
+  },
+  "victim_eligibility": {
+    "test_balanced_clean_accuracy_min": 0.65,
+    "attack_success_rate_min": 0.8
+  },
+  "trusted_split": {
+    "source": "official GTSRB test split, target class only",
+    "target_class_rows": 750,
+    "reference_rows": 250,
+    "calibration_rows": 250,
+    "reserved_rows": 250,
+    "rng": "numpy.default_rng(2026102600 + seed)"
+  },
+  "detectors": {
+    "primary": {
+      "name": "CF-CMD-U",
+      "alpha": 0.05,
+      "crossfit_rng": "numpy.default_rng(20271001 + seed)"
+    },
+    "matched_baselines": ["target_centroid_distance", "crossfit_spectral"]
+  },
+  "primary_detector_gate": {
+    "pooled_target_clean_fpr_max": 0.1,
+    "pooled_tpr_min": 0.8,
+    "report_all_detectors_regardless_of_gate": true
+  },
+  "srac_evaluation": {
+    "audit_universe": "all 23,976 clean training members plus all 1,132 added poison records",
+    "detectors": ["cf_cmd_u", "crossfit_spectral", "target_centroid_distance"],
+    "recall_target": 0.8,
+    "clean_flag_rate_cap": 0.1,
+    "delta_per_decision": 0.005,
+    "family_error_upper_bound": 0.015,
+    "audit_budgets": [2000, 8000, 16000],
+    "protected_draws_per_seed_budget": 200,
+    "same_draw_reused_across_detectors": true,
+    "decision_outputs": ["GO", "NO_GO", "ABSTAIN"],
+    "primary_security_error": "false GO",
+    "secondary_diagnostic_error": "false NO-GO",
+    "adjudication_error_budget_B": 0,
+    "sparse_rate_evidence_restricted_to": "k/N <= 0.10; only k=2000 qualifies",
+    "no_threshold_or_policy_retuning_after_freeze": true
+  },
+  "execution": {
+    "formal_device": "mps",
+    "cli_requirement": "--device mps",
+    "fallback": "fail",
+    "checkpoint_state_storage": "cpu",
+    "actual_device_must_be_recorded_per_seed": true
+  },
+  "runner": {
+    "path": "src/run_tifs_native_gtsrb.py",
+    "sha256": "06381624dd4e8b30e2cd799cca693b983714821f1fc652b4237b9e61e154037b"
+  },
+  "development_provenance": {
+    "protocol": "configs/srac_gtsrb_global_blend_development_v1.json",
+    "protocol_sha256": "4206d8dddaadd3d8c36eccbd7b4575f766eaa15e792cb21d080d9bea20a72f49",
+    "manifest": "results/srac_gtsrb_global_blend_development_v1/manifest.json",
+    "manifest_sha256": "c18295f0646b738afd075cdb412a5797128ebf65efe2cda9ecd74a48a8bc7c36",
+    "seed": 201,
+    "balanced_clean_accuracy": 0.8006514546757216,
+    "attack_success_rate": 0.9702020202020202,
+    "qualification_pass": true
+  },
+  "stopping_rule": {
+    "attempt_all_frozen_seeds": true,
+    "no_seed_replacement": true,
+    "resume_only_at_completed_seed_boundaries": true,
+    "no_attack_detector_or_certificate_retuning_after_any_confirmation_outcome": true,
+    "aggregate_over_eligible_victims_only_and_report_every_ineligible_seed": true
+  }
+}

@@ -1,0 +1,34 @@
+{
+ "schema": "cifar10-vgg16-blended-scan-lda-overlay-v1",
+ "protocol_id": "cifar10_vgg16_bn_blended_scan_lda_confirmation_v1",
+ "base_config_path": "configs/cifar10_vgg16_bn_blended_srac_confirmation_v1.json",
+ "base_config_sha256": "a3297683a932cab78058dcd7b44c2146da5e6423ac2c542a3e79a3944953cd03",
+ "formal_seeds": [
+  4416,
+  4417,
+  4418,
+  4419,
+  4420,
+  4421,
+  4422,
+  4423,
+  4424,
+  4425
+ ],
+ "formal_ack": "OPEN_CIFAR10_VGG16_BLENDED_SCAN_LDA_SEEDS_4416_4425",
+ "victim_output": "results/cifar10_vgg16_bn_blended_scan_lda_confirmation_v1",
+ "score_output": "results/cifar10_scan_lda_scores_confirmation_v1",
+ "endpoint_output": "auditability_certificate_v1/results_cifar10_scan_lda_confirmation_v1",
+ "scientific_changes_from_base": [
+  "use ten disjoint confirmation seeds 4416-4425",
+  "evaluate SCAn plus a clean-calibrated LDA expansion on the full frozen training population after victim training",
+  "certify the same predeclared family of semantic overlapping protected groups"
+ ],
+ "unchanged_from_base": [
+  "CIFAR-10 split",
+  "VGG-16-BN architecture",
+  "15-epoch optimizer and schedule",
+  "Blended trigger asset, strength, target, and poison rate",
+  "victim eligibility thresholds"
+ ]
+}

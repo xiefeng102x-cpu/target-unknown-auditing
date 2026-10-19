@@ -1,0 +1,38 @@
+{
+  "written_utc": "2026-10-17T23:49:32.707862+00:00",
+  "status": "frozen before detector outputs",
+  "protocol": "PROTOCOL_CIFAR10_ADAPBLEND_AGPD_V1.json",
+  "protocol_sha256": "431bb92963a14a4832314397307217e42cd462e078886dc51bafe640432a9260",
+  "hashes": {
+    "score_stage": {
+      "src/run_cifar10_adapblend_agpd_scores.py": "dbf3d9f0d947d2b8cc08e3588b9181853eddaa7c6ad2feb699949c06f4eef720",
+      "src/agpd_feature_adapter.py": "28b01f176177c7ff3e301cf52127f91a1df223d223fa050aa96c4c022d69b2e8",
+      "src/run_cifar10_vgg16_bn_adapblend_scan_lda_confirmation.py": "cb202033b74001e7b54dfda387a075d3f822db277f436462e32cb34aef94916e",
+      "src/cifar10_vgg16_bn.py": "0c87db1eb5b622b1ca1ca85142c6c65a985857753342502b97baeadaafb101a8",
+      "src/run_cifar10_vgg16_bn_development.py": "ff2c8e8988017b9a53c15728dd573f12c7bfb7ec5cae5136b4aa872b16118f9e",
+      "configs/cifar10_vgg16_bn_adapblend_scan_lda_confirmation_v1.json": "49440b1d20ef87aadacdf1f5ed46aeb5ea3d9f5e2c53b1248130d72e4fb81b54"
+    },
+    "endpoint_stage": {
+      "auditability_certificate_v1/analysis/run_cifar10_adapblend_agpd_endpoint.py": "99a7c813f02b3b4f08efdfa0599302e09191acc0bdaa891a3f3dfd025ed5705d",
+      "auditability_certificate_v1/analysis/srac_family_core_scan_lda_v1.py": "c74f3a2027049ad5f710dcb91850ba7c75ac7199f420a4d0efef2f62f611a998"
+    }
+  },
+  "inputs": {
+    "victim_manifest_sha256": "21f02ab83e13b570b546f1ff52948cf3d93efe2ef83669f9e0271a2a99cc07ed",
+    "seed_receipts_sha256": "0b30639018cbe3664d5d3ec0a3329bc49b5c06a6b437d225df118df72740e06d",
+    "checkpoint_sha256": {
+      "4426": "b40276c8ee64c5de6230ab8464b5bb6479a15beeced5c0c7c28a2f9e305a7690",
+      "4427": "56d708bb383ee84812895bf601bda90afd07dce5b439ddf3d8c957d5e9e2b2d9",
+      "4428": "828bdb097d07b848165b0980e3e020a4c866674816c5d8ec5d3047b848908043",
+      "4429": "2b2185e64a8585ff1f651650d14ed938d590e79a009ca3a82e509e29d2d25996",
+      "4430": "425307e505602a7b3683ba9de55735563ecc430e9b46d190ce8b7d09cf0529ea",
+      "4431": "cdc55938b71c3ba128754776dbdebbc7c08431603a644903b5e9315dcdb5d695",
+      "4432": "baacaddbfd72d820b3c378348ae114d579f0def8e162ec3c478265d0ad49b4d8",
+      "4433": "df4511ed5cc25e5cf828dd0565accfb8114ca5fd554119f9aae8b47615000403",
+      "4434": "22c512579c4c27cb918aa7506db7ef7acfe77ed08cc5003410e57603371ab6b7",
+      "4435": "b2107f8aef30f8cec0f6386749e3b879bf0970521f70dbdb7f7fa843f8ef3267"
+    }
+  },
+  "python": "3.10.12",
+  "platform": "Linux-6.8.0-138-generic-aarch64-with-glibc2.35"
+}

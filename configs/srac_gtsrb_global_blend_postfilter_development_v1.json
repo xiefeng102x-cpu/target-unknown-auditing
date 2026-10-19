@@ -1,0 +1,51 @@
+{
+  "protocol_id": "srac_gtsrb_global_blend_postfilter_development_v1",
+  "stage": "development",
+  "created_at": "2026-10-13T13:00:00+08:00",
+  "purpose": "Debug and select no confirmation result; exercise the frozen post-filter comparison on the disjoint development victim only.",
+  "seeds": [201],
+  "source_result_relative_to_paper14": "results/srac_gtsrb_global_blend_development_v1",
+  "victim_protocol_relative_to_paper14": "configs/srac_gtsrb_global_blend_development_v1.json",
+  "victim_protocol_sha256": "4206d8dddaadd3d8c36eccbd7b4575f766eaa15e792cb21d080d9bea20a72f49",
+  "detectors": ["cf_cmd_u", "crossfit_spectral"],
+  "conditions": [
+    "original_poisoned",
+    "detector_cf_cmd_u",
+    "random_matched_cf_cmd_u",
+    "detector_crossfit_spectral",
+    "random_matched_crossfit_spectral",
+    "oracle_all_poison"
+  ],
+  "random_matched_removal": {
+    "population": "all clean and poison training records",
+    "size": "exactly the number removed by the corresponding detector",
+    "rng": "numpy.default_rng(202610130000 + seed * 101 + method_index * 1009)"
+  },
+  "retraining": {
+    "architecture_optimizer_epochs_batch_size_and_validation_selection": "identical to the source victim protocol",
+    "initialization_seed": "same victim seed in every condition",
+    "model_selection": "clean validation balanced accuracy only",
+    "save_every_completed_condition": true
+  },
+  "analysis": {
+    "primary_contrast": "paired detector-guided minus size-matched-random attack success rate",
+    "utility_contrast": "paired detector-guided minus size-matched-random balanced clean accuracy",
+    "bootstrap": {
+      "unit": "victim seed",
+      "draws": 10000,
+      "seed": 2026101301,
+      "interval": "percentile 95%"
+    },
+    "report_every_condition_and_seed": true,
+    "no_detector_selection_after_confirmation": true
+  },
+  "interpretation": {
+    "go_is_not_model_safety": true,
+    "postfilter_endpoints_are_separate_from_srac_validity": true,
+    "oracle_all_poison_is_also_the_clean_training_trigger_reference": true
+  },
+  "execution": {
+    "formal_device": "mps",
+    "fallback": "fail"
+  }
+}

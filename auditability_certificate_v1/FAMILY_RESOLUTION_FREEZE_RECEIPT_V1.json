@@ -1,0 +1,15 @@
+{
+  "written_utc": "2026-10-16T11:58:58.174204Z",
+  "status": "frozen before execution",
+  "plan": "FAMILY_RESOLUTION_PLAN_V1.md",
+  "plan_sha256": "07747895b599c42a8e9b916ada1b6aed270962a490115e68afc7400d300564f5",
+  "script": "analysis/run_family_resolution_v1.py",
+  "script_sha256": "697ff31812c3012e468e199bcc845672e5e24501e7e3564e50e5958d43a41045",
+  "dependency": "analysis/run_posthoc_power_study_v1.py",
+  "dependency_sha256": "71eb676df806de0172dd99ba2e7413c100851a9d290e252669dcc8f7f36a1096",
+  "inputs": {
+    "results/gtsrb_semantic_overlap_scan_scores_confirmation_v2/flags.csv": "c37390f8e3252aebc67d97e49f9cc2ab7f237c6356ca3a0ae555d4d3511074e8",
+    "results/cifar10_scan_lda_scores_confirmation_v1/flags.csv": "aeb20b6e5dc9d314ef94769fdad278bd2f95dfd44af50b29571feeb908fa4eaf"
+  },
+  "output": "results_family_resolution_v1/"
+}

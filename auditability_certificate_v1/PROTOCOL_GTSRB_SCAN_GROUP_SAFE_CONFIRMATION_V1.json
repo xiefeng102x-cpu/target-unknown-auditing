@@ -1,0 +1,64 @@
+{
+  "schema": "gtsrb-target-unknown-scan-group-safe-confirmation-v1",
+  "study_id": "srac_gtsrb_allclass_scan_confirmation_v1",
+  "frozen_at": "2026-10-15T14:20:00+08:00",
+  "freeze_type": "local hash freeze before training any confirmation victim",
+  "external_timestamp": false,
+  "development_disclosure": "Seeds 202--211 were inspected and are excluded from confirmation. They motivated the frozen SCAn-only branch and support gates.",
+  "seeds": [235, 236, 237, 238, 239, 240, 241, 242, 243, 244],
+  "victim_protocol_path": "configs/srac_gtsrb_allclass_scan_confirmation_v1.json",
+  "victim_protocol_sha256": "78a9851f1ecaf9af1eec049f23d9deac98c7daa57eebe87c5430818ee2520449",
+  "victim_runner_path": "src/run_tifs_native_gtsrb.py",
+  "victim_runner_sha256": "06381624dd4e8b30e2cd799cca693b983714821f1fc652b4237b9e61e154037b",
+  "adapter_path": "src/backdoorbench_feature_adapter.py",
+  "adapter_sha256": "45852a5df504b73d231330fe658ff8d34b57729ed21d97d00d0419514c065eef",
+  "runner_path": "src/run_gtsrb_allclass_scan_confirmation.py",
+  "runner_sha256": "fd1b72ab1f14eb2618cbee3ef3219f789675998e7bacf8e917d1e1e786001d73",
+  "endpoint_core_path": "auditability_certificate_v1/analysis/run_stratified_group_safe_srac.py",
+  "endpoint_core_sha256": "b1e993d38f671336037fdc624a90efb522a0ed7d27c5ec4ce81170fcfb64372d",
+  "endpoint_runner_path": "auditability_certificate_v1/analysis/run_gtsrb_scan_group_safe_confirmation.py",
+  "endpoint_runner_sha256": "b92064e50710040a47964987a3356e1eef539ead9fb896343195b9e8dc3f9bd4",
+  "dataset": "GTSRB official 43-class split and frozen 32x32 cache",
+  "population": "all clean training members plus every added poison copy",
+  "group_variable": "assigned training label in {0,...,42}",
+  "detector": "pinned upstream BackdoorBench SCAn feature primitive",
+  "detector_target_information": "none",
+  "trusted_reference": "deterministic half of official test records in every group",
+  "reference_seed_base": 2026111500,
+  "scan_seed_base": 2028111500,
+  "certificate": {
+    "recall_target": 0.8,
+    "max_group_clean_flag_rate_cap": 0.1,
+    "delta_per_decision": 0.005,
+    "budgets": [2000, 8000, 16000],
+    "protected_draws_per_seed_budget": 200,
+    "active_stratum_budget_share": 0.5,
+    "count_interval": "exact two-sided hypergeometric inversion",
+    "tail_allocation": "delta/(2 times number_of_nonempty_strata)",
+    "decision_outputs": ["GO", "NO_GO", "ABSTAIN"]
+  },
+  "support_gate": {
+    "minimum_eligible_victims": 8,
+    "minimum_true_policy_pass_victims": 5,
+    "zero_false_go": true,
+    "zero_false_nogo": true,
+    "minimum_victims_with_go_at_k_2000": 1
+  },
+  "stopping_rule": "attempt all ten seeds without replacement or detector, attack, threshold, allocation, or endpoint retuning",
+  "victim_output_directory": "results/srac_gtsrb_allclass_scan_confirmation_v1",
+  "score_output_directory": "results/gtsrb_allclass_scan_scores_confirmation_v1",
+  "endpoint_output_directory": "auditability_certificate_v1/results_gtsrb_scan_group_safe_confirmation_v1",
+  "pre_scoring_amendments": [
+    {
+      "timing": "after victim training began and before any confirmation SCAn score or flag was computed",
+      "change": "the true-policy-pass support-gate count was restricted to eligible victims",
+      "reason": "the written gate concerns qualified victim models; counting an ineligible model would be an implementation error",
+      "scientific_parameters_changed": false
+    }
+  ],
+  "limitations": [
+    "The freeze is internally hash-bound without a third-party timestamp.",
+    "The development and confirmation blocks share one dataset, architecture, and attack family.",
+    "A passed block would not establish cross-architecture or cross-attack generality."
+  ]
+}

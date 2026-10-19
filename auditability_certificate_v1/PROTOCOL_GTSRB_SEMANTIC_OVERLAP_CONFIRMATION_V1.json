@@ -1,0 +1,110 @@
+{
+  "schema": "gtsrb-semantic-overlap-group-family-confirmation-v1",
+  "study_id": "srac_gtsrb_semantic_overlap_confirmation_v1",
+  "frozen_at": "2026-10-15T15:08:00+08:00",
+  "freeze_type": "local hash freeze before training, SCAn scoring, or protected draws for seeds 245--254",
+  "external_timestamp": false,
+  "development_disclosure": "Seeds 202--211 and confirmation seeds 235--244 were already observed. They are excluded. The semantic family and all support gates were fixed before any seed 245--254 victim was trained.",
+  "seeds": [245, 246, 247, 248, 249, 250, 251, 252, 253, 254],
+  "victim_protocol_path": "configs/srac_gtsrb_semantic_overlap_confirmation_v1.json",
+  "victim_protocol_sha256": "b6db1bd3df8a22d4bcaeb65d99beb83a777c2d89dd3a5a7842264efd9fbe182b",
+  "victim_runner_path": "src/run_tifs_native_gtsrb.py",
+  "victim_runner_sha256": "06381624dd4e8b30e2cd799cca693b983714821f1fc652b4237b9e61e154037b",
+  "adapter_path": "src/backdoorbench_feature_adapter.py",
+  "adapter_sha256": "45852a5df504b73d231330fe658ff8d34b57729ed21d97d00d0419514c065eef",
+  "runner_path": "src/run_gtsrb_semantic_overlap_scan_confirmation.py",
+  "runner_sha256": "5fd3144674df5ed47ec65d28e64f85c73837da0292db13b966744428dfa28e53",
+  "endpoint_core_path": "auditability_certificate_v1/analysis/run_protected_group_family_srac.py",
+  "endpoint_core_sha256": "9171814bd8be311461cb6c3a493be1b8faba58c06dbd76f497d51c47bd9d5422",
+  "endpoint_runner_path": "auditability_certificate_v1/analysis/run_gtsrb_semantic_overlap_confirmation.py",
+  "endpoint_runner_sha256": "cedae8b5640e1fbf570cf0f0409472d8145078c1caff54b69e1f1d0b3ec780bb",
+  "dataset": "GTSRB official 43-class split and frozen 32x32 cache",
+  "population": "all clean training members plus every added poison copy",
+  "group_variable": "assigned GTSRB training label",
+  "detector": "pinned upstream BackdoorBench SCAn feature primitive",
+  "detector_target_information": "none",
+  "trusted_reference": "deterministic half of official test records in every class",
+  "reference_seed_base": 2026111500,
+  "scan_seed_base": 2028111500,
+  "protected_groups": [
+    {
+      "name": "regulatory_and_priority",
+      "class_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 32, 41, 42],
+      "meaning": "speed, priority, access, and end-of-restriction controls"
+    },
+    {
+      "name": "speed_control",
+      "class_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 32],
+      "meaning": "speed limits and end of speed/passing restrictions"
+    },
+    {
+      "name": "overtaking_restriction",
+      "class_ids": [9, 10, 41, 42],
+      "meaning": "no-passing and end-of-no-passing signs"
+    },
+    {
+      "name": "priority_control",
+      "class_ids": [11, 12, 13, 14],
+      "meaning": "right-of-way, priority road, yield, and stop"
+    },
+    {
+      "name": "vehicle_access_restriction",
+      "class_ids": [10, 15, 16, 17, 42],
+      "meaning": "vehicle-class and entry restrictions"
+    },
+    {
+      "name": "hazard_warning",
+      "class_ids": [18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
+      "meaning": "general and specific roadway hazards"
+    },
+    {
+      "name": "road_geometry_hazard",
+      "class_ids": [19, 20, 21, 24],
+      "meaning": "curves and narrowing road geometry"
+    },
+    {
+      "name": "road_surface_or_work",
+      "class_ids": [22, 23, 25, 30],
+      "meaning": "bumpy, slippery, work-zone, and ice/snow conditions"
+    },
+    {
+      "name": "vulnerable_road_users",
+      "class_ids": [27, 28, 29],
+      "meaning": "pedestrian, children, and bicycle warnings"
+    },
+    {
+      "name": "direction_mandatory",
+      "class_ids": [33, 34, 35, 36, 37, 38, 39, 40],
+      "meaning": "mandatory direction and roundabout instructions"
+    }
+  ],
+  "certificate": {
+    "security_object": "global poison recall at least 0.8 and clean flag rate at most 0.1 in every predeclared semantic protected set",
+    "recall_target": 0.8,
+    "max_group_clean_flag_rate_cap": 0.1,
+    "delta_per_decision": 0.005,
+    "budgets": [2000, 8000, 16000],
+    "protected_draws_per_seed_budget": 200,
+    "active_stratum_budget_share": 0.5,
+    "count_interval": "exact two-sided hypergeometric inversion",
+    "tail_allocation": "delta/(2 times number_of_count_intervals)",
+    "decision_outputs": ["GO", "NO_GO", "ABSTAIN"]
+  },
+  "support_gate": {
+    "minimum_eligible_victims": 8,
+    "minimum_true_policy_pass_victims": 5,
+    "zero_false_go": true,
+    "zero_false_nogo": true,
+    "minimum_victims_with_go_at_k_2000": 1,
+    "minimum_victims_with_go_at_k_8000": 5
+  },
+  "stopping_rule": "attempt all ten seeds without replacement or detector, group, threshold, allocation, endpoint, or support-gate retuning",
+  "victim_output_directory": "results/srac_gtsrb_semantic_overlap_confirmation_v1",
+  "score_output_directory": "results/gtsrb_semantic_overlap_scan_scores_confirmation_v1",
+  "endpoint_output_directory": "auditability_certificate_v1/results_gtsrb_semantic_overlap_confirmation_v1",
+  "limitations": [
+    "The freeze is internally hash-bound without a third-party timestamp.",
+    "This block confirms a predeclared overlapping semantic family but remains on GTSRB/TinyCNN/global blend.",
+    "It does not establish second-dataset, second-architecture, or cross-attack transfer."
+  ]
+}

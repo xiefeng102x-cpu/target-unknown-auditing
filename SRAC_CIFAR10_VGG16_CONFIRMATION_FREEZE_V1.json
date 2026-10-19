@@ -1,0 +1,44 @@
+{
+  "protocol_id": "cifar10_vgg16_bn_srac_confirmation_v1",
+  "status": "FROZEN_BEFORE_FORMAL_SEED_EXECUTION_AND_PROTECTED_DRAWS",
+  "frozen_at": "2026-10-13T20:34:17+08:00",
+  "formal_seeds": [4301, 4302, 4303, 4304, 4305],
+  "formal_ack": "OPEN_CIFAR10_VGG16_SRAC_SEEDS_4301_4305",
+  "development_disclosure": {
+    "source_seeds": [4201, 4202, 4203, 4204, 4205],
+    "outcomes_known_before_freeze": true,
+    "source_and_confirmation_seeds_disjoint": true,
+    "confirmation_claim": "prospective only with respect to seeds 4301--4305 and their protected SRAC draws; not blind to the attack family or prior architecture-level outcomes"
+  },
+  "locked_endpoint": {
+    "audit_universe": "complete assigned-target-label cross-fit stratum",
+    "recall_target": 0.8,
+    "clean_flag_rate_cap": 0.1,
+    "delta_per_decision": 0.005,
+    "audit_budgets": [120, 500, 2000],
+    "draws_per_seed_fold_budget": 200,
+    "detectors": ["cf_cmd_u", "target_centroid", "crossfit_spectral", "activation_clustering", "que_score"]
+  },
+  "environment": {
+    "python": "python3.9",
+    "numpy": "1.26.4",
+    "torch": "2.7.1",
+    "scikit_learn": "1.6.1",
+    "scipy": "1.11.4",
+    "formal_device": "mps"
+  },
+  "hashes": {
+    "config_sha256": "36e2fb24d3f8091d23aaa70b06a7a40649df040b231fe57f465164a9cbf896ba",
+    "runner_sha256": "11eb56037b384e843cdca22397eba0d83fefc1c0d24f4e464ef0cd5a3e7dc085",
+    "architecture_sha256": "0c87db1eb5b622b1ca1ca85142c6c65a985857753342502b97baeadaafb101a8",
+    "development_engine_sha256": "ff2c8e8988017b9a53c15728dd573f12c7bfb7ec5cae5136b4aa872b16118f9e",
+    "score_families_sha256": "099d97cde476c04bdb9cb53549ef6733d7402a9b35e07b23cbe011c70a0d581d"
+  },
+  "frozen_implementation": {
+    "handoff_verifier_sha256": "03ab95d24f185e34eddab3a5ac6e28b3345fe3710dd99d4413819aec84807219",
+    "endpoint_runner_sha256": "eda18c9e3e0ae34dcd0e55cd7e1ec203a0985f0ea6e45d5cbaa8f8a0394d59dd",
+    "srac_core_sha256": "302c1cc2b90b25e3c75728c1ef0c2eae5db4bcc7963738f607d3601bd9539e11"
+  },
+  "chronology_limitation": "local hash freeze without external timestamp or independent custodian",
+  "stopping_rule": "attempt every frozen seed without replacement; resume only from exact saved epoch states; do not retune attack, detector, or SRAC endpoint after any confirmation outcome"
+}

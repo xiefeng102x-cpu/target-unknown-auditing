@@ -1,0 +1,8 @@
+{
+  "status": "FROZEN_BEFORE_RUN",
+  "created_utc": "2026-10-18T13:11:35.539630+00:00",
+  "sha256": {
+    "BLOCK16_SAME_SHARE_ABLATION_PLAN_V1.md": "12a977c545a7ca282a4da87d62e80d32ed6e6d128cb01a23ecddd0cc253f5bb8",
+    "analysis/run_block16_same_share_ablation_v1.py": "44cdd78889f685d004f784382744a2dcff7002ecd5b4af5c8f87bf4ebd52e252"
+  }
+}

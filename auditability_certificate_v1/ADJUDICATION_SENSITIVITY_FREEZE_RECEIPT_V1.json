@@ -1,0 +1,11 @@
+{
+  "status": "FROZEN_POSTHOC_ANALYSIS_BEFORE_EXECUTION",
+  "created_utc": "2026-10-16T08:58:26.620443+00:00",
+  "disclosure": "Both input endpoints had been observed. Only eps=0 reproduction was smoke-tested on one victim per dataset.",
+  "hashes": {
+    "plan_sha256": "dcdba2a509d6dd9d412357367b1a952cbf6148c2e546b6837a63f672fa255892",
+    "script_sha256": "3a2c29f8fa9737423222a1d3bbe06075794034f7e11ce960ff15bb46a61adc0b",
+    "helper_sha256": "71eb676df806de0172dd99ba2e7413c100851a9d290e252669dcc8f7f36a1096"
+  },
+  "external_timestamp": false
+}

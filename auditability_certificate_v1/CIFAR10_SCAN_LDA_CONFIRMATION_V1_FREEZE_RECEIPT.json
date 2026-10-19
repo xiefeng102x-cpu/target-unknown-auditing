@@ -1,0 +1,27 @@
+{
+  "status": "FROZEN_BEFORE_SEED_4416_OPENED",
+  "created_utc": "2026-10-16T01:04:22.849529+00:00",
+  "protocol_sha256": "08ae9672077aa685d73a8ca7150ae4b459768625ff16cfb2b2aac863c9798932",
+  "files": {
+    "auditability_certificate_v1/PROTOCOL_CIFAR10_SCAN_LDA_CONFIRMATION_V1.json": "08ae9672077aa685d73a8ca7150ae4b459768625ff16cfb2b2aac863c9798932",
+    "auditability_certificate_v1/CIFAR10_SCAN_LDA_CONFIRMATION_V1.md": "62571136ed27d776734da2b4b8e285d63f8a850d3d1ccae00d6dae035d3ec102",
+    "configs/cifar10_vgg16_bn_blended_scan_lda_confirmation_v1.json": "d4b36a508ba1b5a667a5696ce430d18d901709b85fd9d0e3fbb9f890a5a2f0dc",
+    "src/run_cifar10_vgg16_bn_blended_scan_lda_confirmation.py": "5aba38c27e806d5118b1b29ca5d514fe0a9684d6bd22b09f10cfd04fa5b536a8",
+    "src/run_cifar10_scan_lda_confirmation_scores.py": "6084192bb58d71501452116e4d47cfeaf56fd49e1e2e6356ac0a9faa80555acc",
+    "src/scan_lda_expansion.py": "dce71b72fdfafdf1b4e5c2433f8fc9c07f126ed391762223bc0815692ee14302",
+    "auditability_certificate_v1/analysis/srac_family_core_scan_lda_v1.py": "c74f3a2027049ad5f710dcb91850ba7c75ac7199f420a4d0efef2f62f611a998",
+    "auditability_certificate_v1/analysis/run_cifar10_scan_lda_confirmation.py": "07dca98bfa4d391a9a4340d123fb056266dec30b4c9459ccd9a8c93b8d8c5499",
+    "auditability_certificate_v1/analysis/finalize_cifar10_scan_lda_confirmation.py": "857de2b589b8eee779a3df6d124704924a16fc551b7ad0c822ba23a2f0e74019",
+    "auditability_certificate_v1/analysis/run_cifar10_scan_lda_posttraining_pipeline.py": "2c5cf54d9fb14b07adccdb7e77ee000d0d1c1fe6389ec71baa26ade46a80eb0f",
+    "auditability_certificate_v1/analysis/run_cifar10_scan_lda_secondary_escalation.py": "d3dcc30fe9946a525897392cfb48c081a5d4512a0341da256ed09592ff26abfb"
+  },
+  "checks": {
+    "score_runner_stub_control_flow": "PASS (synthetic stubs, no real seed)",
+    "endpoint_runner_smoke": "PASS on development seeds 4411-4415 relabeled SMOKE",
+    "finalizer_smoke": "PASS",
+    "secondary_smoke": "PASS",
+    "pipeline_check": "TRAINING_INCOMPLETE with stage_hashes_ok=true"
+  },
+  "victim_output_exists": false,
+  "external_timestamp": false
+}

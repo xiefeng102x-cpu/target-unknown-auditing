@@ -1,0 +1,48 @@
+{
+  "protocol_id": "cifar10_vgg16_bn_blended_development_v1",
+  "status": "NONFORMAL_VICTIM_ONLY_DEVELOPMENT",
+  "development_seed": 4400,
+  "confirmation_seeds_not_frozen": [4401, 4402, 4403, 4404, 4405],
+  "dataset": {
+    "root_relative_to_paper14": "../paper5/paper_v6/paper5_code_audited_complete_20260716/paper5/datasets/cifar10",
+    "archive": "cifar-10-python.tar.gz",
+    "archive_md5": "c58f30108f718f92721af3b95e74349a",
+    "archive_sha256": "6d958be074577803d12ecdefd02955f39262c83c16fe9348329d7fe0b5c001ce",
+    "validation_rows_per_class": 500,
+    "validation_split_seed": 42420000
+  },
+  "victim": {
+    "architecture": "CIFAR-native VGG16-BN",
+    "parameterization": "13 convolutional layers, batch normalization after every convolution, five max-pools, 512-D global-average-pooled feature, ten-way linear head",
+    "epochs": 25,
+    "batch_size": 256,
+    "optimizer": "AdamW",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0005,
+    "schedule": "cosine_to_zero",
+    "augmentation": "reflect-pad-4 random crop plus random horizontal flip",
+    "evaluation_epochs": [15, 20, 25]
+  },
+  "attack": {
+    "family": "Blended_all_to_one",
+    "target_class": 8,
+    "poison_count": 2250,
+    "poison_rate_of_training_rows": 0.05,
+    "selection_population": "non-target rows in the fixed 45000-row training split",
+    "trigger_asset_relative_to_paper14": "external/BackdoorBench/utils/defense_utils/dbd/data/trigger/hello_kitty.png",
+    "trigger_asset_sha256": "e313fb548a8b873d999d50426ebe2752f5512cb9318def33077158589c3b344d",
+    "resize": "torchvision Resize((32,32)) with bilinear interpolation and antialiasing",
+    "train_blended_alpha": 0.2,
+    "test_blended_alpha": 0.2,
+    "parameter_source": "BackdoorBench config/attack/blended/default.yaml",
+    "transform": "(1-alpha)*image + alpha*trigger after training augmentation",
+    "assigned_label": 8
+  },
+  "development_gate": {
+    "balanced_accuracy_min": 0.75,
+    "attack_success_rate_min": 0.9,
+    "endpoint_selection": "choose the earliest prelisted evaluation epoch meeting both gates; otherwise revise only on seed 4400",
+    "detector_or_certificate_outcomes_forbidden": true
+  },
+  "claim_boundary": "This run may select a victim training horizon only. It cannot support detector or SRAC claims and cannot be called prospective confirmation."
+}

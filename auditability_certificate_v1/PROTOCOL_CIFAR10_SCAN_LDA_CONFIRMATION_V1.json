@@ -1,0 +1,188 @@
+{
+ "schema": "cifar10-scan-lda-semantic-overlap-confirmation-v1",
+ "study_id": "cifar10_vgg16_bn_blended_scan_lda_confirmation_v1",
+ "status": "FROZEN_BEFORE_FORMAL_SEED_EXECUTION_AND_PROTECTED_DRAWS",
+ "frozen_at": null,
+ "freeze_clock_note": "authoritative local ordering is recorded from the protocol and sidecar filesystem times, the freeze receipt, and the first run-log event",
+ "external_timestamp": false,
+ "formal_ack": "OPEN_CIFAR10_VGG16_BLENDED_SCAN_LDA_SEEDS_4416_4425",
+ "formal_seeds": [
+  4416,
+  4417,
+  4418,
+  4419,
+  4420,
+  4421,
+  4422,
+  4423,
+  4424,
+  4425
+ ],
+ "development_disclosure": "Blended development seed 4400, confirmation seeds 4401--4405, and semantic-overlap confirmation seeds 4411--4415 were observed and are excluded. The 4411--4415 block failed its frozen support gate because SCAn recall was 0.650--0.884 with only one policy-passing screen. The LDA expansion and its parameters were selected after inspecting saved target-class features of 4401--4405 and 4411--4415: distance-to-reference scores (Mahalanobis, kNN, cosine) were rejected; LDA PCA dimension {16,32,64}, relative ridge {0.1,1.0}, and calibration q {0.01,0.02,0.05,0.10} were compared on 4411--4415 union recall, clean flag rate, and development certificate GO rates. dim=32, ridge=0.1, q=0.05 was chosen. Seeds 4416--4425 had not been trained or scored.",
+ "dataset": "CIFAR-10 official split with a fixed 45000-row victim-training partition",
+ "population": "all 45000 victim-training members; poisoned rows replace their clean training presentation and receive target label 8",
+ "architecture": "CIFAR-native VGG-16-BN with 14,724,042 parameters and a 512-dimensional penultimate representation",
+ "attack": "BackdoorBench-parameterized Blended all-to-one attack with frozen Hello-Kitty asset, alpha 0.2, target ship, and 2250 poisons",
+ "group_variable": "assigned CIFAR-10 training label after poisoning",
+ "detector": "pinned upstream BackdoorBench SCAn feature primitive, followed inside every SCAn-flagged class by a clean-calibrated LDA expansion (src/scan_lda_expansion.py); final flag = SCAn OR expansion",
+ "detector_target_information": "none; expansion classes are those SCAn flags and thresholds come from clean held-out members",
+ "detector_parameters": {
+  "pca_dimension": 32,
+  "relative_ridge": 0.1,
+  "calibration_q": 0.05
+ },
+ "trusted_reference": "250 deterministic held-out clean validation members per CIFAR-10 class",
+ "calibration_rows_per_class": 250,
+ "calibration_definition": "the 250 held-out clean validation members of each SCAn-flagged class that are not SCAn trusted references",
+ "reference_rows_per_class": 250,
+ "reference_seed_base": 2026111600,
+ "scan_seed_base": 2028111600,
+ "protected_groups": [
+  {
+   "name": "animals",
+   "class_ids": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+   ],
+   "meaning": "all six CIFAR-10 animal classes"
+  },
+  {
+   "name": "vehicles",
+   "class_ids": [
+    0,
+    1,
+    8,
+    9
+   ],
+   "meaning": "all four CIFAR-10 vehicle classes"
+  },
+  {
+   "name": "mammals",
+   "class_ids": [
+    3,
+    4,
+    5,
+    7
+   ],
+   "meaning": "cat, deer, dog, and horse"
+  },
+  {
+   "name": "domestic_or_working_animals",
+   "class_ids": [
+    3,
+    5,
+    7
+   ],
+   "meaning": "cat, dog, and horse"
+  },
+  {
+   "name": "wild_animals",
+   "class_ids": [
+    2,
+    4,
+    6
+   ],
+   "meaning": "bird, deer, and frog"
+  },
+  {
+   "name": "ground_or_road_entities",
+   "class_ids": [
+    1,
+    3,
+    4,
+    5,
+    6,
+    7,
+    9
+   ],
+   "meaning": "land animals together with road vehicles; crosses the animal/vehicle partition"
+  },
+  {
+   "name": "road_vehicles",
+   "class_ids": [
+    1,
+    9
+   ],
+   "meaning": "automobile and truck"
+  },
+  {
+   "name": "air_or_water_transport",
+   "class_ids": [
+    0,
+    8
+   ],
+   "meaning": "airplane and ship"
+  }
+ ],
+ "certificate": {
+  "security_object": "global poison recall at least 0.8 and clean flag rate at most 0.1 in every predeclared semantic protected set",
+  "recall_target": 0.8,
+  "max_group_clean_flag_rate_cap": 0.1,
+  "delta_per_decision": 0.005,
+  "budgets": [
+   2000,
+   8000,
+   16000
+  ],
+  "protected_draws_per_seed_budget": 200,
+  "active_stratum_budget_share": 0.5,
+  "count_interval": "exact two-sided hypergeometric inversion",
+  "tail_allocation": "delta/(2 times number_of_count_intervals)",
+  "decision_outputs": [
+   "GO",
+   "NO_GO",
+   "ABSTAIN"
+  ]
+ },
+ "support_gate": {
+  "minimum_eligible_victims": 8,
+  "minimum_true_policy_pass_victims": 5,
+  "zero_false_go": true,
+  "zero_false_nogo": true,
+  "minimum_victims_with_go_at_k_2000": 1,
+  "minimum_victims_with_go_at_k_8000": 5
+ },
+ "secondary_analysis": {
+  "description": "nested escalation 2000->8000->16000, delta/3 per look, one-sided per-error-type tails with delta/2 to recall cells and delta/2 to group cells, flagged share 0.25; descriptive, outside the support gate",
+  "script": "auditability_certificate_v1/analysis/run_cifar10_scan_lda_secondary_escalation.py",
+  "script_sha256": "d3dcc30fe9946a525897392cfb48c081a5d4512a0341da256ed09592ff26abfb",
+  "helper_sha256": "71eb676df806de0172dd99ba2e7413c100851a9d290e252669dcc8f7f36a1096"
+ },
+ "descriptive_reporting": "SCAn-only recall and clean rates are recorded per seed in the score manifest and reported descriptively",
+ "stopping_rule": "attempt all ten seeds without replacement or detector, expansion parameter, group, threshold, allocation, endpoint, or support-gate retuning",
+ "hashes": {
+  "victim_stage": {
+   "overlay_sha256": "d4b36a508ba1b5a667a5696ce430d18d901709b85fd9d0e3fbb9f890a5a2f0dc",
+   "victim_runner_sha256": "5aba38c27e806d5118b1b29ca5d514fe0a9684d6bd22b09f10cfd04fa5b536a8",
+   "base_config_sha256": "a3297683a932cab78058dcd7b44c2146da5e6423ac2c542a3e79a3944953cd03",
+   "base_engine_sha256": "11eb56037b384e843cdca22397eba0d83fefc1c0d24f4e464ef0cd5a3e7dc085",
+   "architecture_sha256": "0c87db1eb5b622b1ca1ca85142c6c65a985857753342502b97baeadaafb101a8",
+   "development_engine_sha256": "ff2c8e8988017b9a53c15728dd573f12c7bfb7ec5cae5136b4aa872b16118f9e",
+   "blended_wrapper_sha256": "a3102e5bb47eb7156f3a7d8b6796346720841c96422b2415986dfb2dc111ab88",
+   "score_families_sha256": "099d97cde476c04bdb9cb53549ef6733d7402a9b35e07b23cbe011c70a0d581d"
+  },
+  "score_stage": {
+   "score_runner_sha256": "6084192bb58d71501452116e4d47cfeaf56fd49e1e2e6356ac0a9faa80555acc",
+   "adapter_sha256": "45852a5df504b73d231330fe658ff8d34b57729ed21d97d00d0419514c065eef",
+   "expansion_sha256": "dce71b72fdfafdf1b4e5c2433f8fc9c07f126ed391762223bc0815692ee14302"
+  },
+  "endpoint_stage": {
+   "endpoint_core_sha256": "c74f3a2027049ad5f710dcb91850ba7c75ac7199f420a4d0efef2f62f611a998",
+   "endpoint_runner_sha256": "07dca98bfa4d391a9a4340d123fb056266dec30b4c9459ccd9a8c93b8d8c5499"
+  },
+  "finalizer_sha256": "857de2b589b8eee779a3df6d124704924a16fc551b7ad0c822ba23a2f0e74019",
+  "pipeline_sha256": "2c5cf54d9fb14b07adccdb7e77ee000d0d1c1fe6389ec71baa26ade46a80eb0f"
+ },
+ "victim_output_directory": "results/cifar10_vgg16_bn_blended_scan_lda_confirmation_v1",
+ "score_output_directory": "results/cifar10_scan_lda_scores_confirmation_v1",
+ "endpoint_output_directory": "auditability_certificate_v1/results_cifar10_scan_lda_confirmation_v1",
+ "limitations": [
+  "The freeze is internally hash-bound without a third-party timestamp.",
+  "The two-stage screen was selected on disclosed development seeds of the same dataset, architecture, and attack.",
+  "A pass would establish positive target-unknown coverage on CIFAR-10/VGG-16-BN/Blended for this screen only, not universal detector, attack, or architecture transfer."
+ ]
+}

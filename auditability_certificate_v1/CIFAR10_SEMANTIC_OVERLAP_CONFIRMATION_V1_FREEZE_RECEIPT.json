@@ -1,0 +1,26 @@
+{
+  "status": "FROZEN_AND_SELFTESTED_BEFORE_FORMAL_EXECUTION",
+  "study_id": "cifar10_vgg16_bn_blended_semantic_overlap_confirmation_v1",
+  "protocol_path": "auditability_certificate_v1/PROTOCOL_CIFAR10_SEMANTIC_OVERLAP_CONFIRMATION_V1.json",
+  "protocol_sha256": "5a53c5798b728d40357d7e8f271cfb4a038d32f4597a98f581432407d3fc40bd",
+  "protocol_filesystem_time_local": "2026-10-15T19:55:22+0800",
+  "sidecar_filesystem_time_local": "2026-10-15T19:55:50+0800",
+  "external_timestamp": false,
+  "new_seed_outputs_present_at_freeze_check": false,
+  "checked_absent_paths": [
+    "results/cifar10_vgg16_bn_blended_semantic_overlap_confirmation_v1",
+    "results/cifar10_semantic_overlap_scan_scores_confirmation_v1",
+    "auditability_certificate_v1/results_cifar10_semantic_overlap_confirmation_v1"
+  ],
+  "frozen_seeds": [4411, 4412, 4413, 4414, 4415],
+  "formal_execution_opened": false,
+  "first_formal_run_log": null,
+  "pre_execution_checks": {
+    "bound_file_hash_test": "PASS",
+    "semantic_group_test": "PASS",
+    "endpoint_unit_tests": "PASS",
+    "victim_wrapper_selftest": "PASS",
+    "focused_tests_passed": 11
+  },
+  "interpretation": "This receipt proves only internally recorded ordering. It is not a third-party preregistration timestamp."
+}

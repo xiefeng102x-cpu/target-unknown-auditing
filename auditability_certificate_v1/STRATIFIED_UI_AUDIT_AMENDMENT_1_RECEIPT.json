@@ -1,0 +1,8 @@
+{
+  "written_utc": "2026-10-18T08:40:21.830482+00:00",
+  "amendment": 1,
+  "reason": "the first execution (started 06:40 UTC) was stopped by the 2-hour limit of the cloud job runner before writing any output; no decision was read",
+  "change": "execution only: optional --parts (resumable per-victim part files, combined at the end) and --max-victims; scientific logic, designs, draws, and outputs unchanged",
+  "frozen_script_sha256": "c1a5c0d380469592912f71e2415cf57d2eb3e02224add948191886a212a5f501",
+  "amended_script_sha256": "9dcff664f91fd634474006b80aaa146817cff9d07684a3cad36d3b67a24f9766"
+}

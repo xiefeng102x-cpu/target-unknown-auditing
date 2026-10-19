@@ -1,0 +1,27 @@
+{
+  "status": "FROZEN_BEFORE_DEVELOPMENT_SEED_EXECUTION",
+  "frozen_at": "2026-10-13T21:03:32+08:00",
+  "protocol_id": "cifar10_vgg16_bn_blended_development_v1",
+  "development_seed": 4400,
+  "formal_evidence": false,
+  "visible_endpoints": [
+    "balanced clean accuracy",
+    "attack success rate"
+  ],
+  "forbidden_endpoints": [
+    "detector scores",
+    "detector flags",
+    "SRAC decisions"
+  ],
+  "hashes": {
+    "development_config_sha256": "1f97f4e28287fcc6f4f21de119ba9fc0407cec049f83da0b1e83860ac5d5747d",
+    "blended_wrapper_sha256": "a3102e5bb47eb7156f3a7d8b6796346720841c96422b2415986dfb2dc111ab88",
+    "development_engine_sha256": "ff2c8e8988017b9a53c15728dd573f12c7bfb7ec5cae5136b4aa872b16118f9e",
+    "architecture_sha256": "0c87db1eb5b622b1ca1ca85142c6c65a985857753342502b97baeadaafb101a8",
+    "trigger_asset_sha256": "e313fb548a8b873d999d50426ebe2752f5512cb9318def33077158589c3b344d",
+    "backdoorbench_default_config_sha256": "d2e59d27ac7655cb90311de12e60350b379304209fe340e08c66624cac679036",
+    "backdoorbench_transform_sha256": "e0820614234ebbc856405982ae7c543224b1dc750391b572baafa56ec98b56b5"
+  },
+  "next_gate": "If seed 4400 passes the locked BCA/ASR gate, freeze a separate confirmation implementation and seeds 4401--4405 before opening any detector or SRAC output.",
+  "chronology_limitation": "local hash freeze without an external timestamp or independent custodian"
+}

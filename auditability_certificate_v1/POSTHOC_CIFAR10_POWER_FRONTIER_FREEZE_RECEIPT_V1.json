@@ -1,0 +1,13 @@
+{
+  "status": "FROZEN_POSTHOC_ANALYSIS_BEFORE_FIVE_SEED_SCORE_COMPLETION",
+  "date": "2026-10-16",
+  "disclosure": "The seed-4411 SCAn recall of 0.777778 had already been observed. No later seed score, endpoint decision, or five-seed support-gate result had been observed when this analysis was frozen.",
+  "analysis_scope": "Descriptive allocation and protected-family frontier on immutable confirmation flags; excluded from the blinded support gate.",
+  "hashes": {
+    "analysis_script_sha256": "ca087cc18e22b9b55fb5aed8e650812ab1329abd7e9eb7f0c39a7994b6de83db",
+    "test_sha256": "9ccc8bfd8b128db52124bced5aa048fbcc6e4826cb897c8558465795ad95cd7d",
+    "plan_sha256": "cd5eabdfd02282857330f3f1b5b44439a2be61cebcfe013e5da9a8aacea1aaae"
+  },
+  "test_result": "17 passed",
+  "external_timestamp": false
+}

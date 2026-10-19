@@ -1,0 +1,62 @@
+{
+  "schema": "gtsrb-allclass-group-safe-protocol-v1",
+  "study_id": "gtsrb_allclass_group_safe_v1",
+  "frozen_at": "2026-10-15T06:45:00+08:00",
+  "freeze_type": "local hash freeze after synthetic self-test and before reading any all-class detector outcome",
+  "external_timestamp": false,
+  "scientific_scope": "Target-unknown all-assigned-label detector scoring and exact stratified group-safe SRAC on ten previously frozen GTSRB global-blend victims; no new victim training claim.",
+  "seeds": [202, 203, 204, 205, 206, 207, 208, 209, 210, 211],
+  "victim_protocol_path": "configs/srac_gtsrb_global_blend_confirmation_v1.json",
+  "victim_protocol_sha256": "4c2425cc967730c4dfbda2b7c5ac6802e4dbe6679ba844ff65cb076c8219fde5",
+  "victim_manifest_path": "results/srac_gtsrb_global_blend_confirmation_v1/manifest.json",
+  "victim_manifest_sha256": "8d368180758f6395c17b72842b178a8c2523c59194fe6668a20c98242e5d973e",
+  "runner_path": "src/run_gtsrb_allclass_detector_scores.py",
+  "runner_sha256": "45f9342cd2b7e9cfc987be1f32661e17c46c9a4e69b0e32964355082094703a1",
+  "endpoint_core_path": "auditability_certificate_v1/analysis/run_stratified_group_safe_srac.py",
+  "endpoint_core_sha256": "b1e993d38f671336037fdc624a90efb522a0ed7d27c5ec4ce81170fcfb64372d",
+  "endpoint_runner_path": "auditability_certificate_v1/analysis/run_gtsrb_allclass_group_safe_endpoint.py",
+  "endpoint_runner_sha256": "abe109c2febe7d31ba84a84b418dd79e1a3777b62eccc31fdf26b8f077b321ee",
+  "dataset": "GTSRB official 43-class split and the frozen 32x32 uint8 cache",
+  "population": "all 23,976 clean training records plus all 1,132 frozen poison copies per victim",
+  "group_variable": "assigned training label in {0,...,42}",
+  "detector_target_information": "none; every detector is evaluated independently in every assigned-label group",
+  "trusted_clean_source": "official GTSRB test records from the same label group",
+  "trusted_split": "deterministic half reference and half calibration after per-seed/per-group permutation",
+  "trusted_split_seed_base": 2026111500,
+  "minimum_reference_rows_per_group": 30,
+  "detectors": ["cf_cmd_u", "crossfit_spectral", "target_centroid_distance"],
+  "detector_alpha": 0.05,
+  "detector_seed_base": 2027111500,
+  "certificate": {
+    "recall_target": 0.8,
+    "max_group_clean_flag_rate_cap": 0.1,
+    "delta_per_detector_decision": 0.005,
+    "budgets": [2000, 8000, 16000],
+    "protected_draws_per_seed_budget": 200,
+    "active_stratum_budget_share": 0.5,
+    "count_interval": "exact two-sided hypergeometric inversion",
+    "tail_allocation": "delta/(2 times number_of_nonempty_strata)",
+    "decision_outputs": ["GO", "NO_GO", "ABSTAIN"]
+  },
+  "mandatory_negative_controls": "for every assigned-label group, flag every record in that group and require zero GO",
+  "support_gate": {
+    "zero_false_go": true,
+    "zero_false_nogo": true,
+    "zero_go_for_every_whole_group_negative_control": true,
+    "nonzero_go_for_at_least_one_nontrivial_detector_at_k_2000": true
+  },
+  "stopping_rule": "run all ten frozen seeds without replacement or detector, allocation, threshold, or endpoint retuning",
+  "output_directory": "results/gtsrb_allclass_detector_scores_v1",
+  "endpoint_output_directory": "auditability_certificate_v1/results_gtsrb_allclass_group_safe_v1",
+  "pre_execution_metadata_repairs": [
+    {
+      "field": "victim_manifest_sha256",
+      "reason": "The initial protocol transcription omitted six hexadecimal characters. The first formal attempt stopped at this hash check before creating the output directory, loading a checkpoint, or exposing any detector outcome. The authoritative manifest digest was inserted without changing any method, threshold, budget, seed, or endpoint."
+    }
+  ],
+  "limitations": [
+    "Victim training predates this protocol.",
+    "The freeze is internally hash-bound without a third-party timestamp.",
+    "A passed block establishes target-unknown endpoint behavior for this GTSRB/TinyCNN attack only."
+  ]
+}

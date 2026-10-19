@@ -1,0 +1,23 @@
+{
+  "schema": "cifar10-vgg16-blended-semantic-overlap-overlay-v1",
+  "protocol_id": "cifar10_vgg16_bn_blended_semantic_overlap_confirmation_v1",
+  "base_config_path": "configs/cifar10_vgg16_bn_blended_srac_confirmation_v1.json",
+  "base_config_sha256": "a3297683a932cab78058dcd7b44c2146da5e6423ac2c542a3e79a3944953cd03",
+  "formal_seeds": [4411, 4412, 4413, 4414, 4415],
+  "formal_ack": "OPEN_CIFAR10_VGG16_BLENDED_SEMANTIC_OVERLAP_SEEDS_4411_4415",
+  "victim_output": "results/cifar10_vgg16_bn_blended_semantic_overlap_confirmation_v1",
+  "score_output": "results/cifar10_semantic_overlap_scan_scores_confirmation_v1",
+  "endpoint_output": "auditability_certificate_v1/results_cifar10_semantic_overlap_confirmation_v1",
+  "scientific_changes_from_base": [
+    "use five disjoint confirmation seeds",
+    "evaluate SCAn on the full frozen training population after victim training",
+    "certify a predeclared family of semantic overlapping protected groups"
+  ],
+  "unchanged_from_base": [
+    "CIFAR-10 split",
+    "VGG-16-BN architecture",
+    "15-epoch optimizer and schedule",
+    "Blended trigger asset, strength, target, and poison rate",
+    "victim eligibility thresholds"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "schema": "prospective-confirmation-preseed-failure-v1",
+  "status": "FAILED_PRE_SEED_DATA_HASH_GATE",
+  "study_id": "srac_gtsrb_semantic_overlap_confirmation_v1",
+  "protocol_sha256": "0c0545954fa2d04d7f2c1a4007d51aa7c61060f7eb2735ddb68ed62f3a309126",
+  "attempt_started": "2026-10-15T19:16:22.836542+08:00",
+  "failure_stage": "dataset archive hash validation before cache loading or seed iteration",
+  "failed_asset": "data/gtsrb_official/gtsrb/GTSRB_Final_Test_Images.zip",
+  "declared_md5": "c7e4e6327067b32654124b0fe9e82185",
+  "observed_md5": "c7e4e6327067d32654124b0fe9e82185",
+  "declared_sha256": "48ba6fab7e877eb64eaf8de99035b0aaecfbc279bee23e35deca4ac1d0a837fa",
+  "observed_sha256": "48ba6fab7e877eb64eaf8de99035b0aaecfbc279bee23e35deca4ac1d0a837fa",
+  "cause": "one-character transcription error in the MD5 field; SHA-256 and the physical asset match the previously verified archive",
+  "completed_seeds": [],
+  "opened_confirmation_seed": false,
+  "model_training_started": false,
+  "detector_scoring_started": false,
+  "protected_draw_started": false,
+  "run_log_sha256": "0cb3d7f15710b9f5b5d4942fcbc39c603fd791639e1eeb3f38500e30454a2896",
+  "resolution": "supersede with a versioned protocol and corrected victim configuration before opening any seed; do not modify the v1 protocol"
+}

@@ -1,0 +1,20 @@
+{
+  "written_utc": "2026-10-18T06:39:56.276457+00:00",
+  "status": "frozen before execution on study data",
+  "plan": "STRATIFIED_UI_AUDIT_PLAN_V1.md",
+  "plan_sha256": "ed657c04e2835c577e6518209a7abb9966f66765f9acc3cae90e982c498478ad",
+  "script": "analysis/run_stratified_ui_audit_v1.py",
+  "script_sha256": "c1a5c0d380469592912f71e2415cf57d2eb3e02224add948191886a212a5f501",
+  "dependencies": {
+    "analysis/run_audit_baselines_v1.py": "28786eb68600fbb4f9eed83d6e835f1647a48b763c343229c5be8588eee93342",
+    "analysis/run_posthoc_power_study_v1.py": "71eb676df806de0172dd99ba2e7413c100851a9d290e252669dcc8f7f36a1096"
+  },
+  "inputs": {
+    "results/gtsrb_semantic_overlap_scan_scores_confirmation_v2/flags.csv": "c37390f8e3252aebc67d97e49f9cc2ab7f237c6356ca3a0ae555d4d3511074e8",
+    "results/cifar10_semantic_overlap_scan_scores_confirmation_v1/flags.csv": "565bffbe950e093f08ccf3f1759bed0c58552d0c27757bf3535a66c9d2122364",
+    "results/cifar10_scan_lda_scores_confirmation_v1/flags.csv": "aeb20b6e5dc9d314ef94769fdad278bd2f95dfd44af50b29571feeb908fa4eaf",
+    "results/cifar10_adapblend_scan_lda_scores_confirmation_v1/flags.csv": "66310ba6ec05cb14a804d74dc724557df57835a400bb355ec5edb019b8b8eafd",
+    "results/cifar10_adapblend_agpd_scores_v1/flags.csv": "13c7d66cf07d80c5889827c0decb75b735034a4909fb7eb22977e1bf4eab39c3"
+  },
+  "output": "results_stratified_ui_audit_v1/"
+}

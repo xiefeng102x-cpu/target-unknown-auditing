@@ -1,0 +1,10 @@
+{
+  "status": "FROZEN_POSTHOC_ANALYSIS_BEFORE_VARIANT_EXECUTION",
+  "created_utc": "2026-10-16T00:52:43.898782Z",
+  "disclosure": "Frozen endpoints of both input blocks had been observed. Only the twosided/0.5 reproduction was smoke-tested on one victim per dataset before this receipt; no other variant had been executed.",
+  "hashes": {
+    "plan_sha256": "9ee882d54af46c402ab9316fcdeb757a47d6689be1b4efe3c1569420e5caa233",
+    "script_sha256": "71eb676df806de0172dd99ba2e7413c100851a9d290e252669dcc8f7f36a1096"
+  },
+  "external_timestamp": false
+}

@@ -1,0 +1,23 @@
+{
+  "schema": "local-prospective-freeze-receipt-v2",
+  "status": "HASH_FROZEN_BEFORE_FIRST_SEED",
+  "study_id": "srac_gtsrb_semantic_overlap_confirmation_v2",
+  "protocol_sha256": "f4747bd77254b54bbb0b2ad20c2c315c2cbc0ee67ecbd59d3032ee8b99ae9635",
+  "protocol_filesystem_mtime": "2026-10-15T19:24:19+08:00",
+  "sidecar_filesystem_mtime": "2026-10-15T19:24:55+08:00",
+  "first_runner_event": "2026-10-15T19:25:34.273067+08:00",
+  "first_seed_opened": "2026-10-15T19:25:35.590582+08:00",
+  "preflight": {
+    "bound_file_hashes_match": true,
+    "three_dataset_archive_hash_pairs_match": true,
+    "victim_output_absent_before_launch": true,
+    "score_output_absent_before_launch": true,
+    "endpoint_output_absent_before_launch": true,
+    "protected_group_count": 10,
+    "protected_group_names_unique": true
+  },
+  "mps_smoke_receipt_sha256": "84302d934f880ecf9d932234788cc43361055903898626653ffc06a80c05bddf",
+  "mps_smoke_status": "pass",
+  "external_timestamp": false,
+  "interpretation": "The local filesystem and run log establish that the hash-bound v2 protocol preceded seed 245. They do not constitute independent third-party preregistration."
+}

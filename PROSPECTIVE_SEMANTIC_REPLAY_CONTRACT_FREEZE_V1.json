@@ -1,0 +1,39 @@
+{
+  "status": "FROZEN_FOR_FUTURE_BLOCKS_ONLY",
+  "frozen_at": "2026-10-14T03:41:50+08:00",
+  "contract_version": "prospective-semantic-replay-v1",
+  "scope": "experiments whose protocol and implementation are frozen after this manifest",
+  "not_retroactive_to": [
+    "cifar10_vgg16_bn_srac_confirmation_v1"
+  ],
+  "default_policy": {
+    "key_fields": [
+      "victim_id",
+      "detector",
+      "fold",
+      "sample_id",
+      "role"
+    ],
+    "exact_fields": [
+      "conventional_flag"
+    ],
+    "score_fields": [
+      "score"
+    ],
+    "absolute_tolerance": 1e-10,
+    "relative_tolerance": 0.0,
+    "raw_sha256_retained": true
+  },
+  "hashes": {
+    "implementation_sha256": "88381acd87b4b4d9e6db60c113f563982f4462208fb78207162c82361a5dec1c",
+    "tests_sha256": "2861bcf17f212549f4571649ad96e6bf594cebee6b1b8fe9e926dfcceaab475c",
+    "documentation_sha256": "23694290d8625aca2ad6d20e6e216466534348f5f00243ced6c5081b3d34252d"
+  },
+  "test_receipt": {
+    "command": "python -m pytest -q tests/test_prospective_replay_contract.py",
+    "status": "PASS",
+    "passed": 6,
+    "failed": 0
+  },
+  "chronology_limitation": "local hash freeze without an external timestamp or independent custodian"
+}

@@ -1,0 +1,26 @@
+{
+  "status": "FROZEN_BEFORE_RECOMPUTATION",
+  "created_utc": "2026-10-18T12:57:33.301570+00:00",
+  "purpose": "Erratum: engine v1.1 fixes two implementation defects of SRAC-UI v1 found by the 2026-10-18 evaluation (P1: floating-point NO-GO null boundary at recall = 0.8, anti-conservative; P2: division by zero for an empty stratum). Proposition 4 is unchanged.",
+  "plan": [
+    "Recompute every srac_ui and srac_ui_esc decision of results_stratified_ui_audit_v1 (90,000 rows) with v1.1, same draws; copy the 27,000 frozen SRAC rows; report every changed row (changes_vs_v1.csv) without selection.",
+    "Recompute the 6,000 block-16 srac_ui decisions with v1.1 on the same draws; keep the srac and rla_bet rows; recompute the pre-declared endpoints V, P1, P2 with the frozen bootstrap seed; report v1 and v1.1 side by side.",
+    "The v1 code, v1 outputs, and the block-16 frozen protocol and outputs are not modified."
+  ],
+  "tests": "analysis/test_srac_ui_engine_v1_1.py passed (exit 0) before any recomputation; the same tests fail on v1 (recall tau=4/5: 26 decision mismatches and 17 exact-size violations of the false-NO-GO bound, maximum 1.0; cap=1/10: none).",
+  "sha256": {
+    "analysis/srac_ui_engine_v1_1.py": "ce1275d07607668c2f8243ef8dde6c8f163a7f6a226bdaefe5ac718752a0003f",
+    "analysis/run_stratified_ui_audit_v1_1.py": "f96c149ec6ab506a2f70d1ad90e40cfa8e2033687a80cf1417c6fabf5f8ebaa1",
+    "analysis/test_srac_ui_engine_v1_1.py": "34bfef20ed5f96e1bb3b4f530ce5dff1833a90e9e1f0f73857c99d5389fe61f3",
+    "audits/SRAC_UI_V1_1_TESTS_2026-10-18.json": "7b681e901980afb89c4dd26b1809734b1cc55e885e548be81af950934b9e2c58",
+    "analysis/run_stratified_ui_audit_v1.py": "9dcff664f91fd634474006b80aaa146817cff9d07684a3cad36d3b67a24f9766",
+    "results_stratified_ui_audit_v1/decisions.csv": "4dc1e6f1bf604263cae51001f70f53dfe9c4a191c8b2500c521101aaca2626f2"
+  },
+  "addendum_block16": {
+    "created_utc": "2026-10-18T12:58:44.859665+00:00",
+    "note": "block-16 erratum script written and hashed before its first run; the post-hoc recomputation had started (blocks 8, 11, 12) with the hashes above",
+    "sha256": {
+      "analysis/run_gtsrb_srac_ui_confirmation_v1_1_erratum.py": "d2b789684f783a28c602e99d516fa6e538ea6190aac4e5076a74075439c475bc"
+    }
+  }
+}

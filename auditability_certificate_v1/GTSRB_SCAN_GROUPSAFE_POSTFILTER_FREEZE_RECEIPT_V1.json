@@ -1,0 +1,14 @@
+{
+  "written_utc": "2026-10-18T05:02:35.730713+00:00",
+  "protocol": "configs/srac_gtsrb_scan_groupsafe_postfilter_v1.json",
+  "protocol_sha256": "2d97266b08d27908e4af9c2baf1ac1394d2bcd5f8ed9255c044a3c69a4fe932f",
+  "hashes": {
+    "src/run_gtsrb_scan_groupsafe_postfilter.py": "f51f403edd4494f25f686eb27c4ed7b63f139e20b85bee65420a72fe3f1aadad",
+    "src/run_tifs_native_gtsrb.py": "06381624dd4e8b30e2cd799cca693b983714821f1fc652b4237b9e61e154037b",
+    "src/run_tifs_native_cifar10.py": "71c4068232d004f28d3c1699d2f06b445ef6b76ee7304d6e069034ad070b1964",
+    "configs/srac_gtsrb_allclass_scan_confirmation_v1.json": "78a9851f1ecaf9af1eec049f23d9deac98c7daa57eebe87c5430818ee2520449",
+    "results/gtsrb_allclass_scan_scores_confirmation_v1/flags.csv": "4434d36abd349e61f04a1f24423976eaeb95d056a2fafd9ee4ea70ecd57ad809",
+    "auditability_certificate_v1/results_gtsrb_scan_group_safe_confirmation_v1/decisions.csv": "1824054e075e33da64aa8c8c44689474d46ac27697fd0a3c951655a2fc45295b",
+    "results/srac_gtsrb_allclass_scan_confirmation_v1/victim_metrics.csv": "ee17a5c135b749b7159ccc1a857a0a2befcfdde4c4686c2483723d8a8d32a51b"
+  }
+}

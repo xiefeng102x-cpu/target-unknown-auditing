@@ -1,0 +1,234 @@
+{
+  "schema": "gtsrb-srac-ui-confirmation-v1",
+  "study_id": "srac_gtsrb_srac_ui_confirmation_v1",
+  "block": 16,
+  "status": "FROZEN_BEFORE_VICTIM_TRAINING",
+  "frozen_at": "2026-10-18T11:58:23.105586+00:00",
+  "purpose": "prospective confirmation of the flag-stratified union-intersection audit engine (SRAC-UI) developed post hoc on blocks 8 and 11-14 (results_stratified_ui_audit_v1): does it beat the frozen SRAC engine and the uniform betting comparison RLA at equal label budget on fresh victims?",
+  "development_disclosure": "SRAC-UI and its flagged share (0.1, the best of 0.5/0.25/0.1 in the post-hoc analysis) were chosen on blocks 8 and 11-14. Seeds 201-254 are disclosed and excluded; seeds 255-264 have never been trained. Victim, attack, detector, family, and policy are those of block 8 unchanged.",
+  "seeds": [
+    255,
+    256,
+    257,
+    258,
+    259,
+    260,
+    261,
+    262,
+    263,
+    264
+  ],
+  "victim_protocol_path": "configs/srac_gtsrb_srac_ui_confirmation_v1.json",
+  "victim_runner_path": "src/run_tifs_native_gtsrb.py",
+  "adapter_path": "src/backdoorbench_feature_adapter.py",
+  "runner_path": "src/run_gtsrb_semantic_overlap_scan_confirmation.py",
+  "runner_launcher_path": "src/run_gtsrb_srac_ui_confirmation_scores.py",
+  "victim_protocol_sha256": "6f0a41b1a1e204ee2f9de1bf6325e51cef48d40de0da860bed464e66b0e8b5aa",
+  "victim_runner_sha256": "06381624dd4e8b30e2cd799cca693b983714821f1fc652b4237b9e61e154037b",
+  "adapter_sha256": "45852a5df504b73d231330fe658ff8d34b57729ed21d97d00d0419514c065eef",
+  "runner_sha256": "5fd3144674df5ed47ec65d28e64f85c73837da0292db13b966744428dfa28e53",
+  "runner_launcher_sha256": "5d22187f425162b4118ea543b433cfaf957ba7ed5388d8ed7cf24ef57b73cde6",
+  "dataset": "GTSRB official 43-class split and frozen 32x32 cache",
+  "population": "all clean training members plus every added poison copy",
+  "group_variable": "assigned GTSRB training label",
+  "detector": "pinned upstream BackdoorBench SCAn feature primitive",
+  "detector_target_information": "none",
+  "trusted_reference": "deterministic half of official test records in every class",
+  "reference_seed_base": 2026111500,
+  "scan_seed_base": 2028111500,
+  "protected_groups": [
+    {
+      "name": "regulatory_and_priority",
+      "class_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        32,
+        41,
+        42
+      ],
+      "meaning": "speed, priority, access, and end-of-restriction controls"
+    },
+    {
+      "name": "speed_control",
+      "class_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        32
+      ],
+      "meaning": "speed limits and end of speed/passing restrictions"
+    },
+    {
+      "name": "overtaking_restriction",
+      "class_ids": [
+        9,
+        10,
+        41,
+        42
+      ],
+      "meaning": "no-passing and end-of-no-passing signs"
+    },
+    {
+      "name": "priority_control",
+      "class_ids": [
+        11,
+        12,
+        13,
+        14
+      ],
+      "meaning": "right-of-way, priority road, yield, and stop"
+    },
+    {
+      "name": "vehicle_access_restriction",
+      "class_ids": [
+        10,
+        15,
+        16,
+        17,
+        42
+      ],
+      "meaning": "vehicle-class and entry restrictions"
+    },
+    {
+      "name": "hazard_warning",
+      "class_ids": [
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31
+      ],
+      "meaning": "general and specific roadway hazards"
+    },
+    {
+      "name": "road_geometry_hazard",
+      "class_ids": [
+        19,
+        20,
+        21,
+        24
+      ],
+      "meaning": "curves and narrowing road geometry"
+    },
+    {
+      "name": "road_surface_or_work",
+      "class_ids": [
+        22,
+        23,
+        25,
+        30
+      ],
+      "meaning": "bumpy, slippery, work-zone, and ice/snow conditions"
+    },
+    {
+      "name": "vulnerable_road_users",
+      "class_ids": [
+        27,
+        28,
+        29
+      ],
+      "meaning": "pedestrian, children, and bicycle warnings"
+    },
+    {
+      "name": "direction_mandatory",
+      "class_ids": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40
+      ],
+      "meaning": "mandatory direction and roundabout instructions"
+    }
+  ],
+  "certificate": {
+    "security_object": "global poison recall at least 0.8 and clean flag rate at most 0.1 in every predeclared semantic protected set",
+    "recall_target": 0.8,
+    "max_group_clean_flag_rate_cap": 0.1,
+    "delta_per_decision": 0.005,
+    "budgets": [
+      2000,
+      8000,
+      16000
+    ],
+    "protected_draws_per_seed_budget": 200,
+    "active_stratum_budget_share": 0.5,
+    "count_interval": "exact two-sided hypergeometric inversion",
+    "tail_allocation": "delta/(2 times number_of_count_intervals)",
+    "decision_outputs": [
+      "GO",
+      "NO_GO",
+      "ABSTAIN"
+    ]
+  },
+  "srac_ui": {
+    "flagged_share": "0.1",
+    "alpha_per_assertion_direction": "delta/(2A), A = 1 + number of groups with a flagged record",
+    "berger_boos_gamma": "0.05 alpha",
+    "engine_script": "auditability_certificate_v1/analysis/run_stratified_ui_audit_v1.py"
+  },
+  "comparators": {
+    "srac": "frozen core, share 0.5, exact two-sided intervals, eta = delta/(2Q)",
+    "rla_bet": "auditability_certificate_v1/analysis/run_audit_baselines_v1.py rla_bet, uniform sample, anytime"
+  },
+  "draw_namespace": "gtsrb-srac-ui-confirm-v1|<victim_id> with engine label; independent draws per engine",
+  "analysis": {
+    "V": "zero false GO and zero false NO-GO for srac_ui",
+    "P1": "victim-level mean GO difference srac_ui - srac on policy-passing victims at k=2000; supported iff the 95% bootstrap lower bound > 0",
+    "P2": "same contrast srac_ui - rla_bet at k=2000",
+    "secondary": "contrasts at k=8000, 16000; NO-GO on failing victims; rla_bet labels used",
+    "bootstrap_seed": 2026101816,
+    "bootstrap_draws": 10000,
+    "if_no_passing_victim": "P1 and P2 are not evaluable and are reported as such"
+  },
+  "stopping_rule": "train and score all ten seeds once; no engine, share, alpha, family, or endpoint change after any block-16 output",
+  "victim_output_directory": "results/srac_gtsrb_srac_ui_confirmation_v1",
+  "score_output_directory": "results/gtsrb_srac_ui_scan_scores_confirmation_v1",
+  "endpoint_output_directory": "auditability_certificate_v1/results_gtsrb_srac_ui_confirmation_v1",
+  "hashes": {
+    "endpoint_stage": {
+      "auditability_certificate_v1/analysis/run_gtsrb_srac_ui_confirmation.py": "48d5bc8a7fe32f712db7d8ddb645b1cdcaf6eea9442cb90ee3736537d2676b5e",
+      "auditability_certificate_v1/analysis/run_stratified_ui_audit_v1.py": "9dcff664f91fd634474006b80aaa146817cff9d07684a3cad36d3b67a24f9766",
+      "auditability_certificate_v1/analysis/run_audit_baselines_v1.py": "28786eb68600fbb4f9eed83d6e835f1647a48b763c343229c5be8588eee93342",
+      "auditability_certificate_v1/analysis/run_posthoc_power_study_v1.py": "71eb676df806de0172dd99ba2e7413c100851a9d290e252669dcc8f7f36a1096"
+    }
+  },
+  "limitations": [
+    "Hash-bound locally without a third-party timestamp.",
+    "Confirms the engine on one dataset, model, attack, and detector (GTSRB/TinyCNN/global blend/SCAn)."
+  ]
+}

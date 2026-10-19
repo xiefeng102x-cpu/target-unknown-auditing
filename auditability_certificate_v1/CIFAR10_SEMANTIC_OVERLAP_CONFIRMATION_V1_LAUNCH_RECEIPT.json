@@ -1,0 +1,15 @@
+{
+  "status": "FORMAL_EXECUTION_OPENED_AFTER_FREEZE",
+  "study_id": "cifar10_vgg16_bn_blended_semantic_overlap_confirmation_v1",
+  "protocol_sha256": "5a53c5798b728d40357d7e8f271cfb4a038d32f4597a98f581432407d3fc40bd",
+  "protocol_filesystem_time_local": "2026-10-15T19:55:22+0800",
+  "sidecar_filesystem_time_local": "2026-10-15T19:55:50+0800",
+  "first_manifest_time_local": "2026-10-15T19:56:45+0800",
+  "first_manifest_status": "RUNNING_BLINDED",
+  "first_manifest_completed_seeds": [],
+  "first_manifest_device": "mps",
+  "runtime_session_id": 73815,
+  "formal_command": "python3 src/run_cifar10_vgg16_bn_blended_semantic_overlap_confirmation.py --formal --ack OPEN_CIFAR10_VGG16_BLENDED_SEMANTIC_OVERLAP_SEEDS_4411_4415 --output results/cifar10_vgg16_bn_blended_semantic_overlap_confirmation_v1",
+  "ordering_check": "protocol and sidecar filesystem times precede the first formal manifest",
+  "external_timestamp": false
+}

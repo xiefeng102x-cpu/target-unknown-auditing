@@ -1,0 +1,40 @@
+# Never publish manuscript files or local authoring directories.
+*.tex
+*.pdf
+*.TEX
+*.PDF
+manuscript/
+manuscript_*/
+
+# Credentials and local environments.
+.env
+.env.*
+*.pem
+*.key
+.venv/
+venv/
+
+# Data, models, and generated results are not part of this code repository.
+data/
+datasets/
+external/
+vendor/
+results/
+results_*/
+public_aggregates/
+*.pt
+*.pth
+*.ckpt
+*.npy
+*.npz
+*.pkl
+*.pickle
+*.safetensors
+*.log
+
+# Caches and OS metadata.
+.DS_Store
+__MACOSX/
+__pycache__/
+*.py[cod]
+.pytest_cache/

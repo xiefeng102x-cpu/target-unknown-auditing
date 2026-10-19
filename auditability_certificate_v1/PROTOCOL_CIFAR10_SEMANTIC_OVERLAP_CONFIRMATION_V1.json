@@ -1,0 +1,112 @@
+{
+  "schema": "cifar10-semantic-overlap-group-family-confirmation-v1",
+  "study_id": "cifar10_vgg16_bn_blended_semantic_overlap_confirmation_v1",
+  "status": "FROZEN_BEFORE_FORMAL_SEED_EXECUTION_AND_PROTECTED_DRAWS",
+  "frozen_at": null,
+  "freeze_clock_note": "authoritative local ordering is recorded from protocol and sidecar filesystem times and the first run-log event",
+  "external_timestamp": false,
+  "formal_ack": "OPEN_CIFAR10_VGG16_BLENDED_SEMANTIC_OVERLAP_SEEDS_4411_4415",
+  "formal_seeds": [4411, 4412, 4413, 4414, 4415],
+  "development_disclosure": "Blended development seed 4400 and earlier confirmation seeds 4401--4405 were observed. They are excluded. Seeds 4411--4415 had not been trained or scored when this file was frozen.",
+  "dataset": "CIFAR-10 official split with a fixed 45000-row victim-training partition",
+  "population": "all 45000 victim-training members; poisoned rows replace their clean training presentation and receive target label 8",
+  "architecture": "CIFAR-native VGG-16-BN with 14,724,042 parameters and a 512-dimensional penultimate representation",
+  "attack": "BackdoorBench-parameterized Blended all-to-one attack with frozen Hello-Kitty asset, alpha 0.2, target ship, and 2250 poisons",
+  "group_variable": "assigned CIFAR-10 training label after poisoning",
+  "detector": "pinned upstream BackdoorBench SCAn feature primitive",
+  "detector_target_information": "none",
+  "trusted_reference": "250 deterministic held-out clean validation members per CIFAR-10 class",
+  "reference_rows_per_class": 250,
+  "reference_seed_base": 2026111600,
+  "scan_seed_base": 2028111600,
+  "protected_groups": [
+    {
+      "name": "animals",
+      "class_ids": [2, 3, 4, 5, 6, 7],
+      "meaning": "all six CIFAR-10 animal classes"
+    },
+    {
+      "name": "vehicles",
+      "class_ids": [0, 1, 8, 9],
+      "meaning": "all four CIFAR-10 vehicle classes"
+    },
+    {
+      "name": "mammals",
+      "class_ids": [3, 4, 5, 7],
+      "meaning": "cat, deer, dog, and horse"
+    },
+    {
+      "name": "domestic_or_working_animals",
+      "class_ids": [3, 5, 7],
+      "meaning": "cat, dog, and horse"
+    },
+    {
+      "name": "wild_animals",
+      "class_ids": [2, 4, 6],
+      "meaning": "bird, deer, and frog"
+    },
+    {
+      "name": "ground_or_road_entities",
+      "class_ids": [1, 3, 4, 5, 6, 7, 9],
+      "meaning": "land animals together with road vehicles; crosses the animal/vehicle partition"
+    },
+    {
+      "name": "road_vehicles",
+      "class_ids": [1, 9],
+      "meaning": "automobile and truck"
+    },
+    {
+      "name": "air_or_water_transport",
+      "class_ids": [0, 8],
+      "meaning": "airplane and ship"
+    }
+  ],
+  "certificate": {
+    "security_object": "global poison recall at least 0.8 and clean flag rate at most 0.1 in every predeclared semantic protected set",
+    "recall_target": 0.8,
+    "max_group_clean_flag_rate_cap": 0.1,
+    "delta_per_decision": 0.005,
+    "budgets": [2000, 8000, 16000],
+    "protected_draws_per_seed_budget": 200,
+    "active_stratum_budget_share": 0.5,
+    "count_interval": "exact two-sided hypergeometric inversion",
+    "tail_allocation": "delta/(2 times number_of_count_intervals)",
+    "decision_outputs": ["GO", "NO_GO", "ABSTAIN"]
+  },
+  "support_gate": {
+    "minimum_eligible_victims": 4,
+    "minimum_true_policy_pass_victims": 2,
+    "zero_false_go": true,
+    "zero_false_nogo": true,
+    "minimum_victims_with_go_at_k_8000": 1
+  },
+  "stopping_rule": "attempt all five seeds without replacement or detector, group, threshold, allocation, endpoint, or support-gate retuning",
+  "hashes": {
+    "victim_stage": {
+      "overlay_sha256": "df0e3f174bb93ad840b8ba91a3d378ad32f88981c0724bc924483899cc48c337",
+      "victim_runner_sha256": "b7d48c8e236127995751ed4d06c847adf29a1710f8ffab0393937e22f48c0e02",
+      "base_config_sha256": "a3297683a932cab78058dcd7b44c2146da5e6423ac2c542a3e79a3944953cd03",
+      "base_engine_sha256": "11eb56037b384e843cdca22397eba0d83fefc1c0d24f4e464ef0cd5a3e7dc085",
+      "architecture_sha256": "0c87db1eb5b622b1ca1ca85142c6c65a985857753342502b97baeadaafb101a8",
+      "development_engine_sha256": "ff2c8e8988017b9a53c15728dd573f12c7bfb7ec5cae5136b4aa872b16118f9e",
+      "blended_wrapper_sha256": "a3102e5bb47eb7156f3a7d8b6796346720841c96422b2415986dfb2dc111ab88",
+      "score_families_sha256": "099d97cde476c04bdb9cb53549ef6733d7402a9b35e07b23cbe011c70a0d581d"
+    },
+    "score_stage": {
+      "score_runner_sha256": "1bbc9aa6bb152b19248ba730cdfafa597fcedb8f64eb93c73e8c0eeeec51ca50",
+      "adapter_sha256": "45852a5df504b73d231330fe658ff8d34b57729ed21d97d00d0419514c065eef"
+    },
+    "endpoint_stage": {
+      "endpoint_core_sha256": "9171814bd8be311461cb6c3a493be1b8faba58c06dbd76f497d51c47bd9d5422",
+      "endpoint_runner_sha256": "c5f6a1895791d85d4e3063a57f48dd8c52e2a3242f96daa358b8add3539fb222"
+    }
+  },
+  "victim_output_directory": "results/cifar10_vgg16_bn_blended_semantic_overlap_confirmation_v1",
+  "score_output_directory": "results/cifar10_semantic_overlap_scan_scores_confirmation_v1",
+  "endpoint_output_directory": "auditability_certificate_v1/results_cifar10_semantic_overlap_confirmation_v1",
+  "limitations": [
+    "The freeze is internally hash-bound without a third-party timestamp.",
+    "The block tests one second dataset, one strong architecture, one non-patch attack, and one detector.",
+    "It does not turn the restricted protected-draw information model into a universal unlabeled-audit guarantee."
+  ]
+}
