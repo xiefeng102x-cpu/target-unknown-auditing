@@ -1,0 +1,13 @@
+{
+  "status": "FROZEN_BEFORE_OUTPUT",
+  "plan": "UI_REDTEAM_SCALING_PLAN_V1.md",
+  "sha256": {
+    "UI_REDTEAM_SCALING_PLAN_V1.md": "a4cc33c0cd87ee7a2aeaa76f947178b9b23f7c4c40ed9c9ad721b938d0d42369",
+    "analysis/run_ui_redteam_v1.py": "c675bba29d38e9cd6de6404a91af189400e616c2f4c0e7b27f4cac56ccf38ae5",
+    "analysis/srac_ui_robust_v1.py": "29a26098210a679281e77f475f9b230c731ad4aeae54f635ba3fa4eb356a8e80",
+    "analysis/run_ui_scaling_v1.py": "dfb569638cd717f6175b4d9e840208e9041a1a2749fd0603a5205ec8a2d41e83",
+    "analysis/srac_ui_engine_v1_1.py": "ce1275d07607668c2f8243ef8dde6c8f163a7f6a226bdaefe5ac718752a0003f",
+    "analysis/run_groupsafe_redteam_v1.py": "cc6e9f923e34f266c0de3a09d0220399979fc84fe9984e0212f8322d2e6a7929",
+    "analysis/run_stratified_ui_audit_v1.py": "9dcff664f91fd634474006b80aaa146817cff9d07684a3cad36d3b67a24f9766"
+  }
+}

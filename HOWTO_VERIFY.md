@@ -45,6 +45,34 @@ This is optional for the method-level quick tests. Install that project's own
 dependencies and observe its license. Dataset and weight downloads are separate.
 Do not add external datasets, weights, or nested Git checkouts to this repository.
 
+## UI label-corruption and population-scaling analyses
+
+The original plan and receipt are distributed as
+`auditability_certificate_v1/UI_REDTEAM_SCALING_PLAN_V1.md` and
+`auditability_certificate_v1/UI_REDTEAM_SCALING_RECEIPT_V1.json`.
+They describe post-hoc developmental analyses, including the disclosed pilot work.
+The newly distributed scripts and plan preserve their original bytes and hashes.
+
+Additional data-free checks, separate from the default release verifier:
+
+```bash
+python -B auditability_certificate_v1/analysis/srac_ui_robust_v1.py
+python -B auditability_certificate_v1/analysis/run_ui_redteam_v1.py --help
+python -B auditability_certificate_v1/analysis/run_ui_scaling_v1.py --help
+```
+
+The robust self-test checks finite small configurations and reduction to the base
+engine at zero label errors. It is not a replay of the real-data red-team results.
+Those runs require the controlled frozen flags and protocols for blocks 8, 11,
+12, and 13, plus the stored corrected UI decisions for baseline reproduction.
+Scaling analysis part C also requires corrected block-16 decisions. These inputs,
+models, and experiment outputs are not included in the public code-only repository.
+
+For the red-team plan use `run --draws 20 --blocks 8,11,12,13 --output OUTPUT_DIR`;
+the script's default is 200 draws, not the plan's 20. Part-wise runs and the
+`combine` command are documented by `--help`. The scaling script uses the fixed
+replication and draw counts declared in the plan. Output directories must be new.
+
 ## Frozen identities
 
 Protocols and receipts record the SHA-256 of the frozen files. Five public files

@@ -3,7 +3,7 @@
   "repository": "https://github.com/xiefeng102x-cpu/target-unknown-auditing",
   "profile": "code-tests-configurations-protocols-only",
   "created_utc": "2026-10-19T10:20:56Z",
-  "file_count": 218,
+  "file_count": 223,
   "files": [
     {
       "path": ".gitignore",
@@ -22,8 +22,8 @@
     },
     {
       "path": "HOWTO_VERIFY.md",
-      "size": 3916,
-      "sha256": "0ecfe8a46a5c0ac6822c483f1ff800846f90b9521e776ab247c40fda448d170d"
+      "size": 5434,
+      "sha256": "eb3482bbdf8cc08710c044f8523c95b389c6c17da70771b30dd1d9d5db9489b3"
     },
     {
       "path": "LICENSE",
@@ -42,8 +42,8 @@
     },
     {
       "path": "README.md",
-      "size": 3438,
-      "sha256": "2691435c3d277e7746e1cd88a869fb6555a219daf65ba7fc9f66a9af28dbcadb"
+      "size": 3934,
+      "sha256": "b2cc4ade47d11bc3e364956ab057b47809a77aae3ec175e46c240caa13ad0b13"
     },
     {
       "path": "SRAC_CIFAR10_VGG16_BLENDED_CONFIRMATION_FREEZE_V1.json",
@@ -341,6 +341,16 @@
       "sha256": "eaf785937379ac2d6b3cc1c1bc0bab0ddbd737f6d98948177601e118af047da2"
     },
     {
+      "path": "auditability_certificate_v1/UI_REDTEAM_SCALING_PLAN_V1.md",
+      "size": 2202,
+      "sha256": "a4cc33c0cd87ee7a2aeaa76f947178b9b23f7c4c40ed9c9ad721b938d0d42369"
+    },
+    {
+      "path": "auditability_certificate_v1/UI_REDTEAM_SCALING_RECEIPT_V1.json",
+      "size": 853,
+      "sha256": "79ac140f8d10d0f1720cba6c9586b2d095eadfab1c6f6100650684843b55043f"
+    },
+    {
       "path": "auditability_certificate_v1/USED_CELL_BUDGET_FREEZE_RECEIPT_V1.json",
       "size": 992,
       "sha256": "bd0a16da0399f5402357fe9fd3f440726bb5081b95cc1ad7e4490815b0c6d668"
@@ -626,6 +636,16 @@
       "sha256": "f9291ceb5a18f0b74a0d8b7bc7d1aff6a438fab5edfe1a73040e0d921ec79c17"
     },
     {
+      "path": "auditability_certificate_v1/analysis/run_ui_redteam_v1.py",
+      "size": 10015,
+      "sha256": "c675bba29d38e9cd6de6404a91af189400e616c2f4c0e7b27f4cac56ccf38ae5"
+    },
+    {
+      "path": "auditability_certificate_v1/analysis/run_ui_scaling_v1.py",
+      "size": 6102,
+      "sha256": "dfb569638cd717f6175b4d9e840208e9041a1a2749fd0603a5205ec8a2d41e83"
+    },
+    {
       "path": "auditability_certificate_v1/analysis/run_uniform_adjudication_certificate.py",
       "size": 13669,
       "sha256": "302c1cc2b90b25e3c75728c1ef0c2eae5db4bcc7963738f607d3601bd9539e11"
@@ -649,6 +669,11 @@
       "path": "auditability_certificate_v1/analysis/srac_ui_engine_v1_1.py",
       "size": 11823,
       "sha256": "58724a60da3f0f34071a446be9ac6081d59dc509537733a6a220b79155e23dc9"
+    },
+    {
+      "path": "auditability_certificate_v1/analysis/srac_ui_robust_v1.py",
+      "size": 7864,
+      "sha256": "29a26098210a679281e77f475f9b230c731ad4aeae54f635ba3fa4eb356a8e80"
     },
     {
       "path": "auditability_certificate_v1/analysis/test_srac_ui_engine_v1_1.py",
@@ -1107,5 +1132,6 @@
     "private candidate labels and sampling keys",
     "credentials, caches and old Git history"
   ],
-  "verification_scope": "Data-independent statistical and code-only regression tests, both corrected UI rational-reference suites, endpoint smoke tests on synthetic flags, Fisher self-tests; no training or real-data replay."
+  "verification_scope": "Data-independent statistical and code-only regression tests, both corrected UI rational-reference suites, endpoint smoke tests on synthetic flags, Fisher self-tests; no training or real-data replay.",
+  "updated_utc": "2026-10-20T08:59:00Z"
 }

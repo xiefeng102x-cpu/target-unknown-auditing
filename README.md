@@ -56,6 +56,13 @@ Endpoint runners that re-check such a frozen hash are run through
 
 ## Training and data-dependent analyses
 
+The post-hoc UI label-corruption and population-scaling analyses are accompanied by
+`auditability_certificate_v1/UI_REDTEAM_SCALING_PLAN_V1.md` and its original hash
+receipt. Their entry points are `run_ui_redteam_v1.py` and `run_ui_scaling_v1.py` in
+the analysis directory; `srac_ui_robust_v1.py` provides the declared-label-error
+robust tests and a data-free self-test. See HOWTO_VERIFY for commands and required
+controlled inputs. These are developmental analyses, not prospective endpoints.
+
 These are separate from quick verification. They require additional dependencies
 from `requirements-replay.txt`, official datasets and weights, and, for some
 analyses, controlled flags or prior decision tables that are not public here.
