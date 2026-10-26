@@ -1,0 +1,14 @@
+{
+  "plan": "GO_ALLOCATION_PLAN_V1.md",
+  "plan_sha256": "925d01b51fd69787cb11f165a4abbe410e82f5a24771f8f076d6cb83c45b8b44",
+  "script": "analysis/run_go_allocation_v1.py",
+  "script_sha256": "b540ea712692b57d26995910e5192d90b111e0bc5287098e9af11695c4a695d9",
+  "engine_sha256": "ce1275d07607668c2f8243ef8dde6c8f163a7f6a226bdaefe5ac718752a0003f",
+  "inputs": {
+    "results_ui_mechanism_ablation_v1/decisions.csv": "3ca4aa6503f56eae855d84a29a65e9f11ed3aa40bae6aa8ac54ae4dc8a1bf375",
+    "results_audit_baselines_v1/decisions.csv": "f0a06ff4886e45589284acabdd3c33ffa15031e3ca59154d9044bb47f4358c5f",
+    "results_gtsrb_srac_ui_confirmation_v1_1_erratum/decisions.csv": "d1b8db49aa9bad63b105d8d517fcf319bce7177a9b760eca463cc22fedc5bd50"
+  },
+  "recorded_utc": "2026-10-20T10:03:53.858657+00:00",
+  "disclosure": "Before hashing, the script was timed on draws 0-1 of the confirmation study and draw 0 of the semantic-family and Adap-Blend studies; those runs checked the validation gates only and are discarded."
+}

@@ -3,7 +3,7 @@
   "repository": "https://github.com/xiefeng102x-cpu/target-unknown-auditing",
   "profile": "code-tests-configurations-protocols-only",
   "created_utc": "2026-10-19T10:20:56Z",
-  "file_count": 223,
+  "file_count": 255,
   "files": [
     {
       "path": ".gitignore",
@@ -22,8 +22,19 @@
     },
     {
       "path": "HOWTO_VERIFY.md",
-      "size": 5434,
-      "sha256": "eb3482bbdf8cc08710c044f8523c95b389c6c17da70771b30dd1d9d5db9489b3"
+      "size": 10611,
+      "sha256": "c5938e0ae9e2e8f6d8e3714d27627359d730005c814e0920cd8b2ff535ca629a",
+      "previous_public_versions": [
+        {
+          "sha256": "eb3482bbdf8cc08710c044f8523c95b389c6c17da70771b30dd1d9d5db9489b3",
+          "size": 5434
+        },
+        {
+          "sha256": "8f8b3677eba9ae34def371255a586527ac3af298a99159030ff3423efdea0bb7",
+          "size": 9087
+        }
+      ],
+      "publication_revision": "2026-10-26"
     },
     {
       "path": "LICENSE",
@@ -42,8 +53,19 @@
     },
     {
       "path": "README.md",
-      "size": 3934,
-      "sha256": "b2cc4ade47d11bc3e364956ab057b47809a77aae3ec175e46c240caa13ad0b13"
+      "size": 6382,
+      "sha256": "e3fe26791c52af64d75c09f88dec660dad1a24564b5d016c74b130e9a9a1b6f9",
+      "previous_public_versions": [
+        {
+          "sha256": "b2cc4ade47d11bc3e364956ab057b47809a77aae3ec175e46c240caa13ad0b13",
+          "size": 3934
+        },
+        {
+          "sha256": "c4da66f28c3ae0f4e0e65e5ffba58d2f8c392f29561dd1f17cb215be48c736fa",
+          "size": 5898
+        }
+      ],
+      "publication_revision": "2026-10-26"
     },
     {
       "path": "SRAC_CIFAR10_VGG16_BLENDED_CONFIRMATION_FREEZE_V1.json",
@@ -126,6 +148,24 @@
       "sha256": "3b10dfb320d1c11bdb19a82c949a9a6226a0eb943cdb1642e41e79797c332d31"
     },
     {
+      "path": "auditability_certificate_v1/DIRECTIONAL_BUDGET_PLAN_V1.md",
+      "source_sha256": "7910680b7b05cddb77a8400bcf4a42213429ecbd0b5fb6646dc34abfbcafc4c3",
+      "source_size": 2500,
+      "source_bytes_preserved": true,
+      "origin": "explicit-source-whitelist-2026-10-26",
+      "size": 2500,
+      "sha256": "7910680b7b05cddb77a8400bcf4a42213429ecbd0b5fb6646dc34abfbcafc4c3"
+    },
+    {
+      "path": "auditability_certificate_v1/DIRECTIONAL_BUDGET_RECEIPT_V1.json",
+      "source_sha256": "4d3e9f92fdf20076b5b336c1841339a688ace8d4bd37ddb2cf13ae967e8ca59f",
+      "source_size": 770,
+      "source_bytes_preserved": true,
+      "origin": "explicit-source-whitelist-2026-10-26",
+      "size": 770,
+      "sha256": "4d3e9f92fdf20076b5b336c1841339a688ace8d4bd37ddb2cf13ae967e8ca59f"
+    },
+    {
       "path": "auditability_certificate_v1/FAMILY_RESOLUTION_FREEZE_RECEIPT_V1.json",
       "size": 844,
       "sha256": "164c1f3c3545da92c6e710f6082b39ce3030fd70875032d08c38514a531fa267"
@@ -134,6 +174,42 @@
       "path": "auditability_certificate_v1/FAMILY_RESOLUTION_PLAN_V1.md",
       "size": 1710,
       "sha256": "07747895b599c42a8e9b916ada1b6aed270962a490115e68afc7400d300564f5"
+    },
+    {
+      "path": "auditability_certificate_v1/FLOAT_PRECISION_PLAN_V1.md",
+      "source_sha256": "d1d9a1b094730460320dff4877dac576b84544d3b3b3496fa149db7244ea3f58",
+      "source_size": 2278,
+      "source_bytes_preserved": true,
+      "origin": "explicit-source-whitelist-2026-10-26",
+      "size": 2278,
+      "sha256": "d1d9a1b094730460320dff4877dac576b84544d3b3b3496fa149db7244ea3f58"
+    },
+    {
+      "path": "auditability_certificate_v1/FLOAT_PRECISION_RECEIPT_V1.json",
+      "source_sha256": "3803c78b656ebaf16194c5eb4bf7315f35b02c68e55040562cf0927954e57ad8",
+      "source_size": 545,
+      "source_bytes_preserved": true,
+      "origin": "explicit-source-whitelist-2026-10-26",
+      "size": 545,
+      "sha256": "3803c78b656ebaf16194c5eb4bf7315f35b02c68e55040562cf0927954e57ad8"
+    },
+    {
+      "path": "auditability_certificate_v1/GO_ALLOCATION_PLAN_V1.md",
+      "source_sha256": "925d01b51fd69787cb11f165a4abbe410e82f5a24771f8f076d6cb83c45b8b44",
+      "source_size": 3343,
+      "source_bytes_preserved": true,
+      "origin": "explicit-source-whitelist-2026-10-26",
+      "size": 3343,
+      "sha256": "925d01b51fd69787cb11f165a4abbe410e82f5a24771f8f076d6cb83c45b8b44"
+    },
+    {
+      "path": "auditability_certificate_v1/GO_ALLOCATION_RECEIPT_V1.json",
+      "source_sha256": "cfd61fa215abee4d6ddffb2977ea8f15d2b6c74cf50f11871f9e51a6ff3830c2",
+      "source_size": 1012,
+      "source_bytes_preserved": true,
+      "origin": "explicit-source-whitelist-2026-10-26",
+      "size": 1012,
+      "sha256": "cfd61fa215abee4d6ddffb2977ea8f15d2b6c74cf50f11871f9e51a6ff3830c2"
     },
     {
       "path": "auditability_certificate_v1/GROUPSAFE_REDTEAM_FREEZE_RECEIPT_V1.json",
@@ -311,6 +387,69 @@
       "sha256": "01fbc06b5813ac1732b3a92db62013d1d2c7418d43088353c56166fd01850398"
     },
     {
+      "path": "auditability_certificate_v1/REFERENCE_CHANNEL_EXECUTION_NOTE_V1.md",
+      "source_sha256": "dfe3baa6f181c66ec13ae1d4951443386f7c40330b29d9dce57b47040ceb32e9",
+      "source_size": 851,
+      "source_bytes_preserved": true,
+      "origin": "explicit-source-whitelist-2026-10-26",
+      "size": 851,
+      "sha256": "dfe3baa6f181c66ec13ae1d4951443386f7c40330b29d9dce57b47040ceb32e9"
+    },
+    {
+      "path": "auditability_certificate_v1/REFERENCE_CHANNEL_PART2_AMENDMENT_1.json",
+      "source_sha256": "58563ee70009adb61275b57c2020fdaef5725009c809a7794fe09b35d8f5348e",
+      "source_size": 753,
+      "source_bytes_preserved": true,
+      "origin": "explicit-source-whitelist-2026-10-26",
+      "size": 753,
+      "sha256": "58563ee70009adb61275b57c2020fdaef5725009c809a7794fe09b35d8f5348e"
+    },
+    {
+      "path": "auditability_certificate_v1/REFERENCE_CHANNEL_PART2_AMENDMENT_2.json",
+      "source_sha256": "c16cbd365a3bc5ffd7b4e9ba5523621942d67807c7793f5268e68a9a97ec2843",
+      "source_size": 447,
+      "source_bytes_preserved": true,
+      "origin": "explicit-source-whitelist-2026-10-26",
+      "size": 447,
+      "sha256": "c16cbd365a3bc5ffd7b4e9ba5523621942d67807c7793f5268e68a9a97ec2843"
+    },
+    {
+      "path": "auditability_certificate_v1/REFERENCE_CHANNEL_PART2_AMENDMENT_3.json",
+      "source_sha256": "51fd03366ad06cdff04afc8bcbe931f4adcbd8f0fa531ffbcfa8d3a1f2bdf94d",
+      "source_size": 1052,
+      "source_bytes_preserved": true,
+      "origin": "explicit-source-whitelist-2026-10-26",
+      "size": 1052,
+      "sha256": "51fd03366ad06cdff04afc8bcbe931f4adcbd8f0fa531ffbcfa8d3a1f2bdf94d"
+    },
+    {
+      "path": "auditability_certificate_v1/REFERENCE_CHANNEL_PART2_RECEIPT_V1.json",
+      "source_sha256": "4077750631b2972b33bec470f1747e3dbf2d36f2c7816ba75c015a057ac76b8c",
+      "source_size": 302,
+      "source_bytes_preserved": true,
+      "origin": "explicit-source-whitelist-2026-10-26",
+      "size": 302,
+      "sha256": "4077750631b2972b33bec470f1747e3dbf2d36f2c7816ba75c015a057ac76b8c"
+    },
+    {
+      "path": "auditability_certificate_v1/REFERENCE_CHANNEL_PLAN_V1.md",
+      "source_sha256": "e389854b663c9dac85c799521406a453467a766489de4f447c4d6eb4eb45215a",
+      "source_size": 3161,
+      "source_bytes_preserved": true,
+      "origin": "explicit-source-whitelist-2026-10-26",
+      "size": 3161,
+      "sha256": "e389854b663c9dac85c799521406a453467a766489de4f447c4d6eb4eb45215a"
+    },
+    {
+      "path": "auditability_certificate_v1/REFERENCE_CHANNEL_RECEIPT_V1.json",
+      "source_sha256": "2aa35cf8d726f84f04d565576623509226fc0642f98c5af439b69d284fda0d89",
+      "source_size": 523,
+      "source_bytes_preserved": true,
+      "origin": "explicit-source-whitelist-2026-10-26",
+      "size": 523,
+      "sha256": "2aa35cf8d726f84f04d565576623509226fc0642f98c5af439b69d284fda0d89"
+    },
+    {
       "path": "auditability_certificate_v1/STRATIFIED_UI_AUDIT_AMENDMENT_1_RECEIPT.json",
       "size": 599,
       "sha256": "cc86f3bd150a219f64a19285e60a687ac172eb4d181b7bbe772b7c1bb9c1b538"
@@ -329,6 +468,42 @@
       "path": "auditability_certificate_v1/STRATIFIED_UI_AUDIT_V1_1_ERRATUM_RECEIPT.json",
       "size": 2275,
       "sha256": "ca542a5025b9dc81d51f636fcec57e9a9440fe1bab5b7fca049784d970cbfd8c"
+    },
+    {
+      "path": "auditability_certificate_v1/SWEETER_COMPARISON_PLAN_V1.md",
+      "source_sha256": "1a2de3693bb01aa6f215444e03c15163065fb46d3729c0fccc09e23d85ff2c5c",
+      "source_size": 2683,
+      "source_bytes_preserved": true,
+      "origin": "explicit-source-whitelist-2026-10-26",
+      "size": 2683,
+      "sha256": "1a2de3693bb01aa6f215444e03c15163065fb46d3729c0fccc09e23d85ff2c5c"
+    },
+    {
+      "path": "auditability_certificate_v1/SWEETER_COMPARISON_RECEIPT_V1.json",
+      "source_sha256": "d41e4b3f2704c0e76c19a9e91dd6f39d011e9a6a73bbc05d2c9a28e85c182c92",
+      "source_size": 933,
+      "source_bytes_preserved": true,
+      "origin": "explicit-source-whitelist-2026-10-26",
+      "size": 933,
+      "sha256": "d41e4b3f2704c0e76c19a9e91dd6f39d011e9a6a73bbc05d2c9a28e85c182c92"
+    },
+    {
+      "path": "auditability_certificate_v1/TWO_STAGE_ADJUDICATION_PLAN_V1.md",
+      "source_sha256": "33379ecece5cb5023e82a088bac89357e3c062078eb084e006fb53138ab602fe",
+      "source_size": 2352,
+      "source_bytes_preserved": true,
+      "origin": "explicit-source-whitelist-2026-10-26",
+      "size": 2352,
+      "sha256": "33379ecece5cb5023e82a088bac89357e3c062078eb084e006fb53138ab602fe"
+    },
+    {
+      "path": "auditability_certificate_v1/TWO_STAGE_ADJUDICATION_RECEIPT_V1.json",
+      "source_sha256": "73cd45c25a6b99530ee265321355bfb6d790e546e9c0db7146cf5161b89abf05",
+      "source_size": 773,
+      "source_bytes_preserved": true,
+      "origin": "explicit-source-whitelist-2026-10-26",
+      "size": 773,
+      "sha256": "73cd45c25a6b99530ee265321355bfb6d790e546e9c0db7146cf5161b89abf05"
     },
     {
       "path": "auditability_certificate_v1/UI_MECHANISM_ABLATION_PLAN_V1.md",
@@ -374,6 +549,15 @@
       "path": "auditability_certificate_v1/analysis/build_blinded_adjudication_study.py",
       "size": 7256,
       "sha256": "399dc96040e8c1d8ee04c4ee48444eee8e0597576c4167a3752dc1d14feec82c"
+    },
+    {
+      "path": "auditability_certificate_v1/analysis/build_certificate_records_v1.py",
+      "source_sha256": "f5d1479ca7996a08b55adf70aae8dedfd6da5bd6d4548fa16cf54277a41082c2",
+      "source_size": 4296,
+      "source_bytes_preserved": true,
+      "origin": "explicit-source-whitelist-2026-10-26",
+      "size": 4296,
+      "sha256": "f5d1479ca7996a08b55adf70aae8dedfd6da5bd6d4548fa16cf54277a41082c2"
     },
     {
       "path": "auditability_certificate_v1/analysis/finalize_cifar10_adapblend_scan_lda_confirmation.py",
@@ -439,6 +623,12 @@
       "path": "auditability_certificate_v1/analysis/recompute_mechanism_cluster_ci_v1.py",
       "size": 3248,
       "sha256": "1e09b3becfbf90c26d11be6380dba885c67f4a689b00c79de8661f19d4676f00"
+    },
+    {
+      "path": "auditability_certificate_v1/analysis/replay_synthetic_certificate_records_v1.py",
+      "origin": "public-created-2026-10-26",
+      "size": 3784,
+      "sha256": "22d86141f82048bae66cd9cea3814bf146bc869c4ce8149db17e8b0f49020a27"
     },
     {
       "path": "auditability_certificate_v1/analysis/robust_interval_hull.py",
@@ -521,9 +711,36 @@
       "sha256": "eda18c9e3e0ae34dcd0e55cd7e1ec203a0985f0ea6e45d5cbaa8f8a0394d59dd"
     },
     {
+      "path": "auditability_certificate_v1/analysis/run_directional_budget_v1.py",
+      "source_sha256": "f79059d3ce98a11100eed7153ebdc5771a376c6ae76ef972a7ac6dee9798feb9",
+      "source_size": 6721,
+      "source_bytes_preserved": true,
+      "origin": "explicit-source-whitelist-2026-10-26",
+      "size": 6721,
+      "sha256": "f79059d3ce98a11100eed7153ebdc5771a376c6ae76ef972a7ac6dee9798feb9"
+    },
+    {
       "path": "auditability_certificate_v1/analysis/run_family_resolution_v1.py",
       "size": 9164,
       "sha256": "697ff31812c3012e468e199bcc845672e5e24501e7e3564e50e5958d43a41045"
+    },
+    {
+      "path": "auditability_certificate_v1/analysis/run_float_precision_v1.py",
+      "source_sha256": "6c41ff8bd2d88b1194984de12eec0b046958c7c8a180a567aa85831b2545986d",
+      "source_size": 11669,
+      "source_bytes_preserved": true,
+      "origin": "explicit-source-whitelist-2026-10-26",
+      "size": 11669,
+      "sha256": "6c41ff8bd2d88b1194984de12eec0b046958c7c8a180a567aa85831b2545986d"
+    },
+    {
+      "path": "auditability_certificate_v1/analysis/run_go_allocation_v1.py",
+      "source_sha256": "b540ea712692b57d26995910e5192d90b111e0bc5287098e9af11695c4a695d9",
+      "source_size": 15757,
+      "source_bytes_preserved": true,
+      "origin": "explicit-source-whitelist-2026-10-26",
+      "size": 15757,
+      "sha256": "b540ea712692b57d26995910e5192d90b111e0bc5287098e9af11695c4a695d9"
     },
     {
       "path": "auditability_certificate_v1/analysis/run_group_safe_srac.py",
@@ -606,6 +823,24 @@
       "sha256": "c74f3a2027049ad5f710dcb91850ba7c75ac7199f420a4d0efef2f62f611a998"
     },
     {
+      "path": "auditability_certificate_v1/analysis/run_reference_channel_certificates_v1.py",
+      "source_sha256": "6d95084d91c19617d001238c5cc81d668b5fae0ae822d198c6e4cc0b41bb2a0b",
+      "source_size": 7974,
+      "source_bytes_preserved": true,
+      "origin": "explicit-source-whitelist-2026-10-26",
+      "size": 7974,
+      "sha256": "6d95084d91c19617d001238c5cc81d668b5fae0ae822d198c6e4cc0b41bb2a0b"
+    },
+    {
+      "path": "auditability_certificate_v1/analysis/run_reference_channel_v1.py",
+      "source_sha256": "b8b266501e8d7ab8ad2269b7e4a779d71fc1bdda29d3f7a2ff253162d791e7a7",
+      "source_size": 8416,
+      "source_bytes_preserved": true,
+      "origin": "explicit-source-whitelist-2026-10-26",
+      "size": 8416,
+      "sha256": "b8b266501e8d7ab8ad2269b7e4a779d71fc1bdda29d3f7a2ff253162d791e7a7"
+    },
+    {
       "path": "auditability_certificate_v1/analysis/run_srac_adjudication_redteam.py",
       "size": 9165,
       "sha256": "d4ac371a03726992ec725da04c337e3db727cd1e3e6702d5cea952776bca53d5"
@@ -629,6 +864,24 @@
       "path": "auditability_certificate_v1/analysis/run_stratified_ui_audit_v1_1.py",
       "size": 7114,
       "sha256": "f96c149ec6ab506a2f70d1ad90e40cfa8e2033687a80cf1417c6fabf5f8ebaa1"
+    },
+    {
+      "path": "auditability_certificate_v1/analysis/run_sweeter_comparison_v1.py",
+      "source_sha256": "c24fb44e1b99d76e76f46a071483d328913c89e6677481c3fda1dc91148913bc",
+      "source_size": 17467,
+      "source_bytes_preserved": true,
+      "origin": "explicit-source-whitelist-2026-10-26",
+      "size": 17467,
+      "sha256": "c24fb44e1b99d76e76f46a071483d328913c89e6677481c3fda1dc91148913bc"
+    },
+    {
+      "path": "auditability_certificate_v1/analysis/run_two_stage_adjudication_v1.py",
+      "source_sha256": "13d4be4d3237715c43aa61bc7a98ff6687bf89d266e51d169c2be4ce4175fc72",
+      "source_size": 4845,
+      "source_bytes_preserved": true,
+      "origin": "explicit-source-whitelist-2026-10-26",
+      "size": 4845,
+      "sha256": "13d4be4d3237715c43aa61bc7a98ff6687bf89d266e51d169c2be4ce4175fc72"
     },
     {
       "path": "auditability_certificate_v1/analysis/run_ui_mechanism_ablation_v1.py",
@@ -666,6 +919,15 @@
       "sha256": "c74f3a2027049ad5f710dcb91850ba7c75ac7199f420a4d0efef2f62f611a998"
     },
     {
+      "path": "auditability_certificate_v1/analysis/srac_ui_directional_v1.py",
+      "source_sha256": "8a60c872cc25dcca87dcd92fd6d5137b0038b6cefe39afe3e0c4bf975ca05d89",
+      "source_size": 6690,
+      "source_bytes_preserved": true,
+      "origin": "explicit-source-whitelist-2026-10-26",
+      "size": 6690,
+      "sha256": "8a60c872cc25dcca87dcd92fd6d5137b0038b6cefe39afe3e0c4bf975ca05d89"
+    },
+    {
       "path": "auditability_certificate_v1/analysis/srac_ui_engine_v1_1.py",
       "size": 11823,
       "sha256": "58724a60da3f0f34071a446be9ac6081d59dc509537733a6a220b79155e23dc9"
@@ -674,6 +936,15 @@
       "path": "auditability_certificate_v1/analysis/srac_ui_robust_v1.py",
       "size": 7864,
       "sha256": "29a26098210a679281e77f475f9b230c731ad4aeae54f635ba3fa4eb356a8e80"
+    },
+    {
+      "path": "auditability_certificate_v1/analysis/test_certificate_records_v1.py",
+      "source_sha256": "2242631e8d63c5c3da2088fcaaeb09370689ce1887cd7d4903e499a80c933509",
+      "source_size": 1290,
+      "source_bytes_preserved": true,
+      "origin": "explicit-source-whitelist-2026-10-26",
+      "size": 1290,
+      "sha256": "2242631e8d63c5c3da2088fcaaeb09370689ce1887cd7d4903e499a80c933509"
     },
     {
       "path": "auditability_certificate_v1/analysis/test_srac_ui_engine_v1_1.py",
@@ -896,9 +1167,28 @@
       "sha256": "ee66c722dfafe8ed542b0cd6cd3f2b34359b12d9926d6e38c1afaa5363a1d1a5"
     },
     {
+      "path": "fixtures/synthetic_certificate_counts_v1.json",
+      "origin": "public-created-2026-10-26",
+      "size": 2930,
+      "sha256": "72a46f4fa66360f1d5fb1cb709e4a0cb57107cf877d6855ab34fe7b73d8cb8ee"
+    },
+    {
       "path": "pytest.ini",
-      "size": 449,
-      "sha256": "06b64d394bd189b21dd444ca0b49e42f9bc33621408239ac5f55d6698010d66f"
+      "size": 543,
+      "sha256": "2e4a75fcd303123d50a607ad7e5227be8ecdef273fa5a71655c4d04b4273e5b1",
+      "previous_public_versions": [
+        {
+          "sha256": "06b64d394bd189b21dd444ca0b49e42f9bc33621408239ac5f55d6698010d66f",
+          "size": 449
+        }
+      ],
+      "publication_revision": "2026-10-26"
+    },
+    {
+      "path": "requirements-analysis.txt",
+      "origin": "public-created-2026-10-26",
+      "size": 180,
+      "sha256": "8ded805afea4c18a67120b78eb2c8a7748c04d99dd9938a1c5ec7981eb45c06c"
     },
     {
       "path": "requirements-audit.txt",
@@ -1097,8 +1387,19 @@
     },
     {
       "path": "src/verify_srac_release_20261019.py",
-      "size": 14699,
-      "sha256": "edba44bcfe582a8de6cb1cfad0924926917cef95760fcffdafda3981635d38ad"
+      "size": 17336,
+      "sha256": "81ea8b95a55a46fab2931871145389c68dae85c7fe3113662b15aac250e2cd52",
+      "previous_public_versions": [
+        {
+          "sha256": "edba44bcfe582a8de6cb1cfad0924926917cef95760fcffdafda3981635d38ad",
+          "size": 14699
+        },
+        {
+          "sha256": "15a0f174ba0f5315ee0ba91a506f297102d018cb7490cb6cf63a8c0f5983fa4d",
+          "size": 17250
+        }
+      ],
+      "publication_revision": "2026-10-26"
     },
     {
       "path": "tests/test_cifar10_vgg16_blended_confirmation_adapter.py",
@@ -1119,6 +1420,18 @@
       "path": "tests/test_prospective_replay_contract.py",
       "size": 2520,
       "sha256": "2861bcf17f212549f4571649ad96e6bf594cebee6b1b8fe9e926dfcceaab475c"
+    },
+    {
+      "path": "tests/test_synthetic_certificate_records.py",
+      "origin": "public-created-2026-10-26",
+      "size": 1609,
+      "sha256": "6e1df2f18fc2d1292aaf9fd29317b4b84b9c114dca1cddeec2211d463666c212"
+    },
+    {
+      "path": "tests/test_verifier_selftest_contracts.py",
+      "origin": "public-created-2026-10-26",
+      "size": 1856,
+      "sha256": "2bb34f1fc70dcde30039d3e9a981ca9cd0c94be63d5e3209a885b98aec16bd4a"
     }
   ],
   "frozen_code_sha256": {
@@ -1133,5 +1446,7 @@
     "credentials, caches and old Git history"
   ],
   "verification_scope": "Data-independent statistical and code-only regression tests, both corrected UI rational-reference suites, endpoint smoke tests on synthetic flags, Fisher self-tests; no training or real-data replay.",
-  "updated_utc": "2026-10-20T08:59:00Z"
+  "updated_utc": "2026-10-26T13:18:31.570328+00:00",
+  "publication_revision": "2026-10-26",
+  "update_scope": "Source, tests, configurations and protocol records only; synthetic fixtures are not experimental results."
 }

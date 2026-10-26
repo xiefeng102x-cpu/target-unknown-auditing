@@ -1,0 +1,5 @@
+# Optional post-hoc analysis dependencies, not a historical environment lock.
+# Basic method verification needs only requirements-audit.txt.
+-r requirements-audit.txt
+mpmath
+numba

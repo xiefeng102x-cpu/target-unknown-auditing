@@ -1,0 +1,8 @@
+{
+  "amendment": 1,
+  "reason": "runtime: declared-B decisions with B of several hundred to several thousand take up to about 80 s each; the first execution was stopped before writing any output",
+  "change": "all engines on draws 0-19 of each budget; oracle-B engine on draws 0-4; summary rates count decided audits only",
+  "script_sha256": "a6f9a4ba302cbf2425012eab889213c845699cc7229421245264b447c3c82125",
+  "recorded_utc": "2026-10-20T12:23:24.901638+00:00",
+  "disclosure": "To measure runtime, eight single decisions on draw 0 of one confirmation victim (k = 2000 and 16000; B = 0, 10, 100, and the oracle-size values 520 and 4000) were computed before this amendment; they showed a false NO-GO with B = 0 and ABSTAIN with the oracle-size B."
+}

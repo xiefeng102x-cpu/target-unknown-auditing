@@ -1,0 +1,8 @@
+{
+  "plan": "REFERENCE_CHANNEL_PLAN_V1.md",
+  "plan_sha256": "e389854b663c9dac85c799521406a453467a766489de4f447c4d6eb4eb45215a",
+  "script": "analysis/run_reference_channel_v1.py",
+  "script_sha256": "b8b266501e8d7ab8ad2269b7e4a779d71fc1bdda29d3f7a2ff253162d791e7a7",
+  "recorded_utc": "2026-10-20T10:14:02.523676+00:00",
+  "disclosure": "Before hashing, the record-rebuilding function was run on one population to check that assigned labels match the flags file; no model was trained and no channel label was computed."
+}

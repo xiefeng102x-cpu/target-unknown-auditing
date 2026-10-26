@@ -1,0 +1,6 @@
+{
+  "script": "analysis/run_reference_channel_certificates_v1.py",
+  "script_sha256": "ffa6bc3b97efebec273d07efa7ba3c8441693a94d607250f87e51ed6537d7de3",
+  "recorded_utc": "2026-10-20T10:15:51.054507+00:00",
+  "note": "part 2 of REFERENCE_CHANNEL_PLAN_V1.md, hashed before any channel label existed"
+}

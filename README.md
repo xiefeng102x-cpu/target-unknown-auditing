@@ -28,8 +28,9 @@ python -B src/verify_srac_release_20261019.py --root .
 
 The verifier checks the code-only manifest and exclusions, runs the data-independent
 method and release-policy regression tests, smoke-tests the frozen endpoint runners
-on synthetic flags, and exercises the corrected SRAC-UI reference suites and the
-SUITE-style Fisher self-test.
+on synthetic flags, and exercises both corrected SRAC-UI reference suites, the
+SUITE-style Fisher self-test, robust and directional self-tests, and hand-constructed
+count-to-decision fixtures.
 
 [Verification instructions](HOWTO_VERIFY.md) · [Artifact scope](ARTIFACT_SCOPE.md)
 
@@ -40,6 +41,7 @@ SUITE-style Fisher self-test.
 - `auditability_certificate_v1/tests/`: method-level and experiment tests.
 - `src/`: training, detector adapters, replay utilities, and release verification.
 - `configs/`: experiment configurations.
+- `fixtures/`: synthetic count fixtures only, not experimental records or results.
 - Protocol, plan, and receipt records accompany the corresponding experiment code,
   including the plans of every post-hoc analysis and the protocols of the
   prospective blocks.
@@ -54,6 +56,31 @@ Endpoint runners that re-check such a frozen hash are run through
 `auditability_certificate_v1/analysis/public_compat_runner.py`
 (see [HOWTO_VERIFY.md](HOWTO_VERIFY.md)).
 
+## Code update: 2026-10-26
+
+The source-only update adds the fixed-budget SWEETER-style comparison, direction-specific
+risk allocation, directional label-error budgets, two-stage adjudication simulation,
+reference-channel runners, and audited-size floating-point checks, with their original
+plans and receipts. Existing public-normalized engines are retained unchanged.
+
+The SWEETER-style comparison is a fixed-budget adaptation, not an evaluation of the
+complete sequential method. The directional variant returns **GO or ABSTAIN only**;
+it does not inherit a NO-GO guarantee. Two-stage channel results are simulations, not
+measured deployment performance. The adjudicator remains a trust assumption, and the
+scripts do not establish a generally deployable channel or an end-to-end cost advantage.
+
+The lower bound concerns unknown prevalence in the declared flag-only information model;
+it is not a universal cost bound for every source of adjudication information.
+The exact certificate addresses the frozen screen and declared groups, not absence of a
+backdoor in a retrained model.
+
+Low-level engine functions take a **per-assertion test level `alpha`**, not the
+family-level risk `delta`. Callers must validate counts, group membership, stratum
+assignment and unique without-replacement sample indices, and apply the declared risk
+allocation. These reference routines are not a production input-validation layer;
+finite self-tests are not a floating-point correctness proof for arbitrary populations.
+See [the API boundary](HOWTO_VERIFY.md#api-and-input-boundary).
+
 ## Training and data-dependent analyses
 
 The post-hoc UI label-corruption and population-scaling analyses are accompanied by
@@ -67,6 +94,17 @@ These are separate from quick verification. They require additional dependencies
 from `requirements-replay.txt`, official datasets and weights, and, for some
 analyses, controlled flags or prior decision tables that are not public here.
 A passing method test is not a from-scratch victim-training replay.
+
+`requirements-analysis.txt` adds optional `mpmath` and `numba` dependencies for the
+precision and betting-comparison runners. It is a convenience dependency list, not
+a lock of the historical analysis environment. Reference-model training also needs
+the replay dependencies and official datasets.
+
+The new public reference fixtures are hand-constructed. No real experiment's aggregate
+certificate records are distributed. `build_certificate_records_v1.py` and the original
+`test_certificate_records_v1.py` preserve source bytes but require the controlled
+reference file; they are intentionally outside the default data-free test selection.
+The separate synthetic fixture replay is part of default verification.
 
 Selected adapters require BackdoorBench. Acquire it separately under the
 appropriate license at the pinned revision recorded by the project, rather than

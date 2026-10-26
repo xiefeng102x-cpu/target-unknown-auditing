@@ -1,0 +1,18 @@
+{
+  "plan": "SWEETER_COMPARISON_PLAN_V1.md",
+  "plan_sha256": "1a2de3693bb01aa6f215444e03c15163065fb46d3729c0fccc09e23d85ff2c5c",
+  "script": "analysis/run_sweeter_comparison_v1.py",
+  "script_sha256": "c24fb44e1b99d76e76f46a071483d328913c89e6677481c3fda1dc91148913bc",
+  "engine_sha256": "ce1275d07607668c2f8243ef8dde6c8f163a7f6a226bdaefe5ac718752a0003f",
+  "inputs": {
+    "results_go_allocation_v1/decisions.csv": "aedfb8e8345ae7e4654f27da4c27ed2aa088617b3d83a1b55cd0da9e1426f089"
+  },
+  "selftest": {
+    "points": 72,
+    "reps": 20000,
+    "max_rate_over_alpha": 0.33275,
+    "passed": true
+  },
+  "recorded_utc": "2026-10-20T16:55:12.526631+00:00",
+  "disclosure": "Before hashing: timing on random (non-audit) samples of two confirmation victims; a numba implementation of the betting martingale was checked against the numpy reference on 300 random cases (max abs difference 3e-13); the Monte Carlo size self-test above."
+}

@@ -1,0 +1,12 @@
+{
+  "status": "FROZEN_BEFORE_RUN",
+  "frozen_utc": "2026-10-21T03:03:29+00:00",
+  "files": {
+    "TWO_STAGE_ADJUDICATION_PLAN_V1.md": "33379ecece5cb5023e82a088bac89357e3c062078eb084e006fb53138ab602fe",
+    "analysis/run_two_stage_adjudication_v1.py": "13d4be4d3237715c43aa61bc7a98ff6687bf89d266e51d169c2be4ce4175fc72",
+    "analysis/run_directional_budget_v1.py": "f79059d3ce98a11100eed7153ebdc5771a376c6ae76ef972a7ac6dee9798feb9",
+    "analysis/srac_ui_directional_v1.py": "8a60c872cc25dcca87dcd92fd6d5137b0038b6cefe39afe3e0c4bf975ca05d89",
+    "analysis/srac_ui_engine_v1_1.py": "ce1275d07607668c2f8243ef8dde6c8f163a7f6a226bdaefe5ac718752a0003f",
+    "PROTOCOL_GTSRB_SRAC_UI_CONFIRMATION_V1.json": "868e9a49c8d5a2bbbd8508d4d580b2a72f855d1e27cf51a377feeb8e0dbf6ff8"
+  }
+}

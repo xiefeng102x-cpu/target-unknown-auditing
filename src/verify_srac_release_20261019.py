@@ -3,7 +3,8 @@
 
 Default: manifest/hygiene checks, data-independent statistical regression tests,
 UI v1.1's rational reference suites (first and second), public-checkout endpoint smoke
-tests, and the mechanism Fisher self-test. ``--integrity-only`` never
+tests, robust/directional self-tests, synthetic count fixtures, and the mechanism
+Fisher self-test. ``--integrity-only`` never
 reports a full validation PASS. Source hashes in the manifest are provenance
 metadata; only distributed bytes can be independently checked in a checkout.
 """
@@ -53,6 +54,8 @@ METHOD_TESTS = (
     "auditability_certificate_v1/tests/test_robust_interval_hull.py",
     "auditability_certificate_v1/tests/test_public_endpoint_compat.py",
     "tests/test_code_only_release.py",
+    "tests/test_synthetic_certificate_records.py",
+    "tests/test_verifier_selftest_contracts.py",
 )
 MIN_REGRESSIONS_PASSED = 43
 
@@ -88,6 +91,9 @@ def safe_relative(name) -> bool:
 def prohibited(name: str) -> bool:
     p = PurePosixPath(name)
     if any(x.lower().startswith("manuscript") for x in p.parts):
+        return True
+    if any(x.lower() in {"data", "datasets", "models", "checkpoints", "audits"}
+           or x.lower().startswith(("results", "human_pilot")) for x in p.parts):
         return True
     if any(x in OS_JUNK or x.startswith("._") for x in p.parts):
         return True
@@ -217,6 +223,34 @@ def integrity(root: Path) -> dict:
                 secret_hits=secret_hits, source_metadata="syntax checked; original source bytes not available")
 
 
+def selftest_contract_error(name: str, parsed) -> str | None:
+    """Require each new self-test's actual schema, not just a success exit code."""
+    if not isinstance(parsed, dict) or parsed.get("passed") is not True:
+        return "self-test did not report passed=true"
+    if name in {"ui_robust", "ui_directional"}:
+        pairs = parsed.get("pairs_checked")
+        if not isinstance(pairs, int) or isinstance(pairs, bool) or pairs <= 0:
+            return "self-test did not check any count pairs"
+        if type(parsed.get("violations")) is not int or parsed["violations"] != 0:
+            return "robustness self-test reports violations"
+        reduction = "reduces_to_engine_at_R0" if name == "ui_robust" else "never_more_than_engine_at_B0"
+        if parsed.get(reduction) is not True:
+            return "self-test reduction or dominance check is missing or failed"
+    if name == "synthetic_certificate_records":
+        count = parsed.get("records_checked")
+        if parsed.get("synthetic") is not True or not isinstance(count, int) or isinstance(count, bool) or count < 6:
+            return "synthetic fixture schema or count is incomplete"
+        if type(parsed.get("records_failed")) is not int or parsed["records_failed"] != 0:
+            return "synthetic fixture decisions differ from expectations"
+        decisions = parsed.get("decisions")
+        if not isinstance(decisions, list) or len(decisions) != count:
+            return "synthetic fixture decision list is incomplete"
+        if any(not isinstance(row, dict) or row.get("actual") != row.get("expected")
+               or row.get("actual") not in {"GO", "NO_GO", "ABSTAIN"} for row in decisions):
+            return "synthetic fixture decision content is invalid"
+    return None
+
+
 def run_step(root: Path, name: str, arguments: list[str], timeout: int) -> dict:
     command = [sys.executable, "-B", *arguments]
     env = os.environ.copy()
@@ -244,9 +278,10 @@ def run_step(root: Path, name: str, arguments: list[str], timeout: int) -> dict:
         else:
             result["tests_passed"] = int(counts[-1])
     else:
-        if not isinstance(parsed, dict) or parsed.get("passed") is not True:
-            result.update(status="FAIL", reason="self-test did not report passed=true")
-        for key in ("T1_comparisons", "T1_zero_observation_outcomes", "T6_mutant_failures_detected", "T3_intervals", "T4_census_populations", "n_failures", "truth_points", "max_error_over_alpha", "T2_max_error_over_alpha"):
+        contract_error = selftest_contract_error(name, parsed)
+        if contract_error is not None:
+            result.update(status="FAIL", reason=contract_error)
+        for key in ("T1_comparisons", "T1_zero_observation_outcomes", "T6_mutant_failures_detected", "T3_intervals", "T4_census_populations", "n_failures", "truth_points", "max_error_over_alpha", "T2_max_error_over_alpha", "pairs_checked", "violations", "records_checked", "records_failed"):
             if isinstance(parsed, dict) and isinstance(parsed.get(key), (int, float)):
                 result[key] = parsed[key]
     return result
@@ -269,7 +304,7 @@ def main() -> int:
             return emit(report, 1)
         if args.integrity_only:
             report["status"] = "PASS_INTEGRITY_ONLY"
-            report["not_verified"] = ["method, endpoint-smoke and code-only regression suite", "UI v1.1 rational-reference suites", "mechanism Fisher self-test"]
+            report["not_verified"] = ["method, endpoint-smoke and code-only regression suite", "UI v1.1 rational-reference suites", "mechanism Fisher self-test", "robust and directional self-tests", "synthetic count-to-decision fixtures"]
             return emit(report, 0)
         missing_tests = [name for name in METHOD_TESTS if not (root/name).is_file()]
         if missing_tests:
@@ -279,6 +314,9 @@ def main() -> int:
             ("ui_v1_1", ["auditability_certificate_v1/analysis/test_srac_ui_engine_v1_1.py"], args.test_timeout),
             ("ui_v1_1_suite2", ["auditability_certificate_v1/analysis/test_srac_ui_engine_v1_1_suite2.py"], args.test_timeout),
             ("mechanism_fisher", ["auditability_certificate_v1/analysis/run_ui_mechanism_ablation_v1.py", "selftest"], args.test_timeout),
+            ("ui_robust", ["auditability_certificate_v1/analysis/srac_ui_robust_v1.py"], args.test_timeout),
+            ("ui_directional", ["auditability_certificate_v1/analysis/srac_ui_directional_v1.py"], args.test_timeout),
+            ("synthetic_certificate_records", ["auditability_certificate_v1/analysis/replay_synthetic_certificate_records_v1.py"], args.test_timeout),
         ]
         for name, arguments, timeout in steps:
             result = run_step(root, name, arguments, timeout)

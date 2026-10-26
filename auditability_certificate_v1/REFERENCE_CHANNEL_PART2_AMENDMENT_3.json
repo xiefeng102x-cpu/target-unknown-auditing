@@ -1,0 +1,19 @@
+{
+  "amendment": 3,
+  "reason": "runtime: 40 of the 50 oracle-B units at k = 16000 had not finished after two executions; the second was stopped",
+  "change": "oracle-B at k = 16000 reported only for the 10 completed units; the other 40 units are computed by the master, naive and defender engines with an empty oracle field; nothing else changes",
+  "completed_oracle_units_k16000": [
+    "gtsrb_semantic_overlap_seed256__16000__3.csv",
+    "gtsrb_semantic_overlap_seed257__16000__0.csv",
+    "gtsrb_semantic_overlap_seed257__16000__1.csv",
+    "gtsrb_semantic_overlap_seed259__16000__2.csv",
+    "gtsrb_semantic_overlap_seed259__16000__4.csv",
+    "gtsrb_semantic_overlap_seed260__16000__0.csv",
+    "gtsrb_semantic_overlap_seed260__16000__1.csv",
+    "gtsrb_semantic_overlap_seed260__16000__2.csv",
+    "gtsrb_semantic_overlap_seed263__16000__4.csv",
+    "gtsrb_semantic_overlap_seed264__16000__3.csv"
+  ],
+  "script_sha256": "6d95084d91c19617d001238c5cc81d668b5fae0ae822d198c6e4cc0b41bb2a0b",
+  "recorded_utc": "2026-10-20T15:55:53.134717+00:00"
+}

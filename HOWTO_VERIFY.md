@@ -10,7 +10,8 @@ python -B src/verify_srac_release_20261019.py --root .
 A complete PASS requires manifest integrity, no manuscript/PDF/private payload,
 the required statistical regression tests, both corrected UI reference suites, the
 public-checkout endpoint smoke tests, Fisher self-tests, and unchanged integrity after
-testing. This does not validate omitted
+testing. It also requires the robust and directional self-tests and the synthetic
+count-to-decision fixtures. This does not validate omitted
 experimental result tables, real adjudication channels, or model training.
 
 An integrity-only check is explicitly partial:
@@ -26,6 +27,9 @@ PYTHONDONTWRITEBYTECODE=1 python -B -m pytest -q -p no:cacheprovider
 PYTHONDONTWRITEBYTECODE=1 python -B auditability_certificate_v1/analysis/test_srac_ui_engine_v1_1.py
 PYTHONDONTWRITEBYTECODE=1 python -B auditability_certificate_v1/analysis/test_srac_ui_engine_v1_1_suite2.py
 PYTHONDONTWRITEBYTECODE=1 python -B auditability_certificate_v1/analysis/run_ui_mechanism_ablation_v1.py selftest
+PYTHONDONTWRITEBYTECODE=1 python -B auditability_certificate_v1/analysis/srac_ui_robust_v1.py
+PYTHONDONTWRITEBYTECODE=1 python -B auditability_certificate_v1/analysis/srac_ui_directional_v1.py
+PYTHONDONTWRITEBYTECODE=1 python -B auditability_certificate_v1/analysis/replay_synthetic_certificate_records_v1.py
 ```
 
 The default pytest selection contains only tests that do not require private
@@ -53,7 +57,7 @@ The original plan and receipt are distributed as
 They describe post-hoc developmental analyses, including the disclosed pilot work.
 The newly distributed scripts and plan preserve their original bytes and hashes.
 
-Additional data-free checks, separate from the default release verifier:
+Individual checks (the robust self-test is also in the default release verifier):
 
 ```bash
 python -B auditability_certificate_v1/analysis/srac_ui_robust_v1.py
@@ -72,6 +76,82 @@ For the red-team plan use `run --draws 20 --blocks 8,11,12,13 --output OUTPUT_DI
 the script's default is 200 draws, not the plan's 20. Part-wise runs and the
 `combine` command are documented by `--help`. The scaling script uses the fixed
 replication and draw counts declared in the plan. Output directories must be new.
+
+## Additional analysis code: 2026-10-26
+
+The following source files are accompanied by their original plans and receipts:
+
+| Analysis | Entry point in `auditability_certificate_v1/analysis/` | Input boundary |
+| --- | --- | --- |
+| GO-direction risk allocation | `run_go_allocation_v1.py` | Frozen flags and stored interval/UI/betting decisions |
+| Fixed-budget SWEETER-style comparison | `run_sweeter_comparison_v1.py` | Same flags/sample order and stored allocation decisions; optional `numba` |
+| Audited-size precision checks | `run_float_precision_v1.py` | Frozen flags and stored decisions; optional `mpmath` |
+| Automated reference channel | `run_reference_channel_v1.py`, `run_reference_channel_certificates_v1.py` | Official images, frozen flags and channel outputs; training dependencies |
+| Directional label-error budgets | `srac_ui_directional_v1.py`, `run_directional_budget_v1.py` | Self-test is data-free; experiment runner needs controlled channel labels and flags |
+| Two-stage adjudication simulation | `run_two_stage_adjudication_v1.py` | Controlled confirmation flags and reference-channel file used by its shared loader |
+
+Install optional analysis libraries separately:
+
+```bash
+python -m pip install -r requirements-analysis.txt
+```
+
+The optional dependency list is not a historical lock file. Basic release verification
+does not need these extra libraries, model training, or an accelerator. Training the
+reference channel additionally requires `requirements-replay.txt` and official data.
+
+The source runners preserve their existing input layout and do not make controlled
+records public. Inspect the corresponding plan and command help before data-dependent
+execution. A receipt binds source/input hashes; it does not supply omitted inputs or
+prove that a scientific experiment was rerun in this checkout.
+
+The SWEETER-style code compares terminal, fixed-budget tests; it must not be described
+as the full sequential SWEETER procedure. Directional robustness certifies GO or ABSTAIN
+only. Two-stage adjudication is a simulation with declared error assumptions, not a
+verified operational channel.
+
+## Synthetic certificate fixtures
+
+`fixtures/synthetic_certificate_counts_v1.json` contains six hand-constructed examples:
+census GO, census recall failure, census group failure, no sample, no poison/no removals,
+and an empty universe. The last three exercise conservative ABSTAIN behavior. They have
+no experimental sample identities and are not real experiment results.
+
+The standalone replay prints JSON with `synthetic=true`, `records_checked`,
+`records_failed`, the decisions, and `passed`. The verifier checks these fields rather
+than accepting a process exit code alone. The regression suite also rejects incomplete
+self-test schemas.
+
+The source-preserved `build_certificate_records_v1.py` and
+`test_certificate_records_v1.py` refer to a separate controlled real-study file at
+`auditability_certificate_v1/certificate_records_v1/srac_ui_reference_records_v1.json`.
+That file is not distributed because experimental results remain outside this release.
+Those two source files are not part of default verification; use the separate synthetic
+replay for a self-contained public count-to-decision check.
+
+## API and input boundary
+
+`recall_tests`, `group_tests`, and `decide_ui` in `srac_ui_engine_v1_1.py`
+receive a per-assertion level `alpha`, not a family risk `delta`. For the reported
+tri-state allocation with `A` active assertions, this is `delta / (2*A)`.
+The separately justified GO-direction allocation and GO-only directional variant
+must not be substituted for a tri-state guarantee without their stated risk accounting.
+
+The low-level reference engine is not a production input-validation layer. Before
+calling it, validate integer counts with `0 <= observed <= sampled <= size`, finite
+policy parameters, feasible group/stratum counts, and the consistency of the counts
+with the frozen population and memberships. For array-based callers, verify unique,
+in-range sample indices in the correct flag strata and the declared uniform
+without-replacement sampling design. Overlapping groups are allowed; malformed or
+duplicated sample indices do not become valid merely because a test function returns
+a decision. A label-error guarantee also requires a valid declared error budget and
+its associated calibration risk accounting.
+
+The synthetic replay validates its small count schema, not a general production
+population or sampling pipeline. Data-free self-tests check finite configurations.
+The precision runner checks selected audited-size calculations. Neither is a formal
+floating-point proof for arbitrary `N`, risk levels, or externally supplied inputs.
+The frozen reference engine is unchanged in this update.
 
 ## Frozen identities
 

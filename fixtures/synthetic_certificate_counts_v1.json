@@ -1,0 +1,61 @@
+{
+  "schema": "srac-ui-synthetic-count-records-v1",
+  "synthetic": true,
+  "description": "Hand-constructed regression fixtures, not records or results from any real experiment.",
+  "records": [
+    {
+      "name": "census_pass",
+      "delta": 0.005, "tau": 0.8, "cap": 0.1,
+      "flagged_size": 6, "unflagged_size": 24,
+      "flagged_sampled": 6, "unflagged_sampled": 24,
+      "flagged_sampled_poisons": 6, "unflagged_sampled_poisons": 0,
+      "groups": [{"name": "all", "flagged_size": 6, "unflagged_size": 24, "flagged_sampled": 6, "unflagged_sampled": 24, "flagged_sampled_clean": 0, "unflagged_sampled_clean": 24}],
+      "expected_decision": "GO"
+    },
+    {
+      "name": "census_recall_fail",
+      "delta": 0.005, "tau": 0.8, "cap": 0.1,
+      "flagged_size": 6, "unflagged_size": 24,
+      "flagged_sampled": 6, "unflagged_sampled": 24,
+      "flagged_sampled_poisons": 1, "unflagged_sampled_poisons": 12,
+      "groups": [{"name": "unflagged_only", "flagged_size": 0, "unflagged_size": 24, "flagged_sampled": 0, "unflagged_sampled": 24, "flagged_sampled_clean": 0, "unflagged_sampled_clean": 12}],
+      "expected_decision": "NO_GO"
+    },
+    {
+      "name": "census_group_fail",
+      "delta": 0.005, "tau": 0.8, "cap": 0.1,
+      "flagged_size": 6, "unflagged_size": 24,
+      "flagged_sampled": 6, "unflagged_sampled": 24,
+      "flagged_sampled_poisons": 5, "unflagged_sampled_poisons": 0,
+      "groups": [{"name": "small_protected_group", "flagged_size": 1, "unflagged_size": 1, "flagged_sampled": 1, "unflagged_sampled": 1, "flagged_sampled_clean": 1, "unflagged_sampled_clean": 1}],
+      "expected_decision": "NO_GO"
+    },
+    {
+      "name": "no_sample",
+      "delta": 0.005, "tau": 0.8, "cap": 0.1,
+      "flagged_size": 6, "unflagged_size": 24,
+      "flagged_sampled": 0, "unflagged_sampled": 0,
+      "flagged_sampled_poisons": 0, "unflagged_sampled_poisons": 0,
+      "groups": [{"name": "all", "flagged_size": 6, "unflagged_size": 24, "flagged_sampled": 0, "unflagged_sampled": 0, "flagged_sampled_clean": 0, "unflagged_sampled_clean": 0}],
+      "expected_decision": "ABSTAIN"
+    },
+    {
+      "name": "no_poisons_and_no_removals",
+      "delta": 0.005, "tau": 0.8, "cap": 0.1,
+      "flagged_size": 0, "unflagged_size": 24,
+      "flagged_sampled": 0, "unflagged_sampled": 24,
+      "flagged_sampled_poisons": 0, "unflagged_sampled_poisons": 0,
+      "groups": [{"name": "all", "flagged_size": 0, "unflagged_size": 24, "flagged_sampled": 0, "unflagged_sampled": 24, "flagged_sampled_clean": 0, "unflagged_sampled_clean": 24}],
+      "expected_decision": "ABSTAIN"
+    },
+    {
+      "name": "empty_universe",
+      "delta": 0.005, "tau": 0.8, "cap": 0.1,
+      "flagged_size": 0, "unflagged_size": 0,
+      "flagged_sampled": 0, "unflagged_sampled": 0,
+      "flagged_sampled_poisons": 0, "unflagged_sampled_poisons": 0,
+      "groups": [],
+      "expected_decision": "ABSTAIN"
+    }
+  ]
+}

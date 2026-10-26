@@ -1,0 +1,9 @@
+{
+  "plan": "FLOAT_PRECISION_PLAN_V1.md",
+  "plan_sha256": "d1d9a1b094730460320dff4877dac576b84544d3b3b3496fa149db7244ea3f58",
+  "script": "analysis/run_float_precision_v1.py",
+  "script_sha256": "6c41ff8bd2d88b1194984de12eec0b046958c7c8a180a567aa85831b2545986d",
+  "engine_sha256": "ce1275d07607668c2f8243ef8dde6c8f163a7f6a226bdaefe5ac718752a0003f",
+  "recorded_utc": "2026-10-20T10:13:18.227505+00:00",
+  "disclosure": "One dry run (FP_DRYRUN, one draw per budget, a few calls) preceded hashing; it only checked execution and is discarded."
+}

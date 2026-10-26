@@ -1,0 +1,7 @@
+{
+  "amendment": 2,
+  "reason": "the amended execution was stopped by the environment's two-hour limit before writing any output",
+  "change": "execution only: each (victim, budget, draw) is computed as a unit and saved as a part file, so later executions resume; computations and outputs are unchanged",
+  "script_sha256": "e2e1247bd2ebdb87f6c1a272e7163f4c8a9e4fac48b92a3e8ab31c559073b2b8",
+  "recorded_utc": "2026-10-20T14:24:19.728710+00:00"
+}
