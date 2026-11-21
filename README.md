@@ -34,6 +34,15 @@ count-to-decision fixtures.
 
 [Verification instructions](HOWTO_VERIFY.md) · [Artifact scope](ARTIFACT_SCOPE.md)
 
+## Verify follow-up summaries
+
+The source for verifying the auxiliary-score audit replay, the model-level
+retraining comparison, and the single-reviewer adjudication pilot is
+[`src/verify_followup_aggregates.py`](src/verify_followup_aggregates.py).
+It runs with the separate reproducibility attachment distributed with the
+manuscript and checks the aggregate counts, rates, and intervals. See
+[the follow-up verification instructions](HOWTO_VERIFY.md#follow-up-summary-verification).
+
 ## Layout
 
 - `auditability_certificate_v1/analysis/`: scalar/group-safe SRAC, corrected UI

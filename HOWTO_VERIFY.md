@@ -36,6 +36,27 @@ The default pytest selection contains only tests that do not require private
 experiment outputs. Other experiment tests and runner entry points require their
 documented input files; they are not advertised as data-free reproduction.
 
+## Follow-up summary verification
+
+Unpack the separate reproducibility attachment (`reproducibility.zip`) outside
+this checkout. With NumPy and SciPy installed, run:
+
+```bash
+python -B src/verify_followup_aggregates.py --attachment-dir /path/to/unpacked/attachment
+```
+
+The verifier checks the fixed-budget certification tables and paired bootstrap
+intervals, the retraining summaries, and error rates and intervals for the
+single-reviewer pilot. It also checks archived simulation tallies against the
+reported counts. Use `--print-replay-tables` to print the tables from the
+auxiliary-score replay.
+
+The inputs are aggregate JSON and summary tables from the attachment. Recreating
+audit draws, training models, and rescoring individual images require the
+controlled archive. The pilot contains one reviewer, and its projected
+certification results are simulations. The model-level follow-up evaluates
+retrained models and issues no new certificates.
+
 ## External training dependency
 
 Selected attack/detector adapters use the pinned BackdoorBench revision:

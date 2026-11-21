@@ -3,7 +3,7 @@
   "repository": "https://github.com/xiefeng102x-cpu/target-unknown-auditing",
   "profile": "code-tests-configurations-protocols-only",
   "created_utc": "2026-10-19T10:20:56Z",
-  "file_count": 255,
+  "file_count": 256,
   "files": [
     {
       "path": ".gitignore",
@@ -22,8 +22,8 @@
     },
     {
       "path": "HOWTO_VERIFY.md",
-      "size": 10611,
-      "sha256": "c5938e0ae9e2e8f6d8e3714d27627359d730005c814e0920cd8b2ff535ca629a",
+      "size": 11563,
+      "sha256": "ae2f64c384d55877efd07d07b614cc1a6aa55446e5bc6fad651af7c433e2ad60",
       "previous_public_versions": [
         {
           "sha256": "eb3482bbdf8cc08710c044f8523c95b389c6c17da70771b30dd1d9d5db9489b3",
@@ -32,9 +32,13 @@
         {
           "sha256": "8f8b3677eba9ae34def371255a586527ac3af298a99159030ff3423efdea0bb7",
           "size": 9087
+        },
+        {
+          "sha256": "c5938e0ae9e2e8f6d8e3714d27627359d730005c814e0920cd8b2ff535ca629a",
+          "size": 10611
         }
       ],
-      "publication_revision": "2026-10-26"
+      "publication_revision": "2026-11-21"
     },
     {
       "path": "LICENSE",
@@ -53,8 +57,8 @@
     },
     {
       "path": "README.md",
-      "size": 6382,
-      "sha256": "e3fe26791c52af64d75c09f88dec660dad1a24564b5d016c74b130e9a9a1b6f9",
+      "size": 6867,
+      "sha256": "11dc97cfcf425dc22fd4c2e997abf2c1b93f830b5b5ade5393dbea52578443d2",
       "previous_public_versions": [
         {
           "sha256": "b2cc4ade47d11bc3e364956ab057b47809a77aae3ec175e46c240caa13ad0b13",
@@ -63,9 +67,13 @@
         {
           "sha256": "c4da66f28c3ae0f4e0e65e5ffba58d2f8c392f29561dd1f17cb215be48c736fa",
           "size": 5898
+        },
+        {
+          "sha256": "e3fe26791c52af64d75c09f88dec660dad1a24564b5d016c74b130e9a9a1b6f9",
+          "size": 6382
         }
       ],
-      "publication_revision": "2026-10-26"
+      "publication_revision": "2026-11-21"
     },
     {
       "path": "SRAC_CIFAR10_VGG16_BLENDED_CONFIRMATION_FREEZE_V1.json",
@@ -1369,6 +1377,12 @@
       "path": "src/verify_cifar10_vgg16_srac_handoff.py",
       "size": 5174,
       "sha256": "03ab95d24f185e34eddab3a5ac6e28b3345fe3710dd99d4413819aec84807219"
+    },
+    {
+      "path": "src/verify_followup_aggregates.py",
+      "size": 13302,
+      "sha256": "f438e71144f3ec1cf4dd3e688cb919a98875f479e54a3fcee97edc545b04f3a9",
+      "publication_revision": "2026-11-21"
     },
     {
       "path": "src/verify_gtsrb_global_blend_candidate_random.py",
